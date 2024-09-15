@@ -71,3 +71,14 @@ ng generate class caminho/local/criacao --type=model
 // criar um model abreviado
 ng g c caminho/local/criacao --type=model
 ```
+
+### Endpoints
+* http://localhost:3000/aeroportos
+* http://localhost:3000/alteracaoEstadoReservas
+* http://localhost:3000/clientes
+* http://localhost:3000/estadosReserva
+* http://localhost:3000/funcionarios
+* http://localhost:3000/milhas
+* http://localhost:3000/reservas
+* http://localhost:3000/usuarios
+* http://localhost:3000/voos
