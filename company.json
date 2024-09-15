@@ -1,0 +1,314 @@
+{
+  "aeroportos": [
+    {
+      "codigoAeroporto": "GIG",
+      "nomeAeroporto": "Aeroporto Internacional do Rio de Janeiro/Galeão",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ",
+      "id": "0e74"
+    },
+    {
+      "codigoAeroporto": "BSB",
+      "nomeAeroporto": "Aeroporto Internacional de Brasília",
+      "cidade": "Brasília",
+      "estado": "DF",
+      "id": "f20f"
+    },
+    {
+      "codigoAeroporto": "GRU",
+      "nomeAeroporto": "Aeroporto Internacional de São Paulo/Guarulhos",
+      "cidade": "Guarulhos",
+      "estado": "SP",
+      "id": "f245"
+    },
+    {
+      "id": "f4a4",
+      "codigoAeroporto": "GRU",
+      "nomeAeroporto": "Aeroporto Internacional de São Paulo/Guarulhos",
+      "cidade": "Guarulhos",
+      "estado": "SP"
+    }
+  ],
+  "alteracaoEstadoReservas": [
+    {
+      "codigoReserva": "RES12345",
+      "dataHoraAlteracao": "2024-09-15T11:00:00Z",
+      "estadoOrigem": "pendente",
+      "estadoDestino": "confirmada",
+      "id": "57ef"
+    },
+    {
+      "codigoReserva": "RES67890",
+      "dataHoraAlteracao": "2024-09-16T15:00:00Z",
+      "estadoOrigem": "pendente",
+      "estadoDestino": "confirmada",
+      "id": "b753"
+    },
+    {
+      "codigoReserva": "RES11223",
+      "dataHoraAlteracao": "2024-09-17T17:30:00Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada",
+      "id": "6a0e"
+    },
+    {
+      "codigoReserva": "RES44556",
+      "dataHoraAlteracao": "2024-09-18T10:00:00Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "pendente",
+      "id": "936c"
+    }
+  ],
+  "clientes": [
+     {
+    "cpf": "12345678901",
+    "email": "maria.silva@example.com",
+    "ruaNumero": "R. XV de Novembro, 150",
+    "complemento": "Apartamento 101",
+    "cep": "80020000",
+    "cidade": "Curitiba",
+    "estado": "Paraná",
+    "milhas": 15000,
+    "id": "964c"
+  },
+  {
+    "id": "a3cf",
+    "cpf": "10987654321",
+    "email": "joao.pereira@example.com",
+    "ruaNumero": "Av. Brasil, 987",
+    "complemento": "Casa",
+    "cep": "81050000",
+    "cidade": "Curitiba",
+    "estado": "Paraná",
+    "milhas": 20000
+  },
+  {
+    "id": "b7d2",
+    "cpf": "34567890123",
+    "email": "ana.oliveira@example.com",
+    "ruaNumero": "R. das Flores, 456",
+    "complemento": "Apartamento 202",
+    "cep": "82010000",
+    "cidade": "Curitiba",
+    "estado": "Paraná",
+    "milhas": 10000
+  }
+  ],
+  "estadosReserva": [
+    {
+      "codigoEstado": "EST001",
+      "siglaEstado": "PEN",
+      "descricaoEstado": "Pendente",
+      "id": "7dca"
+    },
+    {
+      "codigoEstado": "EST002",
+      "siglaEstado": "CON",
+      "descricaoEstado": "Confirmada",
+      "id": "c6b6"
+    },
+    {
+      "codigoEstado": "EST003",
+      "siglaEstado": "CAN",
+      "descricaoEstado": "Cancelada",
+      "id": "78e9"
+    },
+    {
+      "codigoEstado": "EST004",
+      "siglaEstado": "AUS",
+      "descricaoEstado": "Ausente",
+      "id": "1338"
+    },
+    {
+      "id": "942b",
+      "codigoEstado": "EST001",
+      "siglaEstado": "PEN",
+      "descricaoEstado": "Pendente"
+    },
+    {
+      "id": "20eb",
+      "codigoEstado": "EST001",
+      "siglaEstado": "PEN",
+      "descricaoEstado": "Pendente"
+    }
+  ],
+  "funcionarios": [
+    {
+      "nome": "Carlos Santos",
+      "cpf": "345.678.901-23",
+      "email": "carlos.santos@example.com",
+      "telefone": "+55 31 91234-5678",
+      "id": "d51f"
+    },
+    {
+      "nome": "Ana Pereira",
+      "cpf": "456.789.012-34",
+      "email": "ana.pereira@example.com",
+      "telefone": "+55 41 93456-7890",
+      "id": "6e88"
+    },
+    {
+      "id": "0f7e",
+      "nome": "João Silva Castro",
+      "cpf": "123.456.789-00",
+      "email": "joao.silva@example.com",
+      "telefone": "+55 11 98765-4321"
+    }
+  ],
+  "milhas": [
+    {
+      "cliente": "João Silva",
+      "dataHoraTransacao": "2024-09-01T14:30:00Z",
+      "quantidadeMilhas": 500,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de passagens aéreas",
+      "id": "283c"
+    },
+    {
+      "cliente": "Maria Oliveira",
+      "dataHoraTransacao": "2024-09-02T09:15:00Z",
+      "quantidadeMilhas": 300,
+      "tipoTransacao": "saída",
+      "descricao": "Resgate de milhas para upgrade de classe",
+      "id": "6366"
+    },
+    {
+      "cliente": "Ana Pereira",
+      "dataHoraTransacao": "2024-09-04T11:00:00Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "saída",
+      "descricao": "Doação de milhas para ação social",
+      "id": "7cb7"
+    },
+    {
+      "id": "34ed",
+      "cliente": "Carlos Santos",
+      "dataHoraTransacao": "2024-09-03T18:45:00Z",
+      "quantidadeMilhas": 200,
+      "tipoTransacao": "entrada",
+      "descricao": "Promoção de milhas por atividadeeeee"
+    },
+    {
+      "id": "fe22",
+      "cliente": "Carlos Santos",
+      "dataHoraTransacao": "2024-09-03T18:45:00Z",
+      "quantidadeMilhas": 200,
+      "tipoTransacao": "entrada",
+      "descricao": "Promoção de milhas por atividadeeeee"
+    }
+  ],
+  "reservas": [
+    {
+      "codigoReserva": "RES12345",
+      "codigoVoo": "AZ123",
+      "dataHoraReserva": "2024-09-15T10:30:00Z",
+      "estadoReserva": "confirmada",
+      "id": "5206"
+    },
+    {
+      "codigoReserva": "RES67890",
+      "codigoVoo": "JJ456",
+      "dataHoraReserva": "2024-09-16T14:00:00Z",
+      "estadoReserva": "pendente",
+      "id": "565d"
+    },
+    {
+      "codigoReserva": "RES11223",
+      "codigoVoo": "LA789",
+      "dataHoraReserva": "2024-09-17T16:45:00Z",
+      "estadoReserva": "cancelada",
+      "id": "34b2"
+    },
+    {
+      "codigoReserva": "RES44556",
+      "codigoVoo": "AD321",
+      "dataHoraReserva": "2024-09-18T09:00:00Z",
+      "estadoReserva": "confirmada",
+      "id": "5be2"
+    }
+  ],
+  "usuarios": [
+    {
+      "login": "carlos",
+      "senha": "carlinhos",
+      "tipo": "cliente",
+      "id": "adfd"
+    },
+    {
+      "id": "8e17",
+      "login": "carlos",
+      "senha": "carlinhos",
+      "tipo": "cliente"
+    },
+    {
+      "id": "890a",
+      "login": "carlos",
+      "senha": "carlinhos",
+      "tipo": "cliente"
+    },
+    {
+      "id": "c93d",
+      "login": "carlos",
+      "senha": "carlinhos",
+      "tipo": "cliente"
+    },
+    {
+      "id": "544f",
+      "login": "carlos",
+      "senha": "carlinhos",
+      "tipo": "cliente"
+    }
+  ],
+  "voos": [
+    {
+      "codigoVoo": "AZ123",
+      "dataHora": "2024-10-01T15:00:00Z",
+      "aeroportoOrigem": "GRU",
+      "aeroportoDestino": "GIG",
+      "valorPassagemReais": 800,
+      "quantidadePoltronasTotal": 180,
+      "quantidadePoltronasOcupadas": 150,
+      "id": "24b1"
+    },
+    {
+      "codigoVoo": "JJ456",
+      "dataHora": "2024-10-02T09:30:00Z",
+      "aeroportoOrigem": "GIG",
+      "aeroportoDestino": "BSB",
+      "valorPassagemReais": 600,
+      "quantidadePoltronasTotal": 200,
+      "quantidadePoltronasOcupadas": 180,
+      "id": "113c"
+    },
+    {
+      "codigoVoo": "LA789",
+      "dataHora": "2024-10-03T22:45:00Z",
+      "aeroportoOrigem": "BSB",
+      "aeroportoDestino": "SSA",
+      "valorPassagemReais": 500,
+      "quantidadePoltronasTotal": 160,
+      "quantidadePoltronasOcupadas": 130,
+      "id": "1a82"
+    },
+    {
+      "codigoVoo": "AD321",
+      "dataHora": "2024-10-04T07:00:00Z",
+      "aeroportoOrigem": "SSA",
+      "aeroportoDestino": "GRU",
+      "valorPassagemReais": 700,
+      "quantidadePoltronasTotal": 150,
+      "quantidadePoltronasOcupadas": 140,
+      "id": "d75c"
+    },
+    {
+      "id": "2553",
+      "codigoVoo": "AZ123",
+      "dataHora": "2024-10-01T15:00:00Z",
+      "aeroportoOrigem": "GRU",
+      "aeroportoDestino": "GIG",
+      "valorPassagemReais": 800,
+      "quantidadePoltronasTotal": 180,
+      "quantidadePoltronasOcupadas": 150
+    }
+  ]
+}

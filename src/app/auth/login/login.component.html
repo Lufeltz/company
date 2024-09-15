@@ -1,0 +1,120 @@
+<div
+  *ngIf="message"
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+>
+  {{ message }}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="background">
+  <div
+    class="d-flex justify-content-center align-items-center"
+    style="height: 100vh"
+  >
+    <div class="container">
+      <div class="card shadow-lg custom-card border-0">
+        <div class="card-body">
+          <div class="container-logo">
+            <img
+              src="assets/logo-lol.png"
+              alt="Logo"
+              style="width: 100px; height: auto; margin-bottom: 20px"
+            />
+            <h1 id="login-text">Login</h1>
+          </div>
+          <form
+            #formLogin="ngForm"
+            class="container-form d-flex flex-column justify-content-center"
+          >
+            <div class="imput-form">
+              <div id="form-floating-email">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    name="email"
+                    id="email"
+                    placeholder=" "
+                    [(ngModel)]="login.email"
+                    #usuario="ngModel"
+                    required
+                    [class.invalid-border]="
+                      usuario.invalid && (usuario.dirty || usuario.touched)
+                    "
+                    (focus)="clearLoginError()"
+                  />
+                  <label for="usuario">E-mail</label>
+                </div>
+              </div>
+              <div
+                *ngIf="usuario.errors && (usuario.dirty || usuario.touched)"
+                class="left-align text-danger"
+              >
+                <div [hidden]="!usuario?.errors?.['required']">
+                  Insira seu e-mail
+                </div>
+                <div [hidden]="!usuario?.errors?.['email']">
+                  Formato de email inválido
+                </div>
+              </div>
+            </div>
+
+            <div class="imput-form">
+              <div id="form-floating-password">
+                <div class="form-floating">
+                  <input
+                    type="password"
+                    class="form-control custom-input"
+                    name="password"
+                    id="password"
+                    placeholder="login e senha iguais: cliente/cliente funcionario/funcionario"
+                    [(ngModel)]="login.senha"
+                    #senha="ngModel"
+                    required
+                    [class.invalid-border]="
+                      senha.invalid && (senha.dirty || senha.touched)
+                    "
+                    (focus)="clearLoginError()"
+                  />
+                  <label for="senha">Senha</label>
+                </div>
+              </div>
+              <div
+                *ngIf="senha.errors && (senha.dirty || senha.touched)"
+                class="left-align text-danger"
+              >
+                <div [hidden]="!senha?.errors?.['required']">
+                  Insira sua senha
+                </div>
+              </div>
+              <div *ngIf="loginError" class="left-align text-danger">
+                Credenciais inválidas. Por favor, verifique seu e-mail e senha.
+              </div>
+            </div>
+
+            <div class="container-link mt-auto">
+              <a id="text-cadastro">Não possui cadastro? </a
+              ><a id="text-cadastro-link" routerLink="/cadastro">Criar conta</a>
+            </div>
+
+            <div class="container-button">
+              <button
+                type="submit"
+                class="btn btn-primary custom-btn"
+                (click)="logar()"
+                [disabled]="!formLogin.form.valid"
+              >
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div *ngIf="usuarioLogado">
+  <nav class="navbar navbar-expand-md n" style="background-color: #32445c">
+    <a
+      class="navbar-brand nav-link"
+      [routerLink]="
+        usuarioLogado.tipoPermissao === 'CLIENTE' ? '/pedidos' : '/homepage'
+      "
+      style="margin-left: 20px"
+    >
+      <img
+        src="assets/logo-lol.png"
+        alt="Logo"
+        style="width: 45px; height: 45px"
+      />
+    </a>
+    <div class="navbar-collapse collapsed" id="navbarContent">
+      <ul class="navbar-nav navbar-links ml-auto">
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('CLIENTE')"
+            class="nav-link"
+            [routerLink]="['homepage-cliente']"
+            >R03,04,08(Início)</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('CLIENTE')"
+            class="nav-link"
+            [routerLink]="['comprar-milhas']"
+            >R05(Comprar)</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('CLIENTE')"
+            class="nav-link"
+            [routerLink]="['efetuar-reserva']"
+            >R07(Efetuar Reserva)</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('CLIENTE')"
+            class="nav-link"
+            [routerLink]="['fazer-check-in']"
+            >R10(Fazer Check-in)</a
+          >
+        </li>
+        <li class="nav-item" ngbDropdown>
+          <a
+            *ngIf="temPermissao('CLIENTE')"
+            class="nav-link"
+            tabindex="0"
+            ngbDropdownToggle
+            id="navbarDropdown"
+            role="button"
+            >Consultar</a
+          >
+          <div
+            ngbDropdownMenu
+            aria-labelledby="navbarDropdown"
+            class="dropdown-menu custom-dropdown-menu"
+          >
+            <a
+              *ngIf="temPermissao('CLIENTE')"
+              ngbDropdownItem
+              class="dropdown-item-hover"
+              [routerLink]="['consultar-extrato-milhas']"
+              >R06(Consultar Extrato Milhas)</a
+            >
+            <a
+              *ngIf="temPermissao('CLIENTE')"
+              ngbDropdownItem
+              class="dropdown-item-hover"
+              [routerLink]="['consultar-reserva']"
+              >R09(Consultar Reserva)</a
+            >
+          </div>
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('FUNCIONARIO')"
+            class="nav-link"
+            [routerLink]="['/homepage']"
+            >R11,12,13,14(Início)</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('FUNCIONARIO')"
+            class="nav-link"
+            [routerLink]="['/cadastro-voos']"
+            >R15(Cadastro Voos)</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="temPermissao('FUNCIONARIO')"
+            class="nav-link"
+            [routerLink]="['/gerenciar-funcionarios']"
+            >R16,17,18,19(CRUD)</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="usuarioLogado" id="navbarContent2">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Logout</a>
+        </li>
+        <li class="nav-item">
+          <p class="navbar-text mb-0 text-white">
+            <i class="fa fa-user"></i> {{ usuarioLogado.nome }}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
