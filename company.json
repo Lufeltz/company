@@ -60,39 +60,39 @@
     }
   ],
   "clientes": [
-     {
-    "cpf": "12345678901",
-    "email": "maria.silva@example.com",
-    "ruaNumero": "R. XV de Novembro, 150",
-    "complemento": "Apartamento 101",
-    "cep": "80020000",
-    "cidade": "Curitiba",
-    "estado": "Paraná",
-    "milhas": 15000,
-    "id": "964c"
-  },
-  {
-    "id": "a3cf",
-    "cpf": "10987654321",
-    "email": "joao.pereira@example.com",
-    "ruaNumero": "Av. Brasil, 987",
-    "complemento": "Casa",
-    "cep": "81050000",
-    "cidade": "Curitiba",
-    "estado": "Paraná",
-    "milhas": 20000
-  },
-  {
-    "id": "b7d2",
-    "cpf": "34567890123",
-    "email": "ana.oliveira@example.com",
-    "ruaNumero": "R. das Flores, 456",
-    "complemento": "Apartamento 202",
-    "cep": "82010000",
-    "cidade": "Curitiba",
-    "estado": "Paraná",
-    "milhas": 10000
-  }
+    {
+      "cpf": "12345678901",
+      "email": "maria.silva@example.com",
+      "ruaNumero": "R. XV de Novembro, 150",
+      "complemento": "Apartamento 101",
+      "cep": "80020000",
+      "cidade": "Curitiba",
+      "estado": "Paraná",
+      "milhas": 15000,
+      "id": "964c"
+    },
+    {
+      "id": "a3cf",
+      "cpf": "10987654321",
+      "email": "joao.pereira@example.com",
+      "ruaNumero": "Av. Brasil, 987",
+      "complemento": "Casa",
+      "cep": "81050000",
+      "cidade": "Curitiba",
+      "estado": "Paraná",
+      "milhas": 20000
+    },
+    {
+      "id": "b7d2",
+      "cpf": "34567890123",
+      "email": "ana.oliveira@example.com",
+      "ruaNumero": "R. das Flores, 456",
+      "complemento": "Apartamento 202",
+      "cep": "82010000",
+      "cidade": "Curitiba",
+      "estado": "Paraná",
+      "milhas": 10000
+    }
   ],
   "estadosReserva": [
     {
@@ -229,33 +229,33 @@
   ],
   "usuarios": [
     {
-      "login": "carlos",
-      "senha": "carlinhos",
+      "login": "maria.silva",
+      "senha": "senha123",
       "tipo": "cliente",
       "id": "adfd"
     },
     {
       "id": "8e17",
-      "login": "carlos",
-      "senha": "carlinhos",
+      "login": "joao.pereira",
+      "senha": "senha456",
       "tipo": "cliente"
     },
     {
       "id": "890a",
-      "login": "carlos",
-      "senha": "carlinhos",
+      "login": "ana.oliveira",
+      "senha": "senha789",
       "tipo": "cliente"
     },
     {
       "id": "c93d",
-      "login": "carlos",
-      "senha": "carlinhos",
+      "login": "lucas.souza",
+      "senha": "senha321",
       "tipo": "cliente"
     },
     {
       "id": "544f",
-      "login": "carlos",
-      "senha": "carlinhos",
+      "login": "fernanda.lima",
+      "senha": "senha654",
       "tipo": "cliente"
     }
   ],
