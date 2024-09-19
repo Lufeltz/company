@@ -1,1 +1,44 @@
-<p>r07-efetuar-reserva works!</p>
+<div class="background">
+  <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px)">
+    <div class="container">
+      <div class="card shadow-lg custom-card border-0">
+        <div class="card-body">
+          <div class="container-consulta-pedido-texto">
+            <h5 class="consulta-pedido-text card-title">Consultar Voos</h5>
+            <h6 class="consulta-pedido-phrase card-subtitle">
+              Digite o aeroporto de origem e o aeroporto de destino.
+            </h6>
+          </div>
+          <form class="container-form d-flex">
+            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
+              <div class="imput-form" style="flex: 1">
+                <div id="form-floating-consulta-pedido">
+                  <div class="form-floating">
+                    <input type="text" class="form-control custom-input" name="consulta" id="consulta" placeholder=" " required pattern="[0-9]*" />
+                    <label for="consulta">Aeroporto de origem</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
+              <div class="imput-form" style="flex: 1">
+                <div id="form-floating-consulta-pedido">
+                  <div class="form-floating">
+                    <input type="text" class="form-control custom-input" name="consulta" id="consulta" placeholder=" " required pattern="[0-9]*" />
+                    <label for="consulta">Aeroporto de destino</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-button">
+              <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar">
+                Consultar
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
