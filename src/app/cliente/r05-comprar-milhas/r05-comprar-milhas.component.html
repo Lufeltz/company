@@ -1,1 +1,24 @@
-<p>r05-comprar-milhas works!</p>
+<h2>Comprar Milhas</h2>
+
+<div class="comprar-milhas-descrição">
+  <h4>Instruções de Compra</h4>
+  <p>
+    Você pode comprar milhas com base na proporção de 1 milha para cada R$ 5,00. O valor em reais deve ser um múltiplo de R$ 5,00 e não pode ser inferior a R$ 5,00. Insira o valor desejado e as milhas correspondentes serão automaticamente calculadas e creditadas em sua conta. Certifique-se de inserir um valor válido para concluir a compra.
+  </p>
+</div>
+
+<form class="form-comprar-milhas" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="valor-reais-input">Valor em Reais</label>
+    <input type="text" id="valor-reais-input" [(ngModel)]="valorReais" 
+           (focus)="handleFocus($event)" (blur)="handleBlur($event)"
+           name="valorReais" 
+           mask="separator.2" thousandSeparator="." decimalMarker="," prefix="R$ " />
+    <div *ngIf="erroValor" class="error-message">{{ erroValor }}</div>
+  </div>
+  <div>
+    <label for="qtd-milhas-input">Quantidade de Milhas</label>
+    <input type="number" id="qtd-milhas-input" [(ngModel)]="quantidadeMilhas" name="quantidadeMilhas" min="1" readonly />
+  </div>
+  <button type="submit" [disabled]="erroValor">Comprar</button>
+</form>

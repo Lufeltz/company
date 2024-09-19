@@ -35,7 +35,7 @@ export const routes: Routes = [
     path: 'comprar-milhas',
     title: 'comprar-milhas',
     component: R05ComprarMilhasComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     data: {
       role: 'CLIENTE',
     },
