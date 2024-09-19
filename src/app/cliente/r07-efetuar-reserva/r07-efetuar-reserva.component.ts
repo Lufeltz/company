@@ -6,10 +6,8 @@ import { ReservasService } from '../../services/prototipo/reservas.service';
   standalone: true,
   imports: [],
   templateUrl: './r07-efetuar-reserva.component.html',
-  styleUrl: './r07-efetuar-reserva.component.css'
+  styleUrl: './r07-efetuar-reserva.component.css',
 })
 export class R07EfetuarReservaComponent {
-  constructor(
-    private reservaService: ReservasService,
-  ) {}
+  constructor(private reservaService: ReservasService) {}
 }
