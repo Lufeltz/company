@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { LoginComponent } from './auth/login';
+import { R02EfetuarLoginLogoutComponent } from './cliente/r02-efetuar-login-logout/r02-efetuar-login-logout.component';
 import { PageNotFoundComponent } from './components/page-not-found';
 import { NavbarComponent } from './components/navbar';
 import { R03MostrarTelaInicialClienteComponent } from './cliente/r03-mostrar-tela-inicial-cliente/r03-mostrar-tela-inicial-cliente.component';
@@ -35,11 +35,12 @@ import { CadastroComponent } from './auth/cadastro';
       RouterOutlet,
 
       //auth
-      LoginComponent,
+      R02EfetuarLoginLogoutComponent,
       CadastroComponent,
 
 
       //cliente-pages
+
       R03MostrarTelaInicialClienteComponent,
       R04VerReservaComponent,
       R05ComprarMilhasComponent,

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './auth/login';
 import { CadastroComponent } from './auth/cadastro';
 import { PageNotFoundComponent } from './components/page-not-found';
 import { authGuard } from './auth/auth.guard';
@@ -12,13 +11,15 @@ import { R06ConsultarExtratoMilhasComponent } from './cliente/r06-consultar-extr
 import { R09ConsultarReservaComponent } from './cliente/r09-consultar-reserva/r09-consultar-reserva.component';
 import { R11TelaInicialFuncionarioComponent } from './funcionario/r11-tela-inicial-funcionario/r11-tela-inicial-funcionario.component';
 import { R15CadastroDeVooComponent } from './funcionario/r15-cadastro-de-voo/r15-cadastro-de-voo.component';
+import { R02EfetuarLoginLogoutComponent } from './cliente/r02-efetuar-login-logout/r02-efetuar-login-logout.component';
 
 export const routes: Routes = [
   //default
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Rota padrão, se colocar o path do component em "redirectTo:", não precisará da tag/selector do seu component em app.component.html
 
   //auth
-  { path: 'login', title: 'Login', component: LoginComponent },
+  // { path: 'login', title: 'Login', component: LoginComponent },
+  { path: 'login', title: 'Login', component: R02EfetuarLoginLogoutComponent },
   { path: 'cadastro', title: 'Cadastro', component: CadastroComponent },
 
   //cliente-pages
