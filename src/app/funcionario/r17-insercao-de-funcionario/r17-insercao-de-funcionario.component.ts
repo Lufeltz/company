@@ -12,15 +12,17 @@ import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
 @Component({
   selector: 'app-r17-insercao-de-funcionario',
   standalone: true,
-  imports: [   FormsModule,
+  imports: [
+    FormsModule,
     CommonModule,
     ReactiveFormsModule,
     NgxCurrencyDirective,
     NgxMaskDirective,
     NumericoDirective,
-    LetrasSomenteDirective],
+    LetrasSomenteDirective,
+  ],
   templateUrl: './r17-insercao-de-funcionario.component.html',
-  styleUrl: './r17-insercao-de-funcionario.component.css'
+  styleUrl: './r17-insercao-de-funcionario.component.css',
 })
 export class R17InsercaoDeFuncionarioComponent {
   @Output() voltarClicked = new EventEmitter<void>();
@@ -105,5 +107,4 @@ export class R17InsercaoDeFuncionarioComponent {
   clearValueInvalid(): void {
     this.valueInvalid = false;
   }
-
 }

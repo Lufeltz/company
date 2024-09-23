@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { MilhasService } from '../../services/prototipo/milhas.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-r05-comprar-milhas',
   standalone: true,
-  imports: [FormsModule, NgxMaskDirective],
+  imports: [FormsModule, NgxMaskDirective, CommonModule],
   templateUrl: './r05-comprar-milhas.component.html',
   styleUrls: ['./r05-comprar-milhas.component.css']
 })

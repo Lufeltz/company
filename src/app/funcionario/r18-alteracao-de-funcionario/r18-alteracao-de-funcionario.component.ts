@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
 import { FuncionarioService } from '../../services/prototipo/funcionarios.service';
 import { Router } from '@angular/router';
@@ -10,13 +16,15 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-r18-alteracao-de-funcionario',
   standalone: true,
-  imports: [   FormsModule,
+  imports: [
+    FormsModule,
     CommonModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-    LetrasSomenteDirective],
+    LetrasSomenteDirective,
+  ],
   templateUrl: './r18-alteracao-de-funcionario.component.html',
-  styleUrl: './r18-alteracao-de-funcionario.component.css'
+  styleUrl: './r18-alteracao-de-funcionario.component.css',
 })
 export class R18AlteracaoDeFuncionarioComponent {
   @Output() voltarClicked = new EventEmitter<void>();
@@ -76,8 +84,7 @@ export class R18AlteracaoDeFuncionarioComponent {
 
   valueInvalid: boolean = false;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   cancelar(): void {
     this.voltarClicked.emit();
