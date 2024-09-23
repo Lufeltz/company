@@ -250,12 +250,18 @@
       "id": "c93d",
       "login": "lucas.souza",
       "senha": "senha321",
-      "tipo": "cliente"
+      "tipo": "funcionario"
     },
     {
       "id": "544f",
       "login": "fernanda.lima",
       "senha": "senha654",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "1b72",
+      "login": "carlos",
+      "senha": "carlinhos",
       "tipo": "cliente"
     }
   ],
