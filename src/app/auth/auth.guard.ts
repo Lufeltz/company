@@ -1,6 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { LoginService } from '../services/remover-em-breve/login.service';
 import { inject } from '@angular/core';
+import { LoginService } from '../services/prototipo/login.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const loginService = inject(LoginService);
@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (usuarioLogado) {
     if (
       route.data?.['role'] &&
-      route.data?.['role'].indexOf(usuarioLogado.tipoPermissao) === -1
+      route.data?.['role'].indexOf(usuarioLogado.tipo.toUpperCase()) === -1
     ) {
       // Se o perfil do usuário não está no perfil da rota
       // vai para login

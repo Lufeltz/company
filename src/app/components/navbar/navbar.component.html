@@ -3,7 +3,7 @@
     <a
       class="navbar-brand nav-link"
       [routerLink]="
-        usuarioLogado.tipoPermissao === 'CLIENTE' ? '/pedidos' : '/homepage'
+        usuarioLogado.tipo === 'CLIENTE' ? '/pedidos' : '/homepage'
       "
       style="margin-left: 20px"
     >
@@ -112,7 +112,7 @@
         </li>
         <li class="nav-item">
           <p class="navbar-text mb-0 text-white">
-            <i class="fa fa-user"></i> {{ usuarioLogado.nome }}
+            <i class="fa fa-user"></i> {{ usuarioLogado.login }}
           </p>
         </li>
       </ul>

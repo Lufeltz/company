@@ -3,8 +3,9 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginService } from '../../services/remover-em-breve/login.service';
-import { UsuarioResponseDto } from '../../shared/models/remover-em-breve/dto/usuario-response-dto.model';
+import { Usuario } from '../../shared/models/prototipo/usuario.model';
+import { LoginService } from '../../services/prototipo/login.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,7 @@ export class NavbarComponent {
     this.router.navigate(['/login']);
   }
 
-  get usuarioLogado(): UsuarioResponseDto | null {
+  get usuarioLogado(): Usuario | null {
     return this.loginService.usuarioLogado;
   }
 
@@ -31,9 +32,9 @@ export class NavbarComponent {
 
   temPermissao(...perfis: string[]): boolean {
     let usu = this.usuarioLogado;
-    if (usu != null && perfis.length > 0) {
+    if (usu && usu.tipo && perfis.length > 0) {
       for (let p of perfis) {
-        if (usu.tipoPermissao.indexOf(p) != -1) {
+        if (usu.tipo.toUpperCase().indexOf(p.toUpperCase()) !== -1) {
           return true;
         }
       }
