@@ -1,5 +1,17 @@
 <h1 class="text-center">Reservas</h1>
 <div class="container">
+  
+  <div class="mb-4">
+    <div class="card shadow-sm bg-white rounded" style="width: 12rem;">
+      <div class="card-body">
+        <h6 class="card-title text-muted">Saldo em Milhas</h6>
+        <p class="card-text h5 text-primary mb-0">{{ saldo }}</p>
+      </div>
+    </div>
+  </div>
+
+
+
   <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div id="listaPedidos" *ngIf="!exibeLista">
       <table class="table">
@@ -20,7 +32,7 @@
             <td>
               <button
                 class="btn btn-dark"
-                (click)="visualizarReserva(reserva.reserva)"
+                (click)="visualizarReserva(reserva)"
               >
                 Visualizar
               </button>

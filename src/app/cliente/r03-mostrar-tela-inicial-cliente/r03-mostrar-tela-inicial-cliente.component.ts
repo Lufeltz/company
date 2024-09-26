@@ -5,6 +5,10 @@ import { Reserva } from '../../shared/models/prototipo/reserva.model';
 import { VoosService } from '../../services/prototipo/voos.service';
 import { Voo } from '../../shared/models/prototipo/voo.model';
 import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { R04VerReservaComponent } from '../r04-ver-reserva/r04-ver-reserva.component';
+import { LoginService } from '../../services/prototipo/login.service';
+import { Usuario } from '../../shared/models/prototipo/usuario.model';
 
 @Component({
   selector: 'app-r03-mostrar-tela-inicial-cliente',
@@ -17,15 +21,19 @@ export class R03MostrarTelaInicialClienteComponent {
   private reservas: Reserva[] = [];
   private voos: Voo[] = [];
   private reservasComVoos: { reserva: Reserva; voo: Voo | undefined }[] = [];
+  private usuario: Usuario = new Usuario();
 
   constructor(
     private clienteService: ClientesService,
+    private modalService: NgbModal,
+    private loginService: LoginService,
     private reservasService: ReservasService,
     private voosService: VoosService,
   ) {}
 
   ngOnInit(): void {
     this.loadReservas();
+    this.usuario = this.loginService.getUsuarioLogado();
   }
 
   loadReservas(): Reserva[] {
@@ -70,8 +78,9 @@ export class R03MostrarTelaInicialClienteComponent {
     });
   }
 
-  visualizarReserva(reserva: Reserva): void{
-    // 
+  visualizarReserva(reserva: { reserva: Reserva; voo: Voo | undefined }): void{
+    const modalRef = this.modalService.open(R04VerReservaComponent);
+    modalRef.componentInstance.reserva = reserva;
   }
 
   cancelarReserva(reserva: Reserva): void {
@@ -89,4 +98,9 @@ export class R03MostrarTelaInicialClienteComponent {
       return false;
     }
   }
+
+  get saldo(): number{  //ligar login com a base de clientes posteriormente
+    return 1200; 
+  }
+
 }
