@@ -7,10 +7,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './r11-tela-inicial-funcionario.component.html',
-  styleUrl: './r11-tela-inicial-funcionario.component.css'
+  styleUrl: './r11-tela-inicial-funcionario.component.css',
 })
 export class R11TelaInicialFuncionarioComponent {
-  constructor(
-    private voos: VoosService
-  ) {}
+  constructor(private voos: VoosService) {}
 }
