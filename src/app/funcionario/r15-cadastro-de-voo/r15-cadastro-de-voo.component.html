@@ -1,1 +1,178 @@
-<p>r15-cadastro-de-voo works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Voo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f8ff;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .custom-card {
+      border-radius: 30px;
+      padding: 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    .custom-header-text {
+      font-size: 30px;
+      font-weight: 300;
+      color: #32445c;
+      padding: 20px;
+    }
+
+    .custom-card {
+      width: 500px;
+      background-color: white;
+      border-radius: 30px;
+      padding: 25px 25px 20px 25px;
+    }
+
+    .container-form {
+      width: 100%;
+    }
+
+    .container-imput {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-form {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #32445c;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    input:focus {
+      border-color: #6fb5df;
+      box-shadow: 0 0 0 0.2rem #a5d7f3;
+      outline: none;
+    }
+
+    .container-button {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .custom-btn-danger {
+      color: #fff;
+      background-color: red;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 120px;
+    }
+
+    .custom-btn {
+      color: #fff;
+      background-color: #3dabe1;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 120px;
+    }
+
+    .custom-btn:hover {
+      background-color: #1c8bc1;
+    }
+
+    .custom-btn:active {
+      background-color: #66c0eb;
+    }
+
+    .btn-adicionar {
+      background-color: green;
+    }
+
+    .btn-adicionar:hover {
+      background-color: rgb(0, 100, 0);
+    }
+
+    .btn-adicionar:active {
+      background-color: rgb(0, 182, 0);
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="custom-card">
+    <h5 class="custom-header-text">Cadastro de Voo</h5>
+
+    <form class="container-form">
+      <div class="container-imput">
+
+        <div class="input-form">
+          <label for="flight-number">Código do Voo</label>
+          <input type="text" id="flight-number" name="flight-number" maxlength="100" required>
+        </div>
+
+        <div class="input-form">
+          <label for="flight-date">Data/Hora</label>
+          <input type="datetime-local" id="flight-date" name="flight-date" maxlength="3" required>
+        </div>
+
+        <div class="input-form">
+          <label for="origin">Aeroporto Origem</label>
+          <input type="text" id="origin" name="origin" maxlength="3" required>
+        </div>
+
+        <div class="input-form">
+          <label for="destination">Aeroporto Destino</label>
+          <input type="text" id="destination" name="destination" maxlength="3" required>
+        </div>
+
+        <div class="input-form">
+          <label for="flight-value">Valor da passagem</label>
+          <input type="number" id="flight-value" name="flight-value" required>
+        </div>
+
+        <div class="input-form">
+          <label for="quantity">Quantidade</label>
+          <input type="number" id="quantity" name="quantity" required>
+        </div>
+
+      </div>
+
+      <div class="container-button">
+        <button type="reset" class="custom-btn-danger">Cancelar</button>
+        <button type="submit" class="custom-btn btn-adicionar">Adicionar</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
