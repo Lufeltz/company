@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+.h2_blue {
+  color: #0084d1;
+  font-weight: 700;
+}
+
+.btn_blue {
+  background-color: #0084d1;
+  color: #ffff;
+  font-weight: 500;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.btn_blue:hover {
+  background-color: #005f8b;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.blue_background {
+  background-color:#F2F8FF;
+}
