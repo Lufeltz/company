@@ -50,6 +50,7 @@ export class R05ComprarMilhasComponent {
 
   handleBlur(event: Event): void {
     const input = event.target as HTMLInputElement;
+    console.log("Entrei aqui");
     if (input.value === '') {
       input.value = 'R$ 0,00';
       this.valorReais = 'R$ 0,00'; // Restabelece o valor inicial se o campo estiver vazio
