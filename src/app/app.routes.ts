@@ -12,6 +12,7 @@ import { R09ConsultarReservaComponent } from './cliente/r09-consultar-reserva/r0
 import { R11TelaInicialFuncionarioComponent } from './funcionario/r11-tela-inicial-funcionario/r11-tela-inicial-funcionario.component';
 import { R15CadastroDeVooComponent } from './funcionario/r15-cadastro-de-voo/r15-cadastro-de-voo.component';
 import { R02EfetuarLoginLogoutComponent } from './cliente/r02-efetuar-login-logout/r02-efetuar-login-logout.component';
+import { R01AutocadastroComponent } from './cliente/r01-autocadastro/r01-autocadastro.component';
 
 export const routes: Routes = [
   //default
@@ -20,7 +21,7 @@ export const routes: Routes = [
   //auth
   // { path: 'login', title: 'Login', component: LoginComponent },
   { path: 'login', title: 'Login', component: R02EfetuarLoginLogoutComponent },
-  { path: 'cadastro', title: 'Cadastro', component: CadastroComponent },
+  { path: 'cadastro', title: 'Cadastro', component: R01AutocadastroComponent },
 
   //cliente-pages
   {

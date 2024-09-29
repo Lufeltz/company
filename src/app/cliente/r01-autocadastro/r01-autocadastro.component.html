@@ -1,1 +1,295 @@
-<p>r01-autocadastro works!</p>
+<div class="background">
+  <div
+    class="d-flex justify-content-center align-items-center"
+    style="height: 100vh"
+  >
+    <div class="container scroll-container">
+      <div class="card shadow-lg custom-card border-0">
+        <div class="card-body">
+          <div class="container-logo">
+            <img
+              src="assets/logo-ga.png"
+              alt="Logo"
+              style="width: 100px; height: auto; margin-bottom: 20px"
+            />
+            <h1 id="cadastro-text">Autocadastro</h1>
+          </div>
+          <form #formCadastro="ngForm" class="container-form">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div id="form-floating-cpf">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      id="cpf"
+                      name="cpf"
+                      placeholder=" "
+                      [(ngModel)]="cadastroCPF"
+                      #cpf="ngModel"
+                      required
+                      [class.invalid-border]="
+                        cpf.invalid && (cpf.dirty || cpf.touched)
+                      "
+                      mask="000.000.000-00"
+                    />
+                    <label for="cpf">CPF:</label>
+                  </div>
+                  <div
+                    *ngIf="cpf.errors && (cpf.dirty || cpf.touched)"
+                    class="left-align text-danger"
+                  >
+                    <div [hidden]="!cpf?.errors?.['required']">
+                      Insira seu CPF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div id="form-floating-nome">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      id="nome"
+                      name="nome"
+                      placeholder=" "
+                      [(ngModel)]="cadastro.login"
+                      #nome="ngModel"
+                      required
+                      [class.invalid-border]="
+                        nome.invalid && (nome.dirty || nome.touched)
+                      "
+                      letras-somente
+                    />
+                    <label for="nome">Nome:</label>
+                  </div>
+                  <div
+                    *ngIf="nome.errors && (nome.dirty || nome.touched)"
+                    class="left-align text-danger"
+                  >
+                    <div [hidden]="!nome?.errors?.['required']">
+                      Insira seu nome
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div id="form-floating-email">
+                  <div class="form-floating">
+                    <input
+                      type="email"
+                      class="form-control custom-input"
+                      id="email"
+                      name="email"
+                      placeholder=" "
+                      [(ngModel)]="cadastroEmail"
+                      #email="ngModel"
+                      required
+                      [class.invalid-border]="
+                        email.invalid && (email.dirty || email.touched)
+                      "
+                      email
+                    />
+                    <label for="email">Email:</label>
+                  </div>
+                  <div
+                    *ngIf="email.errors && (email.dirty || email.touched)"
+                    class="left-align text-danger"
+                  >
+                    <div [hidden]="!email?.errors?.['required']">
+                      Insira seu email
+                    </div>
+                    <div [hidden]="!email?.errors?.['email']">
+                      Formato de email inválido
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div id="form-floating-telefone">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      id="telefone"
+                      name="telefone"
+                      placeholder=" "
+                      [(ngModel)]="cadastroTelefone"
+                      #telefone="ngModel"
+                      required
+                      [class.invalid-border]="
+                        telefone.invalid && (telefone.dirty || telefone.touched)
+                      "
+                      prefix="+55 "
+                      mask="(00) 0 0000-0000"
+                    />
+                    <label for="telefone">Telefone:</label>
+                  </div>
+                  <div
+                    *ngIf="
+                      telefone.errors && (telefone.dirty || telefone.touched)
+                    "
+                    class="left-align text-danger"
+                  >
+                    <div [hidden]="!telefone?.errors?.['required']">
+                      Insira seu telefone
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div
+                  id="form-floating-endereco"
+                  class="d-flex align-items-center"
+                >
+                  <div class="form-floating flex-grow-1">
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      id="cep"
+                      name="cep"
+                      placeholder=" "
+                      [(ngModel)]="cadastroCep"
+                      #cep="ngModel"
+                      required
+                      [class.invalid-border]="
+                        cep.invalid && (cep.dirty || cep.touched)
+                      "
+                      mask="00000-000"
+                    />
+                    <label for="cep">CEP:</label>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary custom-btn-cep ml-2"
+                  >
+                    Pesquisar CEP
+                  </button>
+                </div>
+                <div
+                  *ngIf="cep.errors && (cep.dirty || cep.touched)"
+                  class="left-align text-danger"
+                >
+                  <div [hidden]="!cep?.errors?.['required']">
+                    Insira seu CEP
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    id="uf"
+                    name="uf"
+                    placeholder=" "
+                    [(ngModel)]="cadastroUf"
+                    #uf="ngModel"
+                    readonly
+                  />
+                  <label for="uf">UF:</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    id="cidade"
+                    name="cidade"
+                    placeholder=" "
+                    [(ngModel)]="cadastroCidade"
+                    #cidade="ngModel"
+                    readonly
+                  />
+                  <label for="cidade">Cidade:</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    id="bairro"
+                    name="bairro"
+                    placeholder=" "
+                    [(ngModel)]="cadastroBairro"
+                    #bairro="ngModel"
+                    readonly
+                  />
+                  <label for="bairro">Bairro:</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    id="rua"
+                    name="rua"
+                    placeholder=" "
+                    [(ngModel)]="cadastroRua"
+                    #rua="ngModel"
+                    readonly
+                  />
+                  <label for="rua">Rua:</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    id="numero"
+                    name="numero"
+                    placeholder=" "
+                    [(ngModel)]="cadastro.senha"
+                    #numero="ngModel"
+                  />
+                  <label for="numero">Número:</label>
+                </div>
+              </div>
+            </div>
+            <div id="form-floating-complemento" class="mb-3">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control custom-input"
+                  id="complemento"
+                  name="complemento"
+                  placeholder=" "
+                  [(ngModel)]="cadastroComplemento"
+                  #complemento="ngModel"
+                />
+                <label for="complemento">Complemento:</label>
+              </div>
+            </div>
+            <div class="container-link mt-auto">
+              <a id="text-login">Já tem uma conta? </a
+              ><a id="text-login-link" routerLink="/login">Fazer Login</a>
+            </div>
+            <div class="container-button">
+              <button
+                type="submit"
+                class="btn btn-primary custom-btn"
+                (click)="cadastrarUsuario()"
+              >
+                Cadastrar
+              </button>
+            </div>
+          </form>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,12 +4,12 @@ import { UsuariosService } from '../../services/prototipo/usuarios.service';
 import { Usuario } from '../../shared/models/prototipo/usuario.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LoginService } from '../../services/prototipo/login.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-r02-efetuar-login-logout',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './r02-efetuar-login-logout.component.html',
   styleUrl: './r02-efetuar-login-logout.component.css',
 })
