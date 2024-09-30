@@ -1,1 +1,19 @@
-<p>r08-cancelar-reserva works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Reserva {{ reserva.reserva.codigoReserva }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" 
+  (click)="activeModal.close()"></button>
+</div>
+<div class="modal-body">
+  <p>Data e hora: {{ reserva.reserva.dataHoraReserva | date : "dd/MM/yyyy HH:mm" }}</p>
+  <p>Origem: {{ reserva.voo?.aeroportoOrigem }} </p>
+  <p>Destino: {{ reserva.voo?.aeroportoDestino }} </p>
+  <p>Valor em milhas: {{ reserva.voo?.valorPassagemReais }} </p>
+  <p>Valor em reais: {{ reserva.voo?.valorPassagemReais }} </p>
+  <p>Situação: {{ reserva.reserva.estadoReserva }} </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" 
+  (click)="cancelarReserva(reserva, clienteLogado)">Cancelar</button>
+  <button type="button" class="btn btn-secondary" 
+  (click)="activeModal.close()">Voltar</button>
+</div>
