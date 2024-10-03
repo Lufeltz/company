@@ -61,11 +61,11 @@ export class VoosService {
       );
   }
 
-  postVoo(funcionario: Voo): Observable<Voo | null> {
+  postVoo(voo: Voo): Observable<Voo | null> {
     return this._http
       .post<Voo>(
         `${this.NEW_URL}/voos`,
-        JSON.stringify(funcionario),
+        JSON.stringify(voo),
         this.httpOptions
       )
       .pipe(

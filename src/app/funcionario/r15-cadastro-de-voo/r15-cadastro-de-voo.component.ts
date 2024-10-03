@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { VoosService } from '../../services/prototipo/voos.service';
 import { CommonModule } from '@angular/common';
 import {LetrasSomenteDirective} from "../../shared/directives/letras-somente.directive";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-r15-cadastro-de-voo',
@@ -11,7 +12,24 @@ import {LetrasSomenteDirective} from "../../shared/directives/letras-somente.dir
   styleUrl: './r15-cadastro-de-voo.component.css'
 })
 export class R15CadastroDeVooComponent {
+  voo = {
+    id: '',
+    codigoVoo: '',
+    dataHora: '',
+    aeroportoOrigem: '',
+    aeroportoDestino: '',
+    valorPassagemReais: 0,
+    quantidadePoltronasTotal: 0,
+    quantidadePoltronasOcupadas: 0,
+  };
+
   constructor(
-    private voos: VoosService
+    private voosService: VoosService
   ) {}
+
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.voosService.postVoo(this.voo);
+    }
+  }
 }
