@@ -1,6 +1,6 @@
 <div class="blue_background">
   <div class="comprar-milhas-component">
-    <h2 class="h2_blue">Comprar milhas</h2>
+    <h1 class="t_blue">Comprar milhas</h1>
 
     <div class="comprar-milhas-descrição">
       <h4>Instruções de Compra</h4>
@@ -12,17 +12,24 @@
     <form class="form-comprar-milhas display-flex" (ngSubmit)="onSubmit()">
       <div class="display-flex-column">
         <label for="valor-reais-input">Valor gasto em reais</label>
-        <input class="focus" type="text" id="valor-reais-input" [(ngModel)]="valorReais" 
-              (focus)="handleFocus($event)" (input)="handleBlur($event)"
-              name="valorReais" 
-              mask="separator.2" thousandSeparator="." decimalMarker="," prefix="R$ " />
-        <div *ngIf="erroValor" class="error-message">{{ erroValor }}</div>
+        <input type="text"
+               class="form-control"
+               name="valorReais"
+               id="valor-reais-input"
+               [(ngModel)]="valorReais"
+               (ngModelChange)="calcularMilhas()"
+               [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+               currencyMask
+               placeholder="R$ 0,00" /> <!-- Chama calcularMilhas a cada digitação -->
+        <div *ngIf="erroValor" class="error-message text-danger">{{ erroValor }}</div>
       </div>
+
       <div class="linha-centralizada">
         <div class="linha"></div>
         <p>=</p>
         <div class="linha"></div>
       </div>
+
       <div class="display-flex-column">
         <label for="qtd-milhas-input">Total em milhas</label>
         <input type="number" id="qtd-milhas-input" [(ngModel)]="quantidadeMilhas" name="quantidadeMilhas" min="1" readonly />

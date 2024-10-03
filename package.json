@@ -23,6 +23,7 @@
     "bootstrap": "^5.3.3",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
+    "ng2-currency-mask": "^13.0.3",
     "ngx-currency": "^17.0.0",
     "ngx-mask": "^17.1.8",
     "npm": "^10.5.0",

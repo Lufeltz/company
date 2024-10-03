@@ -16,12 +16,9 @@ body {
 .container {
   max-width: 800px;
   max-height: 80vh;
-  overflow-y: auto;
   margin: 0 auto;
   text-align: left;
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .custom-card {
@@ -48,9 +45,9 @@ body {
 
 #cadastro-text {
   text-align: left;
-  font-size: 30px;
-  font-weight: 300;
-  color: #32445c;
+  /* font-size: 30px; */
+  /* font-weight: 500; */
+  /* color: #32445c; */
   padding-bottom: 7px;
 }
 
@@ -73,7 +70,7 @@ body {
 }
 
 .invalid-border {
-  border-color: red;
+  border-color: #dc3545;
 }
 
 .container-link {
@@ -86,6 +83,7 @@ body {
 
 #text-login-link {
   color: #3dabe1;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: none; 
 }

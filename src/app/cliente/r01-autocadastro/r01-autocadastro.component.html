@@ -12,7 +12,7 @@
               alt="Logo"
               style="width: 100px; height: auto; margin-bottom: 20px"
             />
-            <h1 id="cadastro-text">Autocadastro</h1>
+            <h1 id="cadastro-text" class="t_blue">Autocadastro</h1>
           </div>
           <form #formCadastro="ngForm" class="container-form">
             <div class="row">
@@ -33,7 +33,7 @@
                       "
                       mask="000.000.000-00"
                     />
-                    <label for="cpf">CPF:</label>
+                    <label for="cpf">CPF</label>
                   </div>
                   <div
                     *ngIf="cpf.errors && (cpf.dirty || cpf.touched)"
@@ -62,7 +62,7 @@
                       "
                       letras-somente
                     />
-                    <label for="nome">Nome:</label>
+                    <label for="nome">Nome</label>
                   </div>
                   <div
                     *ngIf="nome.errors && (nome.dirty || nome.touched)"
@@ -93,7 +93,7 @@
                       "
                       email
                     />
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                   </div>
                   <div
                     *ngIf="email.errors && (email.dirty || email.touched)"
@@ -126,7 +126,7 @@
                       prefix="+55 "
                       mask="(00) 0 0000-0000"
                     />
-                    <label for="telefone">Telefone:</label>
+                    <label for="telefone">Telefone</label>
                   </div>
                   <div
                     *ngIf="
@@ -162,7 +162,7 @@
                       "
                       mask="00000-000"
                     />
-                    <label for="cep">CEP:</label>
+                    <label for="cep">CEP</label>
                   </div>
                   <button
                     type="submit"
@@ -192,7 +192,7 @@
                     #uf="ngModel"
                     readonly
                   />
-                  <label for="uf">UF:</label>
+                  <label for="uf">UF</label>
                 </div>
               </div>
             </div>
@@ -209,7 +209,7 @@
                     #cidade="ngModel"
                     readonly
                   />
-                  <label for="cidade">Cidade:</label>
+                  <label for="cidade">Cidade</label>
                 </div>
               </div>
               <div class="col-md-6 mb-3">
@@ -224,7 +224,7 @@
                     #bairro="ngModel"
                     readonly
                   />
-                  <label for="bairro">Bairro:</label>
+                  <label for="bairro">Bairro</label>
                 </div>
               </div>
             </div>
@@ -241,7 +241,7 @@
                     #rua="ngModel"
                     readonly
                   />
-                  <label for="rua">Rua:</label>
+                  <label for="rua">Rua</label>
                 </div>
               </div>
               <div class="col-md-6 mb-3">
@@ -255,7 +255,7 @@
                     [(ngModel)]="cadastro.senha"
                     #numero="ngModel"
                   />
-                  <label for="numero">Número:</label>
+                  <label for="numero">Número</label>
                 </div>
               </div>
             </div>
@@ -270,7 +270,7 @@
                   [(ngModel)]="cadastroComplemento"
                   #complemento="ngModel"
                 />
-                <label for="complemento">Complemento:</label>
+                <label for="complemento">Complemento</label>
               </div>
             </div>
             <div class="container-link mt-auto">
