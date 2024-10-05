@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
 import { FuncionarioService } from '../../services/prototipo/funcionarios.service';
 import { Router } from '@angular/router';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-r19-remocao-de-funcionario',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './r19-remocao-de-funcionario.component.html',
   styleUrls: ['./r19-remocao-de-funcionario.component.css'],
 })

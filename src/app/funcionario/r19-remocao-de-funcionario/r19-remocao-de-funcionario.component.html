@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                   <td class="tbody-header">CPF:</td>
-                  <td class="tbody-result">{{ funcionarioParaExcluir.cpf }}</td>
+                  <td class="tbody-result">{{ funcionarioParaExcluir.cpf | mask:"000.000.000-00" }}</td>
                 </tr>
                 <tr>
                   <td class="tbody-header">Email:</td>
@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                   <td class="tbody-header">Telefone:</td>
-                  <td class="tbody-result">{{ funcionarioParaExcluir.telefone }}</td>
+                  <td class="tbody-result">{{ funcionarioParaExcluir.telefone | mask:"(00) 0 0000-0000" }}</td>
                 </tr>
               </tbody>
             </table>
