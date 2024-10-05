@@ -57,6 +57,13 @@
       "estadoOrigem": "confirmada",
       "estadoDestino": "pendente",
       "id": "936c"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES12345",
+      "dataHoraAlteracao": "2024-10-04T02:52:14.099Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada"
     }
   ],
   "clientes": [
@@ -134,17 +141,17 @@
   ],
   "funcionarios": [
     {
-      "nome": "Carlos Santos",
+      "nome": "Carlos Santos da Silva",
       "cpf": "345.678.901-23",
       "email": "carlos.santos@example.com",
-      "telefone": "+55 31 91234-5678",
+      "telefone": "+31 91234-5689",
       "id": "d51f"
     },
     {
       "nome": "Ana Pereira",
       "cpf": "456.789.012-34",
       "email": "ana.pereira@example.com",
-      "telefone": "+55 41 93456-7890",
+      "telefone": "41 93456-7890",
       "id": "6e88"
     },
     {
@@ -152,7 +159,7 @@
       "nome": "João Silva Castro",
       "cpf": "123.456.789-00",
       "email": "joao.silva@example.com",
-      "telefone": "+55 11 98765-4321"
+      "telefone": "11 98765-4321"
     }
   ],
   "milhas": [
@@ -195,6 +202,14 @@
       "quantidadeMilhas": 200,
       "tipoTransacao": "entrada",
       "descricao": "Promoção de milhas por atividadeeeee"
+    },
+    {
+      "id": "",
+      "cliente": "",
+      "dataHoraTransacao": "2024-10-04T02:52:14.097Z",
+      "quantidadeMilhas": 160,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
     }
   ],
   "reservas": [
@@ -202,7 +217,7 @@
       "codigoReserva": "RES12345",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "2024-09-15T10:30:00Z",
-      "estadoReserva": "confirmada",
+      "estadoReserva": "cancelada",
       "id": "5206"
     },
     {
@@ -263,6 +278,18 @@
       "login": "carlos",
       "senha": "carlinhos",
       "tipo": "cliente"
+    },
+    {
+      "id": "6715",
+      "login": "carla",
+      "senha": "705",
+      "tipo": "cliente"
+    },
+    {
+      "id": "6b0f",
+      "login": "roberto",
+      "senha": "700",
+      "tipo": "funcionario"
     }
   ],
   "voos": [

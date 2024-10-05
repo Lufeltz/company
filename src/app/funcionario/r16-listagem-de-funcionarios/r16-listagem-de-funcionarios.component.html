@@ -42,9 +42,9 @@
                   <tbody class="table-items-body custom-tr-items">
                     <tr *ngFor="let item of funcionarios">
                       <td style="width: 20%">{{ item.nome }}</td>
-                      <td style="width: 20%">{{ item.cpf }}</td>
+                      <td style="width: 20%">{{ item.cpf | mask:"000.000.000-00"}}</td>
                       <td style="width: 30%">{{ item.email }}</td>
-                      <td style="width: 30%">{{ item.telefone }}</td>
+                      <td style="width: 30%">{{ item.telefone | mask:"(00) 0 0000-0000"}}</td>
                       <td
                         style="width: 8%; text-align: center; border-right: none"
                       >

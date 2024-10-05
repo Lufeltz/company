@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
+import { FuncionarioSemId } from '../../shared/models/prototipo/funcionario-sem-id.model';
 
 @Injectable({
   providedIn: 'root',

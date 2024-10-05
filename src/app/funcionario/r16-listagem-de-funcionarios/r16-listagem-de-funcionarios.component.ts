@@ -8,11 +8,12 @@ import { R17InsercaoDeFuncionarioComponent } from '../r17-insercao-de-funcionari
 import { R18AlteracaoDeFuncionarioComponent } from '../r18-alteracao-de-funcionario/r18-alteracao-de-funcionario.component';
 import { NgForm } from '@angular/forms';
 import { R19RemocaoDeFuncionarioComponent } from '../r19-remocao-de-funcionario/r19-remocao-de-funcionario.component';
+import { NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-r16-listagem-de-funcionarios',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxMaskPipe],
   templateUrl: './r16-listagem-de-funcionarios.component.html',
   styleUrl: './r16-listagem-de-funcionarios.component.css'
 })
