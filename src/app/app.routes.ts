@@ -13,6 +13,7 @@ import { R11TelaInicialFuncionarioComponent } from './funcionario/r11-tela-inici
 // import { R15CadastroDeVooComponent } from './funcionario/r15-cadastro-de-voo/r15-cadastro-de-voo.component';
 import { R02EfetuarLoginLogoutComponent } from './cliente/r02-efetuar-login-logout/r02-efetuar-login-logout.component';
 import { R01AutocadastroComponent } from './cliente/r01-autocadastro/r01-autocadastro.component';
+import { R07EfetuarReserva02Component } from './cliente/r07-efetuar-reserva-02/r07-efetuar-reserva-02.component';
 
 export const routes: Routes = [
   //default
@@ -106,6 +107,15 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: {
       role: 'FUNCIONARIO',
+    },
+  },
+  {
+    path: 'efetuar-reserva-2',
+    title: 'EfetuarReserva2',
+    component: R07EfetuarReserva02Component,
+    canActivate: [authGuard],
+    data: {
+      role: 'CLIENTE',
     },
   },
 
