@@ -30,7 +30,11 @@
                 </div>
               </div>
             </div>
-
+            <div class="container-button">
+              <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar" [disabled]="!isFormValid()" (click)="listarVoos()">
+                Consultar
+              </button>
+            </div>
           </form>
           <div *ngIf="mensagem.length>0" class="alert alert-danger alert-dismissible fade show" role="alert">
             <h6 class="alert-heading">{{mensagem}}</h6>
