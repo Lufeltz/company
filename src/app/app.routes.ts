@@ -91,15 +91,15 @@ export const routes: Routes = [
     },
   },
 
-  // {
-  //   path: 'cadastro-voos',
-  //   title: 'cadastro-voos',
-  //   component: R15CadastroDeVooComponent,
-  //   canActivate: [authGuard],
-  //   data: {
-  //     role: 'FUNCIONARIO',
-  //   },
-  // },
+  {
+    path: 'cadastro-voos',
+    title: 'cadastro-voos',
+    component: R15CadastroDeVooComponent,
+    canActivate: [authGuard],
+    data: {
+      role: 'FUNCIONARIO',
+    },
+  },
   {
     path: 'gerenciar-funcionarios',
     title: 'GerenciarFuncionarios',
