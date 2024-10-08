@@ -10,7 +10,7 @@ import { R10FazerCheckInComponent } from './cliente/r10-fazer-check-in/r10-fazer
 import { R06ConsultarExtratoMilhasComponent } from './cliente/r06-consultar-extrato-milhas/r06-consultar-extrato-milhas.component';
 import { R09ConsultarReservaComponent } from './cliente/r09-consultar-reserva/r09-consultar-reserva.component';
 import { R11TelaInicialFuncionarioComponent } from './funcionario/r11-tela-inicial-funcionario/r11-tela-inicial-funcionario.component';
-// import { R15CadastroDeVooComponent } from './funcionario/r15-cadastro-de-voo/r15-cadastro-de-voo.component';
+import { R15CadastroDeVooComponent } from './funcionario/r15-cadastro-de-voo/r15-cadastro-de-voo.component';
 import { R02EfetuarLoginLogoutComponent } from './cliente/r02-efetuar-login-logout/r02-efetuar-login-logout.component';
 import { R01AutocadastroComponent } from './cliente/r01-autocadastro/r01-autocadastro.component';
 import { R07EfetuarReserva02Component } from './cliente/r07-efetuar-reserva-02/r07-efetuar-reserva-02.component';
@@ -38,7 +38,7 @@ export const routes: Routes = [
     path: 'comprar-milhas',
     title: 'comprar-milhas',
     component: R05ComprarMilhasComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     data: {
       role: 'CLIENTE',
     },
