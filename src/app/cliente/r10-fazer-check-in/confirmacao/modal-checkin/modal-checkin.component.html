@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h5 class="modal-title">Atenção</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+</div>
+<div class="modal-body">
+  <p>Seu voo de {{ voo.aeroportoOrigem }} para {{ voo.aeroportoDestino}} ocorrerá no dia 
+    {{ dia }} às {{ hora }}. Certifique-se de estar pronto(a) com antecedência
+    para não perder sua viagem.
+  </p>
+  <div class="d-flex align-items-center">
+    <input type="checkbox" id="confirmCheck" class="form-check-input me-2" [(ngModel)]="confirmacao">
+    <label for="confirmCheck">Confirmo que está tudo certo e tenho a intenção de embarcar</label>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="confirmar()" [disabled]="!confirmacao">Check-in</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Voltar</button>
+</div>

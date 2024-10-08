@@ -11,6 +11,7 @@ import { Reserva } from '../../shared/models/prototipo/reserva.model';
 import { Voo } from '../../shared/models/prototipo/voo.model';
 import { VoosService } from '../../services/prototipo/voos.service';
 import { R08CancelarReservaComponent } from '../r08-cancelar-reserva/r08-cancelar-reserva.component';
+import { ModalCheckinComponent } from '../r10-fazer-check-in/confirmacao/modal-checkin/modal-checkin.component';
 
 @Component({
   selector: 'app-r09-consultar-reserva',
@@ -91,8 +92,9 @@ export class R09ConsultarReservaComponent {
                     for(let i=0; i<data.length; i++){
                       if(data[i].codigoVoo == this.reserva?.reserva.codigoVoo){
                         this.reserva.voo = data[i];
-                        let dataAtual = new Date(); // new Date("2024-09-17T15:30:00") <- PARA TESTE
-                        if((dataAtual.getTime() - new Date(data[i].dataHora).getTime()) <= (48 * 60 * 60 * 1000) &&
+                        let dataAtual = new Date() // new Date("2024-09-30T15:30:00") <- PARA TESTE
+                        if((new Date(data[i].dataHora).getTime() - dataAtual.getTime()) <= (48 * 60 * 60 * 1000) &&
+                        new Date(data[i].dataHora) >= dataAtual &&
                         this.reserva.reserva.estadoReserva != "cancelada" && this.reserva.reserva.estadoReserva != "confirmada"){
                           this.isPendente = true;
                         }
@@ -124,6 +126,11 @@ export class R09ConsultarReservaComponent {
     const modalRef = this.modalService.open(R08CancelarReservaComponent);
     modalRef.componentInstance.reserva = reserva;
     modalRef.componentInstance.clienteLogado = this.cliente;
+  }
+
+  fazerCheckIn(reserva: { reserva: Reserva; voo: Voo | undefined } | null): void{
+    const modalRef = this.modalService.open(ModalCheckinComponent);
+    modalRef.componentInstance.voo = reserva?.voo;
   }
 
   get Reserva(): { reserva: Reserva; voo: Voo | undefined } | null{

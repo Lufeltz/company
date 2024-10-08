@@ -1,1 +1,44 @@
-<p>r10-fazer-check-in works!</p>
+<div class="blue_background fullscreen-div">
+  <h1 class="text-center t_blue">Check-in</h1>
+  <div class="container">
+    
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+      <h6 class="card-subtitle text-center mb-3" *ngIf="exibeLista">
+        Faça o Check-in de seus voos agendados para as próximas 48 horas
+      </h6>
+      <div id="listaVoos" *ngIf="exibeLista">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Data Viagem</th>
+              <th scope="col">Aeroporto Origem</th>
+              <th scope="col">Aeroporto Destino</th>
+              <th scope="col">Tempo restante</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let voo of listVoosProximos">
+              <td>{{ voo.dataHora | date : "dd/MM/yyyy HH:mm" }}</td>
+              <td>{{ voo.aeroportoOrigem }}</td>
+              <td>{{ voo.aeroportoDestino }}</td>
+              <td>{{ formatarTempoEntreDatas(voo.dataHora) }}</td>
+              <td>
+                <button
+                  class="btn btn-success"
+                  (click)="fazerCheckIn(voo)"
+                >
+                  Check-In
+                </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center" *ngIf="!exibeLista">
+        <p class="h5">Você não possui voos programados para as próximas 48 horas</p>
+      </div>
+    </div>
+  </div>
+</div>
+
