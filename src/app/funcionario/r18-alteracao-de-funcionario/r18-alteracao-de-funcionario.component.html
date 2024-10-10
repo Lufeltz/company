@@ -76,36 +76,35 @@
             </div>
 
             <div class="imput-form">
-                <div id="form-floating-tempo-funcionario">
-                  <div class="form-floating">
-                    <input
-                      type="text"
-                      class="form-control custom-input"
-                      name="telefone"
-                      id="telefone"
-                      placeholder=" "
-                      [(ngModel)]="funcionarioParaEditar.telefone"
-                      #telefone="ngModel"
-                      required
-                      [class.invalid-border]="
-                        telefone.invalid && (telefone.dirty || telefone.touched)
-                      "
-                      telefone
-                    />
-                    <label for="telefone">Telefone</label>
-                  </div>
-                </div>
-                <div
-                  *ngIf="telefone.errors && (telefone.dirty || telefone.touched)"
-                  class="left-align text-danger"
-                >
-                  <div [hidden]="!telefone.errors['required']">
-                    Insira o telefone do funcionário
-                  </div>
+              <div id="form-floating-tempo-funcionario">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    name="telefone"
+                    id="telefone"
+                    placeholder=" "
+                    [(ngModel)]="funcionarioParaEditar.telefone"
+                    #telefone="ngModel"
+                    required
+                    [class.invalid-border]="
+                      telefone.invalid && (telefone.dirty || telefone.touched)
+                    "
+                    mask="(00) 0 0000-0000"
+                  />
+                  <label for="telefone">Telefone</label>
                 </div>
               </div>
+              <div
+                *ngIf="telefone.errors && (telefone.dirty || telefone.touched)"
+                class="left-align text-danger"
+              >
+                <div [hidden]="!telefone.errors['required']">
+                  Insira o telefone do funcionário
+                </div>
+              </div>
+            </div>
           </div>
-
         </form>
 
         <div class="container-button d-flex justify-content-end">

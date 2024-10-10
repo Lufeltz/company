@@ -19,27 +19,6 @@ export class AutocadastroService {
     }),
   };
 
-  // cadastrar(): Observable<Cadastro | null> {
-  //   return this._http
-  //     .post<Cadastro>(
-  //       `${this.NEW_URL}/usuarios`,
-  //       JSON.stringify(usuarioRequestDto),
-  //       this.httpOptions
-  //     )
-  //     .pipe(
-  //       map((resp: HttpResponse<Cadastro>) => {
-  //         if (resp.status == 201) {
-  //           return resp.body;
-  //         } else {
-  //           return null;
-  //         }
-  //       }),
-  //       catchError((err, caught) => {
-  //         return throwError(() => err);
-  //       })
-  //     );
-  // }
-
   postCadastro(cadastro: Cadastro): Observable<Cadastro | null> {
     return this._http
       .post<Cadastro>(
@@ -60,6 +39,4 @@ export class AutocadastroService {
         })
       );
   }
-
-
 }

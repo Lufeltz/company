@@ -61,15 +61,8 @@
     {
       "id": "",
       "codigoReserva": "RES12345",
-      "dataHoraAlteracao": "2024-10-05T22:07:57.568Z",
+      "dataHoraAlteracao": "2024-10-04T02:52:14.099Z",
       "estadoOrigem": "confirmada",
-      "estadoDestino": "cancelada"
-    },
-    {
-      "id": "",
-      "codigoReserva": "RES67890",
-      "dataHoraAlteracao": "2024-10-05T22:09:02.565Z",
-      "estadoOrigem": "pendente",
       "estadoDestino": "cancelada"
     }
   ],
@@ -148,17 +141,17 @@
   ],
   "funcionarios": [
     {
-      "nome": "Carlos Santos",
+      "nome": "Carlos Santos da Silva",
       "cpf": "345.678.901-23",
       "email": "carlos.santos@example.com",
-      "telefone": "+55 31 91234-5678",
+      "telefone": "+31 91234-5689",
       "id": "d51f"
     },
     {
       "nome": "Ana Pereira",
       "cpf": "456.789.012-34",
       "email": "ana.pereira@example.com",
-      "telefone": "+55 41 93456-7890",
+      "telefone": "41 93456-7890",
       "id": "6e88"
     },
     {
@@ -166,7 +159,7 @@
       "nome": "João Silva Castro",
       "cpf": "123.456.789-00",
       "email": "joao.silva@example.com",
-      "telefone": "+55 11 98765-4321"
+      "telefone": "11 98765-4321"
     }
   ],
   "milhas": [
@@ -212,17 +205,9 @@
     },
     {
       "id": "",
-      "cliente": "maria silva",
-      "dataHoraTransacao": "2024-10-05T22:07:57.567Z",
+      "cliente": "",
+      "dataHoraTransacao": "2024-10-04T02:52:14.097Z",
       "quantidadeMilhas": 160,
-      "tipoTransacao": "entrada",
-      "descricao": "Cancelamento de reserva"
-    },
-    {
-      "id": "",
-      "cliente": "maria silva",
-      "dataHoraTransacao": "2024-10-05T22:09:02.564Z",
-      "quantidadeMilhas": 120,
       "tipoTransacao": "entrada",
       "descricao": "Cancelamento de reserva"
     }
@@ -293,6 +278,18 @@
       "login": "carlos",
       "senha": "carlinhos",
       "tipo": "cliente"
+    },
+    {
+      "id": "6715",
+      "login": "carla",
+      "senha": "705",
+      "tipo": "cliente"
+    },
+    {
+      "id": "6b0f",
+      "login": "roberto",
+      "senha": "700",
+      "tipo": "funcionario"
     }
   ],
   "voos": [
@@ -345,6 +342,66 @@
       "valorPassagemReais": 800,
       "quantidadePoltronasTotal": 180,
       "quantidadePoltronasOcupadas": 150
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:00",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 10,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:22",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 0,
+      "quantidadePoltronasTotal": 0,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:29",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 10,
+      "quantidadePoltronasTotal": 10,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:30",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 1,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:30",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 1,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:31",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 1,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
     }
   ]
 }

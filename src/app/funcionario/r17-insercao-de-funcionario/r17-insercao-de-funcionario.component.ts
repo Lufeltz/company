@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FuncionarioService } from '../../services/prototipo/funcionarios.service';
 import { Router } from '@angular/router';
 import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
+import { FuncionarioSemId } from '../../shared/models/prototipo/funcionario-sem-id.model';
 
 @Component({
   selector: 'app-r17-insercao-de-funcionario',
@@ -37,6 +38,7 @@ export class R17InsercaoDeFuncionarioComponent {
   funcionarios: Funcionario[] = [];
   novoFuncionario: boolean = true;
   funcionario: Funcionario = new Funcionario();
+  funcionarioSemId: FuncionarioSemId = new FuncionarioSemId();
   id!: string;
   loading!: boolean;
   mensagem: string = '';
@@ -52,7 +54,7 @@ export class R17InsercaoDeFuncionarioComponent {
     this.loading = true;
     if (this.formAdicionarFuncionario.form.valid) {
       if (this.novoFuncionario) {
-        this.funcionarioService.postFuncionario(this.funcionario).subscribe({
+        this.funcionarioService.postFuncionario(this.funcionarioSemId).subscribe({
           next: (funcionario) => {
             this.loading = false;
             this.router.navigate(['/gerenciar-funcionarios']);

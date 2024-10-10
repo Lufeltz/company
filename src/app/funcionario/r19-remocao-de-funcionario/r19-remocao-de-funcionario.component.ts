@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
 import { FuncionarioService } from '../../services/prototipo/funcionarios.service';
 import { Router } from '@angular/router';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-r19-remocao-de-funcionario',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './r19-remocao-de-funcionario.component.html',
-  styleUrl: './r19-remocao-de-funcionario.component.css',
+  styleUrls: ['./r19-remocao-de-funcionario.component.css'],
 })
 export class R19RemocaoDeFuncionarioComponent {
   @Output() voltarClicked = new EventEmitter<void>();
@@ -29,18 +30,22 @@ export class R19RemocaoDeFuncionarioComponent {
     this.mensagem = '';
     this.mensagem_detalhes = '';
 
-    this.funcionarioService
-      .deleteFuncionario(this.funcionarioParaExcluir.id)
-      .subscribe({
-        complete: () => {
-          this.exclusaoConcluida.emit();
-          this.listarFuncionarios();
-        },
-        error: (err) => {
-          this.mensagem = `Erro removendo funcionario ${this.funcionarioParaExcluir.id} - ${this.funcionarioParaExcluir.nome}`;
-          this.mensagem_detalhes = `[${err.status}] ${err.message}`;
-        },
-      });
+    if (this.funcionarioParaExcluir.id) {
+      this.funcionarioService
+        .deleteFuncionario(this.funcionarioParaExcluir.id)
+        .subscribe({
+          complete: () => {
+            this.exclusaoConcluida.emit();
+            this.listarFuncionarios();
+          },
+          error: (err) => {
+            this.mensagem = `Erro removendo funcionario ${this.funcionarioParaExcluir.id} - ${this.funcionarioParaExcluir.nome}`;
+            this.mensagem_detalhes = `[${err.status}] ${err.message}`;
+          },
+        });
+    } else {
+      this.mensagem = 'ID do funcionário não está definido.';
+    }
   }
 
   listarFuncionarios(): Funcionario[] {
@@ -54,7 +59,7 @@ export class R19RemocaoDeFuncionarioComponent {
       },
       error: (err) => {
         this.mensagem = 'Erro buscando lista de usuários';
-        this.mensagem_detalhes = `[${err.status} ${err.message}]`;
+        this.mensagem_detalhes = `[${err.status}] ${err.message}`;
       },
     });
     return this.funcionarios;

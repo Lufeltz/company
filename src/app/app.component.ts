@@ -69,7 +69,7 @@ import { CadastroComponent } from './auth/cadastro';
 })
 
 export class AppComponent {
-  title = 'LOL';
+  title = 'Empresa Aérea';
   showNavbar: boolean = true;
 
   constructor(private router: Router) {}

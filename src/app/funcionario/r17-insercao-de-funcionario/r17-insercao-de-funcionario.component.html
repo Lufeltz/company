@@ -22,7 +22,7 @@
                       name="nome"
                       id="nome"
                       placeholder=" "
-                      [(ngModel)]="funcionario.nome"
+                      [(ngModel)]="funcionarioSemId.nome"
                       #nome="ngModel"
                       required
                       [class.invalid-border]="
@@ -53,13 +53,13 @@
                       name="cpf"
                       id="cpf"
                       placeholder=" "
-                      [(ngModel)]="funcionario.cpf"
+                      [(ngModel)]="funcionarioSemId.cpf"
                       #cpf="ngModel"
                       required
                       [class.invalid-border]="
                         cpf.invalid && (cpf.dirty || cpf.touched)
                       "
-                      maxlength="100"
+                      mask="000.000.000-00"
                     />
                     <label for="descricao">CPF do funcionário</label>
                   </div>
@@ -82,7 +82,7 @@
                       name="email"
                       id="email"
                       placeholder=" "
-                      [(ngModel)]="funcionario.email"
+                      [(ngModel)]="funcionarioSemId.email"
                       #email="ngModel"
                       required
                       [class.invalid-border]="
@@ -115,13 +115,13 @@
                       name="telefone"
                       id="telefone"
                       placeholder=" "
-                      [(ngModel)]="funcionario.telefone"
+                      [(ngModel)]="funcionarioSemId.telefone"
                       #telefone="ngModel"
                       required
                       [class.invalid-border]="
                         telefone.invalid && (telefone.dirty || telefone.touched)
                       "
-                      telefone
+                      mask="(00) 0 0000-0000"
                     />
                     <label for="telefone">Telefone</label>
                   </div>
