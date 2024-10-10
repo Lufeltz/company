@@ -342,6 +342,66 @@
       "valorPassagemReais": 800,
       "quantidadePoltronasTotal": 180,
       "quantidadePoltronasOcupadas": 150
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:00",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 10,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:22",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 0,
+      "quantidadePoltronasTotal": 0,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:29",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 10,
+      "quantidadePoltronasTotal": 10,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:30",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 1,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:30",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 1,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS0000",
+      "dataHora": "2024-10-10T15:31",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 1,
+      "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
     }
   ]
 }
