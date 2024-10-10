@@ -57,6 +57,20 @@
       "estadoOrigem": "confirmada",
       "estadoDestino": "pendente",
       "id": "936c"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES12345",
+      "dataHoraAlteracao": "2024-10-05T22:07:57.568Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES67890",
+      "dataHoraAlteracao": "2024-10-05T22:09:02.565Z",
+      "estadoOrigem": "pendente",
+      "estadoDestino": "cancelada"
     }
   ],
   "clientes": [
@@ -68,7 +82,7 @@
       "cep": "80020000",
       "cidade": "Curitiba",
       "estado": "Paraná",
-      "milhas": 15000,
+      "milhas": 15280,
       "id": "964c"
     },
     {
@@ -195,6 +209,22 @@
       "quantidadeMilhas": 200,
       "tipoTransacao": "entrada",
       "descricao": "Promoção de milhas por atividadeeeee"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "dataHoraTransacao": "2024-10-05T22:07:57.567Z",
+      "quantidadeMilhas": 160,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "dataHoraTransacao": "2024-10-05T22:09:02.564Z",
+      "quantidadeMilhas": 120,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
     }
   ],
   "reservas": [
@@ -202,14 +232,14 @@
       "codigoReserva": "RES12345",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "2024-09-15T10:30:00Z",
-      "estadoReserva": "confirmada",
+      "estadoReserva": "cancelada",
       "id": "5206"
     },
     {
       "codigoReserva": "RES67890",
       "codigoVoo": "JJ456",
       "dataHoraReserva": "2024-09-16T14:00:00Z",
-      "estadoReserva": "pendente",
+      "estadoReserva": "cancelada",
       "id": "565d"
     },
     {

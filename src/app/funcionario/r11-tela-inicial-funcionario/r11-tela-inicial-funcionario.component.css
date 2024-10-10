@@ -1,0 +1,21 @@
+.custom-card {
+  border-radius: var(--bs-border-radius);;
+  padding: 25px;
+  background-color: #fff;
+  margin-top: 4%;
+}
+
+.table th,
+.table td {
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+  color: #4b5256 !important;
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  vertical-align: middle;
+}
+
+.table th {
+  font-weight: bold;
+}

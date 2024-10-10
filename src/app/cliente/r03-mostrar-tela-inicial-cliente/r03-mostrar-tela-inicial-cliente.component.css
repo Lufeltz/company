@@ -1,3 +1,22 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
 .btn-danger{
   margin-left: 15px;
+}
+
+.table th, td {
+  color: #4b5256 !important;
+  vertical-align: middle;
+}
+
+.btn {
+  height: 100%;
+  padding: 6px !important;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e2f5fff1 !important;
 }

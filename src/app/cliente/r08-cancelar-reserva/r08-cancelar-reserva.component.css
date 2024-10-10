@@ -1,0 +1,9 @@
+.modal-title {
+  color: #0084d1;
+  font-weight: 600;
+}
+
+.btn {
+  height: 100%;
+  padding: 6px !important;
+}

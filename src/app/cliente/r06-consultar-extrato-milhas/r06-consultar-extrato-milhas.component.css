@@ -1,0 +1,51 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 18px;
+}
+
+.custom-card {
+  border-radius: var(--bs-border-radius);;
+  padding: 25px;
+  background-color: #fff;
+}
+
+.container-table {
+  width: 100%;
+  /* border: 1px solid #ccc; */
+  margin-top: 20px;
+}
+
+.custom-header-text {
+  color: #4b5256;
+  font-weight: 600;
+}
+
+.card-compras {
+  margin-bottom: 5%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+  color: #4b5256 !important;
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  vertical-align: middle;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e2f5fff1 !important;
+}

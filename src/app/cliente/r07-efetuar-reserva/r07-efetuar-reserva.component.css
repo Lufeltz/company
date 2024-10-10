@@ -17,16 +17,16 @@ body {
   margin: 0 auto;
   text-align: left;
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
 .custom-card {
-  border-radius: 30px;
+  border-radius: var(--bs-border-radius);
   padding-left: 25px;
   padding-top: 10px;
   padding-right: 25px;
   padding-bottom: 20px;
+  margin-top: 5%;
 }
 
 .container-form {
@@ -43,13 +43,13 @@ body {
   text-align: left;
   font-size: 30px;
   font-weight: 300;
-  color: #32445c;
+  color: #626e76;
 }
 
 .consulta-pedido-phrase {
   text-align: left;
-  font-size: 16px;
-  color: #32445c;
+  font-size: 20px;
+  color: #626e76;
 }
 
 .imput-form {
@@ -86,7 +86,7 @@ body {
 }
 
 .custom-btn {
-  background-color: #3dabe1;
+  background-color: #0084d1;
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -98,7 +98,7 @@ body {
 }
 
 .custom-btn:hover {
-  background-color: #1c8bc1;
+  background-color: #005f8b;
 }
 
 .custom-btn:active {

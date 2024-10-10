@@ -1,87 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Extrato de Milhas</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f2f8ff;
-      height: 100vh;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: left;
-      font-size: 18px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .custom-card {
-      border-radius: 30px;
-      padding: 25px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-    }
-
-    .custom-header-text {
-      font-size: 30px;
-      font-weight: 300;
-      color: #32445c;
-      margin-bottom: 10px;
-    }
-
-    .container-table {
-      width: 100%;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-    }
-
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .table th,
-    .table td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .table th {
-      background-color: #f2f2f2;
-      font-weight: bold;
-    }
-
-    .table-hover tbody tr:hover {
-      background-color: #e2f5ff;
-    }
-
-  </style>
-</head>
-<body>
 <div class="container">
-  <div class="custom-card">
-    <h5 class="custom-header-text">Extrato de milhas</h5>
+  <h5 class="t_blue text-center">Extrato de milhas</h5>
 
-    <div class="container-table">
-      <table class="table table-hover">
-        <tbody>
-        <tr>
-          <td>Quantidade atual de milhas</td>
-          <td>5000</td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="mb-4">
+    <div class="card shadow-sm bg-white rounded" style="width: 16rem;">
+      <div class="card-body">
+        <h6 class="card-title text-muted">Quantidade atual de milhas</h6>
+        <p class="card-text h5 text-primary mb-0">5000</p>
+      </div>
     </div>
+  </div>
 
+  <div class="custom-card shadow-lg card-compras">
     <h5 class="custom-header-text">Compras efetuadas</h5>
     <div class="container-table">
       <table class="table table-hover">
@@ -103,7 +32,9 @@
         </tbody>
       </table>
     </div>
+  </div>
 
+  <div class="custom-card shadow-lg card-utilizacao">
     <h5 class="custom-header-text">Utilização de milhas</h5>
     <div class="container-table">
       <table class="table table-hover">
@@ -125,5 +56,3 @@
     </div>
   </div>
 </div>
-</body>
-</html>

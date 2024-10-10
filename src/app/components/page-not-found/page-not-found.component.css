@@ -9,10 +9,6 @@ body {
     background-size: cover;
 }
 
-.background {
-    background-color: #F2F8FF;
-}
-
 .container {
     max-width: 600px;
     margin-top: -500px;
@@ -20,7 +16,6 @@ body {
     text-align: center;
     font-size: 18px;
     color: #32445c;
-    font-family: Arial, Helvetica, sans-serif;
     -webkit-tap-highlight-color: transparent;
     position: absolute;
     top: 20%;

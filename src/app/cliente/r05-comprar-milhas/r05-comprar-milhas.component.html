@@ -1,7 +1,7 @@
-<div class="blue_background">
-  <div class="comprar-milhas-component">
-    <h1 class="t_blue">Comprar milhas</h1>
+<div>
+  <h1 class="t_blue text-center">Comprar milhas</h1>
 
+  <div class="comprar-milhas-component">
     <div class="comprar-milhas-descrição">
       <h4>Instruções de Compra</h4>
       <p>
@@ -32,7 +32,7 @@
 
       <div class="display-flex-column">
         <label for="qtd-milhas-input">Total em milhas</label>
-        <input type="number" id="qtd-milhas-input" [(ngModel)]="quantidadeMilhas" name="quantidadeMilhas" min="1" readonly />
+        <input class="form-control" type="number" id="qtd-milhas-input" [(ngModel)]="quantidadeMilhas" name="quantidadeMilhas" min="1" readonly />
         <button class="btn_blue" type="submit" [disabled]="erroValor">Comprar</button>
       </div>
     </form>

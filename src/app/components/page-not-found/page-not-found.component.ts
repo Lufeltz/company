@@ -12,7 +12,7 @@ export class PageNotFoundComponent {
   constructor(private router: Router) { }
   
   inicio() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/homepage']);
   }
   
 }
