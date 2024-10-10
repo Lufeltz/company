@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { VoosService } from '../../services/prototipo/voos.service';
 import { CommonModule } from '@angular/common';
-import {LetrasSomenteDirective} from "../../shared/directives/letras-somente.directive";
-import { FormsModule, NgForm } from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-r15-cadastro-de-voo',
   standalone: true,
-    imports: [CommonModule, LetrasSomenteDirective, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './r15-cadastro-de-voo.component.html',
   styleUrl: './r15-cadastro-de-voo.component.css'
 })
