@@ -1,43 +1,94 @@
-<div class="container">
-  <h1 class="text-center t_blue">Dados do voo</h1>
-  <div class="card shadow-lg custom-card border-0">
-    <div class="card-body">
-      <div class="container-consulta-pedido-texto">
-        <h6 class="consulta-pedido-phrase card-subtitle">
-          Confira os dados do voo escolhido:
-        </h6>
-      </div>
+<div class="background">
+  <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px)">
+    <div class="container">
+      <div class="card shadow-lg custom-card border-0">
+        <div class="card-body">
+          <div class="d-flex justify-content-between cabecalho">
+            <div class="container-consulta-pedido-texto">
+              <h5 class="consulta-pedido-text card-title">Dados do voo</h5>
+              <h6 class="consulta-pedido-phrase card-subtitle">
+                Confira os dados do voo escolhido:
+              </h6>
+            </div>
+            <div class="card shadow-sm bg-white rounded" style="width: 12rem;">
+              <div class="card-body">
+                <h6 class="card-title text-muted">Saldo em Milhas</h6>
+                <p class="card-text h5 text-primary mb-0">{{ qntMilhasCliente }}</p>
+              </div>
+            </div>
+          </div>
 
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <th>Origem</th>
-            <th>Destino</th>
-            <th>Data/hora</th>
-            <th>Preço do Assento</th>
-          </tr>
-          <tr>
-            <td> {{vooSelecionado.aeroportoOrigem}} </td>
-            <td> {{vooSelecionado.aeroportoDestino}} </td>
-            <td> {{vooSelecionado.dataHora}} </td>
-            <td> {{vooSelecionado.valorPassagemReais}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+          <table class="table table-striped table-bordered table-hover">
+            <tbody>
+              <tr>
+                <th>Origem</th>
+                <th>Destino</th>
+                <th>Data/hora</th>
+                <th>Preço do Assento</th>
+              </tr>
+              <tr>
+                <td> {{vooSelecionado.aeroportoOrigem}} </td>
+                <td> {{vooSelecionado.aeroportoDestino}} </td>
+                <td> {{vooSelecionado.dataHora}} </td>
+                <td> {{vooSelecionado.valorPassagemReais}}</td>
+              </tr>
+            </tbody>
+          </table>
 
-  <div class="card shadow-lg custom-card border-0">
-    <div class="card-body">
-      <h6 class="consulta-pedido-text assentos">Informe quantos assentos deseja reservar</h6>
-      <div class="dadosreserva">
-        <div class="col-md-6 reserva-assentos">
-          <label for="qntd" class="label-size">Quantidade:</label>
-          <input type="number" class="form-control" id="qntd" #quantidade min="1" max="100" value="1" />
-          <a href="#" title="Reservar" class="btn btn_blue">
-            <i class="fa fa-edit" aria-hidden="true"></i> Reservar
-          </a>
-
+          <h6 class="consulta-pedido-text assentos">Informe quantos assentos deseja reservar</h6>
+          <div class="dadosreserva">
+            <div class="col-md-6 reserva-assentos">
+              <label for="qntd" class="label-size">Quantidade:</label>
+              <input type="number" class="form-control" id="qntd" #quantidade min="1" max="100" value="1" [(ngModel)]="qntPassagens" (input)="calculaValorPassagem()" />
+            </div>
+          </div>
+          <div *ngIf="qntPassagens > 0">
+            <table class="table table-striped table-bordered table-hover tabela2">
+              <tbody>
+                <tr>
+                  <th>Valor total</th>
+                  <th>Milhas necessárias</th>
+                </tr>
+                <tr>
+                  <td> {{valorTotal}}</td>
+                  <td> {{valorMilhas}} </td>
+                </tr>
+              </tbody>
+            </table>
+            <h6 class="consulta-pedido-text assentos">Informe quantas milhas ira usar no pagamento</h6>
+            <div class="col-md-6 reserva-assentos">
+              <label for="qntd" class="label-size">Milhas:</label>
+              <input type="input" class="form-control" id="qntd" #quantidade [max]="maxMilhaspermitidas" min="1" [(ngModel)]="qntMilhasPagamento" />
+              <button href="#" title="Reservar" class="btn btn-xs btn-info" [disabled]="qntMilhasPagamento > maxMilhaspermitidas || qntMilhasPagamento < 1" (click)="pagarReserva()">
+                <i class="fa fa-edit" aria-hidden="true"></i> Pagar
+              </button>
+            </div>
+          </div>
+          <div *ngIf="qntMilhasPagamento > maxMilhaspermitidas" class="alert alert-danger">
+            Você não pode inserir mais milhas do que possui ou do que o necessário.
+          </div>
+          <div class="confirma-pedido" *ngIf="mostradados1">
+            <h6 class="consulta-pedido-text assentos">Confira os dados e confirme seu pagamento</h6>
+            <table class="table table-striped table-bordered table-hover tabela2">
+              <tbody>
+                <tr>
+                  <th>Valor total das passagens</th>
+                  <th>Valor total em Milhas</th>
+                  <th>Quantidade de milhas para pagamento</th>
+                  <th>Valor para pagar em dinheiro</th>
+                </tr>
+                <tr>
+                  <td> {{valorTotal}}</td>
+                  <td> {{valorMilhas}} </td>
+                  <td> {{qntMilhasPagamento}}</td>
+                  <td> {{qntMilhasSaldoFinal}} </td>
+                </tr>
+              </tbody>
+            </table>
+            <button href="#" title="confirma-pagamento" class="btn btn-xs btn-info" (click)="confirmaPagamento()">
+              <i class="fa fa-edit" aria-hidden="true"></i> Confirmar pagamento
+            </button>
+          </div>
         </div>
 
 
