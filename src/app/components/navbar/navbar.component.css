@@ -61,7 +61,7 @@
 }
 
 .dropdown-item-hover:hover {
-    background-color: #32445c;
+    background-color: #0084d1;
     color: #ffffff;
 }
 
@@ -81,4 +81,24 @@
   padding: 0 !important;
   font-weight: 600;
   font-size: 18px;
+}
+
+.margin-left {
+  margin-left: 80px;
+}
+
+.fill-none {
+  fill: none !important;
+}
+
+.svg-stroke {
+  stroke: #bcdcee;
+}
+
+.nav-link:hover .svg-stroke {
+  stroke: #fff !important;
+}
+
+.nav-link:focus .svg-stroke {
+  stroke: #fff !important;
 }
