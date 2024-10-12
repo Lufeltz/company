@@ -16,7 +16,6 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   text-align: left;
-  font-size: 18px;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -112,4 +111,14 @@ body {
 .custom-btn-consultar,
 .custom-btn-voltar {
   width: 120px;
+}
+
+.table tbody tr th {
+  color: #4b5256 !important;
+  vertical-align: middle;
+}
+
+.table tbody tr td {
+  color: #4b5256 !important;
+  vertical-align: middle;
 }

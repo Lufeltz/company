@@ -40,7 +40,7 @@
             <h6 class="alert-heading">{{mensagem}}</h6>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
-          <table class="table table-striped table-bordered table-hover" *ngIf="voos.length > 0">
+          <table class="table table-hover" *ngIf="voos.length > 0">
             <tbody>
               <tr>
                 <th>Codigo do voo</th>
@@ -54,8 +54,8 @@
                 <td> {{voo.dataHora}} </td>
                 <td> {{voo.aeroportoOrigem}} </td>
                 <td> {{voo.aeroportoDestino}}</td>
-                <td class="text-center" style="width: 300px">
-                  <a href="#" (click)="selecionarVoo(voo, $event)" title="Reservar" class="btn btn-xs btn-info">
+                <td style="width: 300px">
+                  <a href="#" (click)="selecionarVoo(voo, $event)" title="Reservar" class="btn btn_blue">
                     <i class="fa fa-edit" aria-hidden="true"></i> Reservar
                   </a>
 
