@@ -1,0 +1,19 @@
+<!-- <div class="modal">
+  <div class="modal-content">
+    <span class="close-button" (click)="onClose()">&times;</span> Chama onClose ao clicar -->
+    <!-- <h2>{{ tipo === 'sucesso' ? 'Sucesso' : 'Erro' }}</h2>
+    <p>{{ mensagem }}</p>
+  </div>
+</div> -->
+
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{ tipo === 'sucesso' ? 'Confirmado!!' : 'Ops...' }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" 
+          (click)="onClose()"></button>
+</div>
+<div class="modal-body">
+  <p>{{ mensagem }}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="onClose()">Fechar</button>
+</div>

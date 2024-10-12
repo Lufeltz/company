@@ -210,6 +210,33 @@
       "quantidadeMilhas": 160,
       "tipoTransacao": "entrada",
       "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "4ootez1wv",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T09:25:52.671Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "n74skf1tu",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T09:30:40.169Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "4ybccwa14",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T09:30:48.104Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
     }
   ],
   "reservas": [
