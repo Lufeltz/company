@@ -237,6 +237,123 @@
       "quantidadeMilhas": 20,
       "tipoTransacao": "entrada",
       "descricao": "Compra de milhas"
+    },
+    {
+      "id": "voqu6umhk",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:02:30.107Z",
+      "quantidadeMilhas": 16,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "cunkedwa4",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:03:31.148Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "njc74ddze",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:04:33.749Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "amyb8val4",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:05:40.243Z",
+      "quantidadeMilhas": 10,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "d691n0z81",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:08:39.744Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "km36q8wr7",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:12:53.989Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "d7lnusai9",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:13:12.880Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "1wjjuig8h",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:14:04.694Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "gdpv5p7ji",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:21:31.196Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "hzllga5lv",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:22:24.544Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "8xo2l0p48",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:23:26.746Z",
+      "quantidadeMilhas": 10,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "fdbvdiglp",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:23:39.704Z",
+      "quantidadeMilhas": 20,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "v10kh1yrc",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-12T11:36:42.891Z",
+      "quantidadeMilhas": 2,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
     }
   ],
   "reservas": [
@@ -428,6 +545,16 @@
       "aeroportoDestino": "gru",
       "valorPassagemReais": 1,
       "quantidadePoltronasTotal": 1,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS1231",
+      "dataHora": "2024-10-31T16:00",
+      "aeroportoOrigem": "123",
+      "aeroportoDestino": "678",
+      "valorPassagemReais": 700,
+      "quantidadePoltronasTotal": 60,
       "quantidadePoltronasOcupadas": 0
     }
   ]
