@@ -1,44 +1,54 @@
-<div class="background">
-  <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px)">
-    <div class="container">
-      <div class="card shadow-lg custom-card border-0">
-        <div class="card-body">
-          <div class="container-consulta-pedido-texto">
-            <h5 class="consulta-pedido-text card-title">Consultar Voos</h5>
-            <h6 class="consulta-pedido-phrase card-subtitle">
-              Digite o aeroporto de origem e o aeroporto de destino.
-            </h6>
-          </div>
-          <form class="container-form d-flex">
-            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
-              <div class="imput-form" style="flex: 1">
-                <div id="form-floating-consulta-pedido">
-                  <div class="form-floating">
-                    <input type="text" class="form-control custom-input" name="consulta" id="consulta" placeholder=" " required pattern="[0-9]*" />
-                    <label for="consulta">Aeroporto de origem</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
-              <div class="imput-form" style="flex: 1">
-                <div id="form-floating-consulta-pedido">
-                  <div class="form-floating">
-                    <input type="text" class="form-control custom-input" name="consulta" id="consulta" placeholder=" " required pattern="[0-9]*" />
-                    <label for="consulta">Aeroporto de destino</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="container-button">
-              <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar">
-                Consultar
-              </button>
-            </div>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Confirmação de embarque</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+</div>
 
-          </form>
+<div class="modal-body">
+  <form #formCodigoreserva="ngForm" class="container-form d-flex">
+    <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
+      <div class="imput-form" style="flex: 1">
+        <div id="form-floating-consulta-pedido">
+          <div class="form-floating">
+            <input type="text" class="form-control custom-input" name="Codigoreserva" id="Codigoreserva" placeholder=" " [(ngModel)]="codigoReserva" required #codigoReservaInput="ngModel" />
+            <label for="consulta">Digite o código de reserva</label>
+          </div>
+          <div *ngIf="codigoReservaInput.invalid && codigoReservaInput.touched" class="text-danger">
+            O campo Código de Reserva é obrigatório.
+          </div>
         </div>
       </div>
     </div>
+    <div class="container-button">
+      <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar" [disabled]="codigoReservaInput.invalid" (click)="consultarReserva()">
+        Consultar
+      </button>
+    </div>
+  </form>
+  <div class="alert alert-danger" *ngIf="reservaNaoEncontrada">
+    Não encontramos esse reserva no voo selecionado.
   </div>
-</div>
+  <div *ngIf="reservaEncontrada">
+    <table class="table table-striped table-bordered table-hover tabela3">
+      <h5>Reserva encontrada</h5>
+      <tbody>
+        <tr>
+          <th>Codigo Reserva</th>
+          <th>Codigo Voo</th>
+          <th>Data/Hora da Reserva</th>
+          <th>Estado da Reserva</th>
+        </tr>
+        <tr>
+          <td>{{reserva.codigoReserva}} </td>
+          <td> {{reserva.codigoVoo}} </td>
+          <td> {{reserva.dataHoraReserva}} </td>
+          <td> {{reserva.estadoReserva}} </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="modal-footer" *ngIf="reservaEncontrada">
+    <button type="submit" class="btn btn-primary custom-btn " (click)="confirmaReserva()">
+      Confirmar embarque
+    </button>
+  </div>

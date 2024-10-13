@@ -27,7 +27,7 @@
                   <td style="width: 15%"> {{item.aeroportoOrigem}} </td>
                   <td style="width: 15%"> {{item.aeroportoDestino}} </td>
                   <td style="width: 5%; text-align: center; border-right: none">
-                    <button type="button" class="btn-table btn-edit">
+                    <button type="button" class="btn-table btn-edit" (click)="abrirModalConfirmacaoEmbarque(item)">
                       Confirmação de embarque
                     </button>
                   </td>
