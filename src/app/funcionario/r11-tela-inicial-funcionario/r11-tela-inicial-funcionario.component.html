@@ -11,9 +11,6 @@
               Gerencie aqui os voos.
             </h6>
           </div>
-
-
-
           <div class="container-table shadow-sm alarm-table table-responsive">
             <table class="table table-hover">
               <thead>
@@ -25,13 +22,13 @@
                 </tr>
               </thead>
               <tbody class="table-items-body custom-tr-items">
-                <tr>
-                  <td style="width: 15%"></td>
-                  <td style="width: 15%"></td>
-                  <td style="width: 15%"></td>
+                <tr *ngFor="let item of voos">
+                  <td style="width: 15%"> {{item.dataHora}} </td>
+                  <td style="width: 15%"> {{item.aeroportoOrigem}} </td>
+                  <td style="width: 15%"> {{item.aeroportoDestino}} </td>
                   <td style="width: 5%; text-align: center; border-right: none">
                     <button type="button" class="btn-table btn-edit">
-                      confirmação de embarque
+                      Confirmação de embarque
                     </button>
                   </td>
                   <td style="width: 5%; text-align: center;  border-right: none">
@@ -50,13 +47,12 @@
           </div>
         </div>
 
-        <div class="alert-container">
+        <div *ngIf="voos.length === 0" class="alert-container">
           <div class="alert-container row justify-content-center">
             <div class="alert alert-danger mt-3 text-center">
-              <p class="mb-0">Nenhum funcionário cadastrado!</p>
+              <p class="mb-0">Nenhum voo encontrado!</p>
               <p class="mb-0">
-                Clique no botão "Adicionar" para adicionar um novo
-                funcionário.
+                Volte quando tiver voos.
               </p>
             </div>
           </div>
