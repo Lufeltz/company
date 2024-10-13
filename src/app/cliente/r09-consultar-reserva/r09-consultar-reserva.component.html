@@ -1,123 +1,116 @@
-<div class="background">
-  <div
-    class="d-flex justify-content-center align-items-center"
-    style="min-height: calc(100vh - 80px)"
-  >
-    <div class="container">
-      <div class="card shadow-lg custom-card border-0">
-        <div class="card-body">
-          <form
-            #formConsultaReserva="ngForm"
-            class="container-form d-flex flex-column justify-content-start"
-          >
-            <div class="container-consulta-pedido-texto">
-              <h5 class="consulta-pedido-text card-title">Consultar Reserva</h5>
-              <h6 class="consulta-pedido-phrase card-subtitle">
-                Busque aqui suas reservas por código.
-              </h6>
-            </div>
+<div class="container">
+  <h1 class="t_blue text-center">Consultar Reserva</h1>
+  <div class="card shadow-lg custom-card border-0">
+    <div class="card-body">
+      <form
+        #formConsultaReserva="ngForm"
+        class="container-form d-flex flex-column justify-content-start"
+      >
+        <div class="container-consulta-pedido-texto">
+          <h6 class="consulta-pedido-phrase card-subtitle">
+            Busque aqui suas reservas por código.
+          </h6>
+        </div>
 
-            <div class="mb-3 d-flex align-items-start">
-              <div class="form-floating flex-grow-1 me-2">
-                <input
-                  type="text"
-                  class="form-control custom-input"
-                  name="consulta"
-                  id="consulta"
-                  placeholder=" "
-                  [(ngModel)]="codigoReserva"
-                  required
-                  #consulta="ngModel"
-                  [class.invalid-border]="
-                    consulta.invalid && (consulta.dirty || consulta.touched)
-                  "
-                  maxlength="12"
-                />
-                
-                <label for="consulta">Código da reserva</label>
+        <div class="mb-3 d-flex align-items-center">
+          <div class="form-floating flex-grow-1 me-2">
+            <input
+              type="text"
+              class="form-control custom-input"
+              name="consulta"
+              id="consulta"
+              placeholder=" "
+              [(ngModel)]="codigoReserva"
+              required
+              #consulta="ngModel"
+              [class.invalid-border]="
+                consulta.invalid && (consulta.dirty || consulta.touched)
+              "
+              maxlength="12"
+            />
+            
+            <label for="consulta">Código da reserva</label>
+          </div>
+            
+          <button
+            type="submit"
+            class="btn btn_blue"
+            (click)="consultar()"
+            [disabled]="!formConsultaReserva.form.valid"
+          >
+            Consultar
+          </button>
+        </div>
+        <div
+              *ngIf="
+                consulta.errors && (consulta.dirty || consulta.touched)
+              "
+              class="left-align text-danger"
+            >
+              <div [hidden]="!consulta.errors['required']">
+                Insira o código da reserva
               </div>
-               
-              <button
-                type="submit"
-                class="btn btn-primary"
-                (click)="consultar()"
-                [disabled]="!formConsultaReserva.form.valid"
-              >
-                Consultar
+            </div> 
+      </form>
+
+      <div *ngIf="reservaEncontrada"> 
+        <div class="container-dados-reserva">
+          <div class="card h6">
+            <td>
+              Código da reserva:
+              <span>{{
+                Reserva?.reserva?.codigoReserva
+              }}</span> 
+            </td>
+          </div> 
+              <div class="dados-reserva-text">
+              Data e hora da viagem:
+              <span>{{ Reserva?.voo?.dataHora | date : "dd/MM/yyyy HH:mm" }}</span> 
+              </div>
+              <div class="dados-reserva-text">
+              Aeroporto de Origem:
+              <span>{{ Reserva?.voo?.aeroportoOrigem }}</span>
+              </div>
+              <div class="dados-reserva-text">
+              Aeroporto de Destino:
+              <span>{{ Reserva?.voo?.aeroportoDestino }}</span>    
+              </div>
+              <div class="dados-reserva-text">
+              Valor gasto:
+              <span>{{ Reserva?.voo?.valorPassagemReais  | currency: 'BRL' }}</span>
+              </div>
+              <div class="dados-reserva-text">
+              Milhas utilizadas:
+              <span>{{ Reserva?.voo?.valorPassagemReais }}</span>
+              </div>
+              <div class="dados-reserva-text">
+              Estado reserva:
+              <span>{{ Reserva?.reserva?.estadoReserva }}</span>
+              </div>
+              <div class="d-flex justify-content-end mt-2 mb-2">
+              <button *ngIf="isPendente" class="btn btn-success me-2" (click)="fazerCheckIn(Reserva)">
+                Check-in
+              </button>
+              <button *ngIf="isCancelavel" class="btn btn-danger" (click)="cancelarReserva(Reserva)">
+                Cancelar
               </button>
             </div>
-            <div
-                  *ngIf="
-                    consulta.errors && (consulta.dirty || consulta.touched)
-                  "
-                  class="left-align text-danger"
-                >
-                  <div [hidden]="!consulta.errors['required']">
-                    Insira o código da reserva
-                  </div>
-                </div> 
-         </form>
-
-          <div *ngIf="reservaEncontrada"> 
-            <div class="container-dados-reserva">
-              <div class="card h6">
-                <td>
-                  Código da reserva:
-                  <span>{{
-                    Reserva?.reserva?.codigoReserva
-                  }}</span> 
-                </td>
-              </div> 
-                 <div class="dados-reserva-text">
-                 Data e hora da viagem:
-                 <span>{{ Reserva?.voo?.dataHora | date : "dd/MM/yyyy HH:mm" }}</span> 
-                 </div>
-                 <div class="dados-reserva-text">
-                 Aeroporto de Origem:
-                 <span>{{ Reserva?.voo?.aeroportoOrigem }}</span>
-                 </div>
-                 <div class="dados-reserva-text">
-                 Aeroporto de Destino:
-                 <span>{{ Reserva?.voo?.aeroportoDestino }}</span>    
-                 </div>
-                 <div class="dados-reserva-text">
-                 Valor gasto:
-                 <span>{{ Reserva?.voo?.valorPassagemReais  | currency: 'BRL' }}</span>
-                 </div>
-                 <div class="dados-reserva-text">
-                 Milhas utilizadas:
-                 <span>{{ Reserva?.voo?.valorPassagemReais }}</span>
-                 </div>
-                 <div class="dados-reserva-text">
-                  Estado reserva:
-                 <span>{{ Reserva?.reserva?.estadoReserva }}</span>
-                 </div>
-                 <div class="d-flex justify-content-end mt-2 mb-2">
-                  <button *ngIf="isPendente" class="btn btn-success me-2" (click)="fazerCheckIn(Reserva)">
-                    Check-in
-                  </button>
-                  <button *ngIf="isCancelavel" class="btn btn-danger" (click)="cancelarReserva(Reserva)">
-                    Cancelar
-                  </button>
-                </div>
-            </div> 
+        </div> 
+        </div>
+        <div *ngIf="reservaEncontrada == false" class="alert-container">
+          <div class="alert-container row justify-content-center">
+            <div class="alert alert-danger mt-3 text-center">
+              <p class="mb-0">
+                Nenhuma reserva encontrada para o código
+                <strong>{{ codigoReserva }}</strong>.
+              </p>
+              <p class="mb-0">Revise o código informado e tente novamente.</p>
             </div>
-            <div *ngIf="reservaEncontrada == false" class="alert-container">
-              <div class="alert-container row justify-content-center">
-                <div class="alert alert-danger mt-3 text-center">
-                  <p class="mb-0">
-                    Nenhuma reserva encontrada para o código
-                    <strong>{{ codigoReserva }}</strong>.
-                  </p>
-                  <p class="mb-0">Revise o código informado e tente novamente.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="container-button d-flex justify-content-end mt-auto">
           </div>
         </div>
-       </div> 
+      </div>
+
+      <div class="container-button d-flex justify-content-end mt-auto">
+      </div>
     </div>
-  </div>
+    </div> 
