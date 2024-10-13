@@ -12,8 +12,6 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   text-align: left;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .custom-card {
@@ -24,16 +22,10 @@ body {
 }
 
 .custom-header-text {
-  font-size: 30px;
-  font-weight: 300;
-  color: #32445c;
-  margin-bottom: 10px;
-}
-
-.container-table {
-  width: 100%;
-  border: 1px solid #ccc;
-  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 600;
+  color: #626e76;
+  margin-bottom: 25px;
 }
 
 .table {
@@ -41,18 +33,7 @@ body {
   border-collapse: collapse;
 }
 
-.table th,
-.table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-}
-
-.table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.table-hover tbody tr:hover {
-  background-color: #e2f5ff;
+.table th, td {
+  color: #4b5256 !important;
+  vertical-align: middle;
 }
