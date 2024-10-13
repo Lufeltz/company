@@ -1,3 +1,43 @@
 .dados-reserva-text{
   margin-top: 10px;
 }
+
+.container {
+  max-width: 1000px;
+  color: #626e76;
+}
+
+.card {
+  margin-top: 50px;
+  padding: 10px 25px;
+}
+
+.card-subtitle {
+  text-align: left;
+  font-size: 20px;
+  color: #626e76;
+}
+
+.container-consulta-pedido-texto {
+  margin-bottom: 20px;
+}
+
+.container-dados-reserva .card {
+  text-align: left;
+  font-size: 20px;
+  color: #fff;
+  background-color: #4cb7f5;
+  padding: 1%;
+  margin-top:60px;
+}
+
+.dados-reserva-text {
+  font-weight: 600;
+  color: #626e76;
+  border-bottom: 1px solid var(--bs-border-color);
+  padding: 5px 0px;
+}
+
+.dados-reserva-text span {
+  font-weight: 400;
+}
