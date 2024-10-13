@@ -75,7 +75,7 @@
       "cep": "80020000",
       "cidade": "Curitiba",
       "estado": "Paraná",
-      "milhas": 15238,
+      "milhas": 15185,
       "id": "964c"
     },
     {
@@ -391,6 +391,27 @@
       "codigoVoo": "AZ123",
       "dataHoraReserva": "Sun Oct 13 2024 03:12:23 GMT-0300 (Horário Padrão de Brasília)",
       "estadoReserva": "reservado"
+    },
+    {
+      "id": "1728828654947",
+      "codigoReserva": "TTZ371",
+      "codigoVoo": "TADS0000",
+      "dataHoraReserva": "Sun Oct 13 2024 11:10:54 GMT-0300 (Horário Padrão de Brasília)",
+      "estadoReserva": "reservado"
+    },
+    {
+      "id": "1728829847265",
+      "codigoReserva": "AIO169",
+      "codigoVoo": "TADS0000",
+      "dataHoraReserva": "Sun Oct 13 2024 11:30:47 GMT-0300 (Horário Padrão de Brasília)",
+      "estadoReserva": "reservado"
+    },
+    {
+      "id": "1728830110300",
+      "codigoReserva": "KQR085",
+      "codigoVoo": "TADS1231",
+      "dataHoraReserva": "Sun Oct 13 2024 11:35:10 GMT-0300 (Horário Padrão de Brasília)",
+      "estadoReserva": "reservado"
     }
   ],
   "usuarios": [
@@ -562,6 +583,16 @@
       "aeroportoDestino": "678",
       "valorPassagemReais": 700,
       "quantidadePoltronasTotal": 60,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS1231",
+      "dataHora": "2024-10-14T11:34",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 550,
+      "quantidadePoltronasTotal": 1,
       "quantidadePoltronasOcupadas": 0
     }
   ]

@@ -52,3 +52,19 @@ html, body {
 .blue_background {
   background-color:#F2F8FF;
 }
+
+.header-com-milhas {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+
+.header-com-milhas .t_blue {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.align-right {
+  float: right;
+}
