@@ -1,21 +1,183 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-position: center center;
+  background-size: cover;
+}
+
+.background {
+  background-color: #f2f8ff;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .custom-card {
-  border-radius: var(--bs-border-radius);;
-  padding: 25px;
-  background-color: #fff;
-  margin-top: 4%;
+  border-radius: 30px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-right: 25px;
+  padding-bottom: 20px;
 }
 
-.table th,
-.table td {
-  /* border: 1px solid #ccc; */
-  padding: 10px;
-  color: #4b5256 !important;
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  vertical-align: middle;
+.container-manutencao-roupas-texto {
+  margin-bottom: 20px;
 }
 
-.table th {
-  font-weight: bold;
+.manutencao-roupas-text {
+  text-align: left;
+  font-size: 30px;
+  font-weight: 300;
+  color: #32445c;
+}
+
+.manutencao-roupas-phrase {
+  text-align: left;
+  font-size: 16px;
+  color: #32445c;
+}
+
+.container-btn-adicionar {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn-table {
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: inherit;
+  white-space: nowrap; /* Garante que o texto não quebre */
+  padding: 10px 10px; /* Ajuste de padding */
+  width: auto; /* Deixa o botão com tamanho automático conforme o conteúdo */
+  min-width: 150px; /* Define um tamanho mínimo */
+}
+
+.btn-edit {
+  background-color: #3dabe1;
+}
+
+.btn-edit:hover {
+  background-color: #1c8bc1;
+}
+
+.btn-edit:active {
+  background-color: #66c0eb;
+}
+
+.btn-remove {
+  background-color: red;
+}
+
+.btn-remove:hover {
+  background-color: rgb(211, 0, 0);
+}
+
+.btn-remove:active {
+  background-color: rgb(255, 88, 88);
+}
+
+.custom-btn {
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  letter-spacing: inherit;
+  margin-top: 6px;
+  width: 120px;
+}
+
+.btn-add {
+  background-color: green;
+}
+
+.btn-add:hover {
+  background-color: rgb(0, 100, 0);
+}
+
+.btn-add:active {
+  background-color: rgb(0, 182, 0);
+}
+
+.btn-voltar {
+  margin-top: 35px;
+  background-color: #3dabe1;
+}
+
+.btn-voltar:hover {
+  background-color: #1c8bc1;
+}
+
+.btn-voltar:active {
+  background-color: #66c0eb;
+}
+
+.btn-add,
+.btn-voltar {
+  width: 120px;
+}
+
+.alert-container {
+  margin: 0 auto;
+  max-width: 890px;
+  width: fit-content;
+}
+
+.body-with-navbar {
+  min-height: calc(100vh - 60px);
+}
+
+.container-table .table thead tr {
+  position: sticky;
+  top: 0;
+}
+
+.container-table thead th {
+  background-color: #f2f2f2;
+  border-right: 1px solid #ccc;
+}
+
+.custom-headers th {
+  background-color: #f2f2f2;
+  color: #32445c;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.alarm-table {
+  max-height: 400px;
+  overflow: auto;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.table-items-body td {
+  color: #32445c;
+  font-size: 18px;
+  font-weight: 500;
+  width: 50.5%;
+}
+
+.container-table tbody td {
+  border-right: 1px solid #ccc;
+}
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: #e2f5fff1;
 }
