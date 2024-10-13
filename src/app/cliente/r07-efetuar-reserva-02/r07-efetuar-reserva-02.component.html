@@ -58,13 +58,13 @@
             <h6 class="consulta-pedido-text assentos">Informe quantas milhas ira usar no pagamento</h6>
             <div class="col-md-6 reserva-assentos">
               <label for="qntd" class="label-size">Milhas:</label>
-              <input type="input" class="form-control" id="qntd" #quantidade [max]="maxMilhaspermitidas" min="1" [(ngModel)]="qntMilhasPagamento" />
-              <button href="#" title="Reservar" class="btn btn-xs btn-info" [disabled]="qntMilhasPagamento > maxMilhaspermitidas || qntMilhasPagamento < 1" (click)="pagarReserva()">
+              <input type="input" class="form-control" id="qntd" #quantidade [max]="valorMilhas" min="1" [(ngModel)]="qntMilhasPagamento" />
+              <button href="#" title="Reservar" class="btn btn-xs btn-info" [disabled]="qntMilhasPagamento > valorMilhas || qntMilhasPagamento < 1" (click)="pagarReserva()">
                 <i class="fa fa-edit" aria-hidden="true"></i> Pagar
               </button>
             </div>
           </div>
-          <div *ngIf="qntMilhasPagamento > maxMilhaspermitidas" class="alert alert-danger">
+          <div *ngIf="qntMilhasPagamento > valorMilhas" class="alert alert-danger">
             Você não pode inserir mais milhas do que possui ou do que o necessário.
           </div>
           <div class="confirma-pedido" *ngIf="mostradados1">
@@ -73,7 +73,7 @@
               <tbody>
                 <tr>
                   <th>Valor total das passagens</th>
-                  <th>Valor total em Milhas</th>
+                  <th>Valor total das passagens em Milhas</th>
                   <th>Quantidade de milhas para pagamento</th>
                   <th>Valor para pagar em dinheiro</th>
                 </tr>

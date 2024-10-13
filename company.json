@@ -75,7 +75,7 @@
       "cep": "80020000",
       "cidade": "Curitiba",
       "estado": "Paraná",
-      "milhas": 15280,
+      "milhas": 15238,
       "id": "964c"
     },
     {
@@ -384,6 +384,13 @@
       "dataHoraReserva": "2024-09-18T09:00:00Z",
       "estadoReserva": "confirmada",
       "id": "5be2"
+    },
+    {
+      "id": "1728799943223",
+      "codigoReserva": "WBC770",
+      "codigoVoo": "AZ123",
+      "dataHoraReserva": "Sun Oct 13 2024 03:12:23 GMT-0300 (Horário Padrão de Brasília)",
+      "estadoReserva": "reservado"
     }
   ],
   "usuarios": [
