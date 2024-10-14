@@ -361,7 +361,7 @@
       "codigoReserva": "RES12345",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "2024-09-15T10:30:00Z",
-      "estadoReserva": "cancelada",
+      "estadoReserva": "embarcado",
       "id": "5206"
     },
     {

@@ -4,8 +4,8 @@
 </div>
 
 <div class="modal-body">
-  <form #formCodigoreserva="ngForm" class="container-form d-flex">
-    <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
+  <form #formCodigoreserva="ngForm" class="container-form d-flex align-items-center">
+    <div class="d-flex align-items-start justify-content-start flex-grow-1">
       <div class="imput-form" style="flex: 1">
         <div id="form-floating-consulta-pedido">
           <div class="form-floating">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="container-button">
-      <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar" [disabled]="codigoReservaInput.invalid" (click)="consultarReserva()">
+      <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar btn_blue" [disabled]="codigoReservaInput.invalid" (click)="consultarReserva()">
         Consultar
       </button>
     </div>
@@ -48,7 +48,7 @@
 
   </div>
   <div class="modal-footer" *ngIf="reservaEncontrada">
-    <button type="submit" class="btn btn-primary custom-btn " (click)="confirmaReserva()">
+    <button type="submit" class="btn btn-primary custom-btn btn_blue" (click)="confirmaReserva()">
       Confirmar embarque
     </button>
   </div>
