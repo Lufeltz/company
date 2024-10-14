@@ -1,58 +1,53 @@
-<div class="background">
-    <div class="modal-container d-flex justify-content-center align-items-center">
-      <div class="card shadow-lg custom-card border-0">
-        <div class="card-body">
-          <div class="container-editar-funcionario-texto">
-            <h5 class="editar-funcionario-text card-title">
-              Excluir funcionario
-            </h5>
-            <h6 class="editar-funcionario-phrase card-subtitle">
-              Tem certeza que deseja excluir permanentemente o funcionário
-              selecionado?
-            </h6>
-          </div>
-  
-          <div class="container-table" style="overflow-x: auto">
-            <table class="table table-hover">
-              <tbody class="table-items-body">
-                <tr>
-                  <td class="tbody-header">Nome:</td>
-                  <td class="tbody-result">{{ funcionarioParaExcluir.nome }}</td>
-                </tr>
-                <tr>
-                  <td class="tbody-header">CPF:</td>
-                  <td class="tbody-result">{{ funcionarioParaExcluir.cpf | mask:"000.000.000-00" }}</td>
-                </tr>
-                <tr>
-                  <td class="tbody-header">Email:</td>
-                  <td class="tbody-result">{{ funcionarioParaExcluir.email }}</td>
-                </tr>
-                <tr>
-                  <td class="tbody-header">Telefone:</td>
-                  <td class="tbody-result">{{ funcionarioParaExcluir.telefone | mask:"(00) 0 0000-0000" }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-  
-          <div class="container-button d-flex justify-content-end">
-            <button
-              type="button"
-              class="btn btn-primary custom-btn btn-cancelar mr-2"
-              (click)="cancelar()"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary custom-btn btn-excluir"
-              (click)="excluir()"
-            >
-              Excluir
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Excluir funcionario</h4>
+  <button type="button" class="btn-close" aria-label="Close" 
+  (click)="cancelar()"></button>
+</div>
+
+<div class="modal-body">
+  <h6 class="editar-funcionario-phrase card-subtitle">
+    Tem certeza que deseja excluir permanentemente o funcionário
+    selecionado?
+  </h6>
+
+  <div class="container-table" style="overflow-x: auto">
+    <table class="table table-hover">
+      <tbody class="table-items-body">
+        <tr>
+          <td class="tbody-header">Nome:</td>
+          <td class="tbody-result">{{ funcionarioParaExcluir.nome }}</td>
+        </tr>
+        <tr>
+          <td class="tbody-header">CPF:</td>
+          <td class="tbody-result">{{ funcionarioParaExcluir.cpf | mask:"000.000.000-00" }}</td>
+        </tr>
+        <tr>
+          <td class="tbody-header">Email:</td>
+          <td class="tbody-result">{{ funcionarioParaExcluir.email }}</td>
+        </tr>
+        <tr>
+          <td class="tbody-header">Telefone:</td>
+          <td class="tbody-result">{{ funcionarioParaExcluir.telefone | mask:"(00) 0 0000-0000" }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn_blue"
+    (click)="cancelar()"
+  >
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="excluir()"
+  >
+    Excluir
+  </button>
+</div>
   

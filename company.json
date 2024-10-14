@@ -141,13 +141,6 @@
   ],
   "funcionarios": [
     {
-      "nome": "Carlos Santos da Silva",
-      "cpf": "345.678.901-23",
-      "email": "carlos.santos@example.com",
-      "telefone": "+31 91234-5689",
-      "id": "d51f"
-    },
-    {
       "nome": "Ana Pereira",
       "cpf": "456.789.012-34",
       "email": "ana.pereira@example.com",

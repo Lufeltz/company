@@ -1,130 +1,127 @@
-<div class="background">
-  <div class="modal-container d-flex justify-content-center align-items-center">
-    <div class="card shadow-lg custom-card border-0">
-      <div class="card-body">
-        <div class="container-editar-funcionario-texto">
-          <h5 class="editar-funcionario-text card-title">Editar Funcionário</h5>
-          <h6 class="editar-funcionario-phrase card-subtitle">
-            Edite aqui o funcionário existente.
-          </h6>
-        </div>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Editar Funcionário</h4>
+  <button type="button" class="btn-close" aria-label="Close" 
+  (click)="cancelar()"></button>
+</div>
 
-        <form #formEditarFuncionario="ngForm" class="container-form">
-          <div class="container-imput">
-            <div class="imput-form">
-              <div id="form-floating-nome-funcionario">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control custom-input"
-                    name="nome"
-                    id="nome"
-                    placeholder=" "
-                    [(ngModel)]="funcionarioParaEditar.nome"
-                    #nome="ngModel"
-                    required
-                    [class.invalid-border]="
-                      nome.invalid && (nome.dirty || nome.touched)
-                    "
-                    maxlength="100"
-                    letras-somente
-                  />
-                  <label for="nome">Nome do funcionário</label>
-                </div>
-              </div>
-              <div
-                *ngIf="nome.errors && (nome.dirty || nome.touched)"
-                class="left-align text-danger"
-              >
-                <div [hidden]="!nome.errors['required']">
-                  Insira o nome do funcionário
-                </div>
-              </div>
-            </div>
+<div class="modal-body">
+  <h6 class="editar-funcionario-phrase card-subtitle">
+    Edite aqui o funcionário existente.
+  </h6>
 
-            <div class="imput-form">
-              <div id="form-floating-tempo-funcionario">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control custom-input"
-                    name="email"
-                    id="email"
-                    placeholder=" "
-                    [(ngModel)]="funcionarioParaEditar.email"
-                    #email="ngModel"
-                    required
-                    [class.invalid-border]="
-                      email.invalid && (email.dirty || email.touched)
-                    "
-                    email
-                  />
-                  <label for="email">Email</label>
-                </div>
-              </div>
-              <div
-                *ngIf="email.errors && (email.dirty || email.touched)"
-                class="left-align text-danger"
-              >
-                <div [hidden]="!email.errors['required']">
-                  Insira o email do funcionário
-                </div>
-                <div [hidden]="!email?.errors?.['email']">
-                  Formato de email inválido
-                </div>
-              </div>
-            </div>
-
-            <div class="imput-form">
-              <div id="form-floating-tempo-funcionario">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control custom-input"
-                    name="telefone"
-                    id="telefone"
-                    placeholder=" "
-                    [(ngModel)]="funcionarioParaEditar.telefone"
-                    #telefone="ngModel"
-                    required
-                    [class.invalid-border]="
-                      telefone.invalid && (telefone.dirty || telefone.touched)
-                    "
-                    mask="(00) 0 0000-0000"
-                  />
-                  <label for="telefone">Telefone</label>
-                </div>
-              </div>
-              <div
-                *ngIf="telefone.errors && (telefone.dirty || telefone.touched)"
-                class="left-align text-danger"
-              >
-                <div [hidden]="!telefone.errors['required']">
-                  Insira o telefone do funcionário
-                </div>
-              </div>
-            </div>
+  <form #formEditarFuncionario="ngForm" class="container-form">
+    <div class="container-imput">
+      <div class="imput-form">
+        <div id="form-floating-nome-funcionario">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control custom-input"
+              name="nome"
+              id="nome"
+              placeholder=" "
+              [(ngModel)]="funcionarioParaEditar.nome"
+              #nome="ngModel"
+              required
+              [class.invalid-border]="
+                nome.invalid && (nome.dirty || nome.touched)
+              "
+              maxlength="100"
+              letras-somente
+            />
+            <label for="nome">Nome do funcionário</label>
           </div>
-        </form>
+        </div>
+        <div
+          *ngIf="nome.errors && (nome.dirty || nome.touched)"
+          class="left-align text-danger"
+        >
+          <div [hidden]="!nome.errors['required']">
+            Insira o nome do funcionário
+          </div>
+        </div>
+      </div>
 
-        <div class="container-button d-flex justify-content-end">
-          <button
-            type="button"
-            class="btn btn-primary custom-btn btn-voltar mr-2"
-            (click)="cancelar()"
-          >
-            Cancelar
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary custom-btn btn-salvar"
-            (click)="salvar()"
-            [disabled]="!formEditarFuncionario.form.valid"
-          >
-            Salvar
-          </button>
+      <div class="imput-form">
+        <div id="form-floating-tempo-funcionario">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control custom-input"
+              name="email"
+              id="email"
+              placeholder=" "
+              [(ngModel)]="funcionarioParaEditar.email"
+              #email="ngModel"
+              required
+              [class.invalid-border]="
+                email.invalid && (email.dirty || email.touched)
+              "
+              email
+            />
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div
+          *ngIf="email.errors && (email.dirty || email.touched)"
+          class="left-align text-danger"
+        >
+          <div [hidden]="!email.errors['required']">
+            Insira o email do funcionário
+          </div>
+          <div [hidden]="!email?.errors?.['email']">
+            Formato de email inválido
+          </div>
+        </div>
+      </div>
+
+      <div class="imput-form">
+        <div id="form-floating-tempo-funcionario">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control custom-input"
+              name="telefone"
+              id="telefone"
+              placeholder=" "
+              [(ngModel)]="funcionarioParaEditar.telefone"
+              #telefone="ngModel"
+              required
+              [class.invalid-border]="
+                telefone.invalid && (telefone.dirty || telefone.touched)
+              "
+              mask="(00) 0 0000-0000"
+            />
+            <label for="telefone">Telefone</label>
+          </div>
+        </div>
+        <div
+          *ngIf="telefone.errors && (telefone.dirty || telefone.touched)"
+          class="left-align text-danger"
+        >
+          <div [hidden]="!telefone.errors['required']">
+            Insira o telefone do funcionário
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn_blue"
+    (click)="salvar()"
+    [disabled]="!formEditarFuncionario.form.valid"
+  >
+    Salvar
+  </button>
+  <button
+      type="button"
+      class="btn btn-danger"
+      (click)="cancelar()"
+    >
+      Cancelar
+  </button>
 </div>

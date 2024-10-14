@@ -1,95 +1,88 @@
-<div class="background">
-    <div
-      class="d-flex justify-content-center align-items-center"
-      style="min-height: calc(100vh - 80px)"
-    >
-      <div class="container">
-        <div class="card shadow-lg custom-card border-0">
-          <div class="card-body">
-            <div class="container-manutencao-roupas-texto">
-              <h5 class="manutencao-roupas-text card-title">
-                Funcionários Cadastrados
-              </h5>
-              <h6 class="manutencao-roupas-phrase card-subtitle">
-                Gerencie aqui os funcionarios cadastrados.
-              </h6>
-            </div>
-  
-            <div
-              class="container-btn-adicionar d-flex justify-content-end mt-auto"
-            >
-              <button
-                type="submit"
-                class="btn btn-primary custom-btn btn-add"
-                (click)="adicionar()"
-              >
-                Adicionar
-              </button>
-            </div>
-  
-            <div *ngIf="funcionariosIsPresent === true">
-              <div class="container-table shadow-sm alarm-table table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr class="custom-headers">
-                      <th scope="col">Nome:</th>
-                      <th scope="col">CPF:</th>
-                      <th scope="col">Email:</th>
-                      <th scope="col">Telefone</th>
-                      <th scope="col" [colSpan]="2">Ação</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-items-body custom-tr-items">
-                    <tr *ngFor="let item of funcionarios">
-                      <td style="width: 20%">{{ item.nome }}</td>
-                      <td style="width: 20%">{{ item.cpf | mask:"000.000.000-00"}}</td>
-                      <td style="width: 30%">{{ item.email }}</td>
-                      <td style="width: 30%">{{ item.telefone | mask:"(00) 0 0000-0000"}}</td>
-                      <td
-                        style="width: 8%; text-align: center; border-right: none"
-                      >
-                        <button
-                          type="button"
-                          class="btn-table btn-edit"
-                          (click)="editar(item)"
-                        > 
-                          Editar
-                        </button>
-                      </td>
-                      <td style="width: 8%; text-align: center">
-                        <button
-                          type="button"
-                          class="btn-table btn-remove"
-                          (click)="excluir(item)"
-                        >
-                          Excluir
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-  
-            <div *ngIf="funcionariosIsPresent === false" class="alert-container">
-              <div class="alert-container row justify-content-center">
-                <div class="alert alert-danger mt-3 text-center">
-                  <p class="mb-0">Nenhum funcionário cadastrado!</p>
-                  <p class="mb-0">
-                    Clique no botão "Adicionar" para adicionar um novo
-                    funcionário.
-                  </p>
-                </div>
-              </div>
-            </div>
-  
-            <div
-              class="container-button-voltar d-flex justify-content-end mt-auto"
-            >
-            </div>
+<div class="container">
+  <h1 class="t_blue text-center">
+    Funcionários Cadastrados
+  </h1>
+  <div class="card shadow-lg custom-card border-0">
+    <div class="card-body">
+      <div class="container-manutencao-roupas-texto">
+        <h6 class="manutencao-roupas-phrase card-subtitle">
+          Gerencie aqui os funcionarios cadastrados.
+        </h6>
+      </div>
+
+      <div *ngIf="funcionariosIsPresent === true">
+        <div class="container-table alarm-table table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="custom-headers">
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefone</th>
+                <th scope="col" [colSpan]="2">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="table-items-body custom-tr-items">
+              <tr *ngFor="let item of funcionarios">
+                <td style="width: 20%">{{ item.nome }}</td>
+                <td style="width: 20%">{{ item.cpf | mask:"000.000.000-00"}}</td>
+                <td style="width: 30%">{{ item.email }}</td>
+                <td style="width: 30%">{{ item.telefone | mask:"(00) 0 0000-0000"}}</td>
+                <td
+                  style="width: 8%; text-align: center; border-right: none"
+                >
+                  <button
+                    type="button"
+                    class="btn-table btn-edit btn btn_blue"
+                    (click)="editar(item)"
+                  > 
+                    Editar
+                  </button>
+                </td>
+                <td style="width: 8%; text-align: center">
+                  <button
+                    type="button"
+                    class="btn-table btn btn-danger"
+                    (click)="excluir(item)"
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div
+        class="container-btn-adicionar d-flex justify-content-end mt-auto"
+      >
+        <button
+          type="submit"
+          class="btn btn-primary custom-btn btn-add"
+          (click)="adicionar()"
+        >
+          Adicionar
+        </button>
+      </div>
+
+      <div *ngIf="funcionariosIsPresent === false" class="alert-container">
+        <div class="alert-container row justify-content-center">
+          <div class="alert alert-danger mt-3 text-center">
+            <p class="mb-0">Nenhum funcionário cadastrado!</p>
+            <p class="mb-0">
+              Clique no botão "Adicionar" para adicionar um novo
+              funcionário.
+            </p>
           </div>
         </div>
       </div>
+
+      <div
+        class="container-button-voltar d-flex justify-content-end mt-auto"
+      >
+      </div>
     </div>
   </div>
+</div>
   
