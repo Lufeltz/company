@@ -361,7 +361,7 @@
       "codigoReserva": "RES12345",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "2024-09-15T10:30:00Z",
-      "estadoReserva": "cancelada",
+      "estadoReserva": "cancelado voo",
       "id": "5206"
     },
     {
@@ -390,7 +390,7 @@
       "codigoReserva": "WBC770",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "Sun Oct 13 2024 03:12:23 GMT-0300 (Horário Padrão de Brasília)",
-      "estadoReserva": "embarcado"
+      "estadoReserva": "cancelado voo"
     },
     {
       "id": "1728828654947",
