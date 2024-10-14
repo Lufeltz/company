@@ -594,6 +594,16 @@
       "valorPassagemReais": 550,
       "quantidadePoltronasTotal": 1,
       "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADS1231",
+      "dataHora": "2024-10-25T20:00",
+      "aeroportoOrigem": "cwb",
+      "aeroportoDestino": "gru",
+      "valorPassagemReais": 500,
+      "quantidadePoltronasTotal": 90,
+      "quantidadePoltronasOcupadas": 0
     }
   ]
 }
