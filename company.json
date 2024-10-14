@@ -354,28 +354,28 @@
       "codigoReserva": "RES12345",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "2024-09-15T10:30:00Z",
-      "estadoReserva": "embarcado",
+      "estadoReserva": "cancelado voo",
       "id": "5206"
     },
     {
       "codigoReserva": "RES67890",
       "codigoVoo": "JJ456",
       "dataHoraReserva": "2024-09-16T14:00:00Z",
-      "estadoReserva": "cancelada",
+      "estadoReserva": "cancelado voo",
       "id": "565d"
     },
     {
       "codigoReserva": "RES11223",
       "codigoVoo": "LA789",
       "dataHoraReserva": "2024-09-17T16:45:00Z",
-      "estadoReserva": "cancelada",
+      "estadoReserva": "cancelado voo",
       "id": "34b2"
     },
     {
       "codigoReserva": "RES44556",
       "codigoVoo": "AD321",
       "dataHoraReserva": "2024-09-18T09:00:00Z",
-      "estadoReserva": "confirmada",
+      "estadoReserva": "cancelado voo",
       "id": "5be2"
     },
     {
@@ -383,21 +383,21 @@
       "codigoReserva": "WBC770",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "Sun Oct 13 2024 03:12:23 GMT-0300 (Horário Padrão de Brasília)",
-      "estadoReserva": "embarcado"
+      "estadoReserva": "cancelado voo"
     },
     {
       "id": "1728828654947",
       "codigoReserva": "TTZ371",
       "codigoVoo": "TADS0000",
       "dataHoraReserva": "Sun Oct 13 2024 11:10:54 GMT-0300 (Horário Padrão de Brasília)",
-      "estadoReserva": "reservado"
+      "estadoReserva": "cancelado voo"
     },
     {
       "id": "1728829847265",
       "codigoReserva": "AIO169",
       "codigoVoo": "TADS0000",
       "dataHoraReserva": "Sun Oct 13 2024 11:30:47 GMT-0300 (Horário Padrão de Brasília)",
-      "estadoReserva": "reservado"
+      "estadoReserva": "cancelado voo"
     },
     {
       "id": "1728830110300",

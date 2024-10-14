@@ -1,1 +1,8 @@
-<p>r13-cancelamento-do-voo works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Cancelamento de Voo</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+</div>
+<div class="modal-body">
+  <h5>Tem certeza que deseja cancelar o voo?</h5>
+  <button type="button" class="btn btn-danger" (click)="cancelarVoo()">Cancelar</button>
+</div>

@@ -30,11 +30,11 @@
                 </button>
               </td>
               <td style="width: 5%; text-align: center;  border-right: none">
-                <button type="button" class="btn-table btn btn-danger">
+                <button type="button" class="btn-table btn btn-danger" (click)="abrirModalCancelamentoVoo(item)">
                   Cancelamento do voo
                 </button>
               </td>
-              <td style="width: 5%; text-align: center;  border-right: none">
+              <td style="width: 5%; text-align: center;  border-right: none" (click)="abrirModalRealizacaoVoo(item)">
                 <button type="button" class="btn-table btn-add">
                   Realização do voo
                 </button>
