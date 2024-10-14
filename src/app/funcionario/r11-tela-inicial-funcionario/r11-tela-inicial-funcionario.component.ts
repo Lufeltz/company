@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { R12ConfirmacaoEmbarqueComponent } from '../r12-confirmacao-embarque/r12-confirmacao-embarque.component';
 import { R13CancelamentoDoVooComponent } from '../r13-cancelamento-do-voo/r13-cancelamento-do-voo.component';
+import { R14RealizacaoDoVooComponent } from '../r14-realizacao-do-voo/r14-realizacao-do-voo.component';
 
 @Component({
   selector: 'app-r11-tela-inicial-funcionario',
@@ -50,6 +51,11 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
 
   abrirModalCancelamentoVoo(voo: Voo) {
     const modalRef = this.modalService.open(R13CancelamentoDoVooComponent);
+    modalRef.componentInstance.vooRecebido = voo;
+  }
+
+  abrirModalRealizacaoVoo(voo: Voo) {
+    const modalRef = this.modalService.open(R14RealizacaoDoVooComponent);
     modalRef.componentInstance.vooRecebido = voo;
   }
 }
