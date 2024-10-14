@@ -68,3 +68,8 @@ html, body {
 .align-right {
   float: right;
 }
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: #e2f5fff1;
+}

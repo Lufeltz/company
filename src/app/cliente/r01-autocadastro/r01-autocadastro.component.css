@@ -22,7 +22,7 @@ body {
 }
 
 .custom-card {
-  border-radius: 30px;
+  border-radius: var(--bs-border-radius);
   overflow: hidden;
 }
 
@@ -82,14 +82,14 @@ body {
 }
 
 #text-login-link {
-  color: #3dabe1;
+  color: #0084d1;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none; 
 }
 
 #text-login-link:hover {
-  color: #1c8bc1;
+  color: #005f8b;
 }
 
 .container-button {
@@ -174,4 +174,8 @@ body {
 
 #cep {
   max-width: 120px;
+}
+
+.container-button button {
+  min-width: 200px;
 }

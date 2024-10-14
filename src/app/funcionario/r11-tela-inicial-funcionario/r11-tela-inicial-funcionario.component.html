@@ -1,66 +1,62 @@
-<div class="background">
-  <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px)">
-    <div class="container">
-      <div class="card shadow-lg custom-card border-0">
-        <div class="card-body">
-          <div class="container-manutencao-roupas-texto">
-            <h5 class="manutencao-roupas-text card-title">
-              Voos nas próximas 48hrs
-            </h5>
-            <h6 class="manutencao-roupas-phrase card-subtitle">
-              Gerencie aqui os voos.
-            </h6>
-          </div>
-          <div class="container-table shadow-sm alarm-table table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr class="custom-headers">
-                  <th scope="col">Data/hora</th>
-                  <th scope="col">Aeroporto Origem</th>
-                  <th scope="col">Aeroporto Destino</th>
-                  <th scope="col" [colSpan]="3">Ação</th>
-                </tr>
-              </thead>
-              <tbody class="table-items-body custom-tr-items">
-                <tr *ngFor="let item of voos">
-                  <td style="width: 15%"> {{item.dataHora}} </td>
-                  <td style="width: 15%"> {{item.aeroportoOrigem}} </td>
-                  <td style="width: 15%"> {{item.aeroportoDestino}} </td>
-                  <td style="width: 5%; text-align: center; border-right: none">
-                    <button type="button" class="btn-table btn-edit" (click)="abrirModalConfirmacaoEmbarque(item)">
-                      Confirmação de embarque
-                    </button>
-                  </td>
-                  <td style="width: 5%; text-align: center;  border-right: none">
-                    <button type="button" class="btn-table btn-remove" (click)="abrirModalCancelamentoVoo(item)">
-                      Cancelamento do voo
-                    </button>
-                  </td>
-                  <td style="width: 5%; text-align: center;  border-right: none">
-                    <button type="button" class="btn-table btn-add">
-                      Realização do voo
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+<div class="container">
+  <h1 class="t_blue text-center">
+    Voos nas próximas 48hrs
+  </h1>
+  <div class="card shadow-lg custom-card border-0">
+    <div class="card-body">
+      <div class="container-manutencao-roupas-texto">
+        <h6 class="manutencao-roupas-phrase card-subtitle">
+          Gerencie aqui os voos.
+        </h6>
+      </div>
+      <div class="container-table alarm-table table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr class="custom-headers">
+              <th scope="col">Data/hora</th>
+              <th scope="col">Aeroporto Origem</th>
+              <th scope="col">Aeroporto Destino</th>
+              <th scope="col" [colSpan]="3">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="table-items-body custom-tr-items">
+            <tr *ngFor="let item of voos">
+              <td style="width: 15%"> {{item.dataHora}} </td>
+              <td style="width: 15%"> {{item.aeroportoOrigem}} </td>
+              <td style="width: 15%"> {{item.aeroportoDestino}} </td>
+              <td style="width: 5%; text-align: center; border-right: none">
+                <button type="button" class="btn-table btn_blue btn-edit" (click)="abrirModalConfirmacaoEmbarque(item)">
+                  Confirmação de embarque
+                </button>
+              </td>
+              <td style="width: 5%; text-align: center;  border-right: none">
+                <button type="button" class="btn-table btn btn-danger">
+                  Cancelamento do voo
+                </button>
+              </td>
+              <td style="width: 5%; text-align: center;  border-right: none">
+                <button type="button" class="btn-table btn-add">
+                  Realização do voo
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-        <div *ngIf="voos.length === 0" class="alert-container">
-          <div class="alert-container row justify-content-center">
-            <div class="alert alert-danger mt-3 text-center">
-              <p class="mb-0">Nenhum voo encontrado!</p>
-              <p class="mb-0">
-                Volte quando tiver voos.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container-button-voltar d-flex justify-content-end mt-auto">
+    <div *ngIf="voos.length === 0" class="alert-container">
+      <div class="alert-container row justify-content-center">
+        <div class="alert alert-danger mt-3 text-center">
+          <p class="mb-0">Nenhum voo encontrado!</p>
+          <p class="mb-0">
+            Volte quando tiver voos.
+          </p>
         </div>
       </div>
+    </div>
+
+    <div class="container-button-voltar d-flex justify-content-end mt-auto">
     </div>
   </div>
 </div>

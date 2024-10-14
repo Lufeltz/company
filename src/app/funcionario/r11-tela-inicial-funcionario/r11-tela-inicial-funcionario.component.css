@@ -17,34 +17,25 @@ body {
   max-width: 1300px;
   margin: 0 auto;
   text-align: left;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .custom-card {
-  border-radius: 30px;
+  border-radius: var(--bs-border-radius);
   padding-left: 25px;
   padding-top: 10px;
   padding-right: 25px;
   padding-bottom: 20px;
+  margin-top: 5%;
 }
 
 .container-manutencao-roupas-texto {
   margin-bottom: 20px;
 }
 
-.manutencao-roupas-text {
-  text-align: left;
-  font-size: 30px;
-  font-weight: 300;
-  color: #32445c;
-}
-
 .manutencao-roupas-phrase {
   text-align: left;
-  font-size: 16px;
-  color: #32445c;
+  font-size: 20px;
+  color: #626e76;
 }
 
 .container-btn-adicionar {
@@ -65,30 +56,6 @@ body {
   min-width: 150px; /* Define um tamanho mínimo */
 }
 
-.btn-edit {
-  background-color: #3dabe1;
-}
-
-.btn-edit:hover {
-  background-color: #1c8bc1;
-}
-
-.btn-edit:active {
-  background-color: #66c0eb;
-}
-
-.btn-remove {
-  background-color: red;
-}
-
-.btn-remove:hover {
-  background-color: rgb(211, 0, 0);
-}
-
-.btn-remove:active {
-  background-color: rgb(255, 88, 88);
-}
-
 .custom-btn {
   color: #fff;
   border: none;
@@ -107,10 +74,6 @@ body {
 
 .btn-add:hover {
   background-color: rgb(0, 100, 0);
-}
-
-.btn-add:active {
-  background-color: rgb(0, 182, 0);
 }
 
 .btn-voltar {
@@ -142,20 +105,14 @@ body {
 }
 
 .container-table .table thead tr {
-  position: sticky;
-  top: 0;
-}
-
-.container-table thead th {
-  background-color: #f2f2f2;
-  border-right: 1px solid #ccc;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
 }
 
 .custom-headers th {
-  background-color: #f2f2f2;
-  color: #32445c;
-  font-size: 18px;
-  font-weight: 600;
+  color: #4b5256 !important;
+  font-weight: 700;
   margin-bottom: 5px;
 }
 
@@ -163,21 +120,9 @@ body {
   max-height: 400px;
   overflow: auto;
   width: 100%;
-  border: 1px solid #ccc;
 }
 
 .table-items-body td {
-  color: #32445c;
-  font-size: 18px;
-  font-weight: 500;
-  width: 50.5%;
-}
-
-.container-table tbody td {
-  border-right: 1px solid #ccc;
-}
-
-.table-hover tbody tr:hover td,
-.table-hover tbody tr:hover th {
-  background-color: #e2f5fff1;
+  color: #4b5256;
+  vertical-align: middle;
 }
