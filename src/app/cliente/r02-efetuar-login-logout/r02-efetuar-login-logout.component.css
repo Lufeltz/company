@@ -23,7 +23,7 @@ body {
 }
 
 .custom-card {
-  border-radius: 30px;
+  border-radius: var(--bs-border-radius);
 }
 
 .container-logo {
@@ -93,14 +93,14 @@ body {
 }
 
 #text-cadastro-link {
-  color: #3dabe1;
+  color: #0084d1;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none; 
 }
 
 #text-cadastro-link:hover {
-  color: #1c8bc1;
+  color: #005f8b;
 }
 
 .container-button {
