@@ -21,7 +21,7 @@
           </thead>
           <tbody class="table-items-body custom-tr-items">
             <tr *ngFor="let item of voos">
-              <td style="width: 15%"> {{item.dataHora}} </td>
+              <td style="width: 15%"> {{ item.dataHora | date: 'dd/MM/yyyy - HH:mm' }}</td>
               <td style="width: 15%"> {{item.aeroportoOrigem}} </td>
               <td style="width: 15%"> {{item.aeroportoDestino}} </td>
               <td style="width: 5%; text-align: center; border-right: none">
