@@ -1,25 +1,50 @@
 <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">Confirmação de embarque</h4>
-  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  ></button>
 </div>
 
 <div class="modal-body">
-  <form #formCodigoreserva="ngForm" class="container-form d-flex align-items-center">
+  <form
+    #formCodigoreserva="ngForm"
+    class="container-form d-flex align-items-center"
+  >
     <div class="d-flex align-items-start justify-content-start flex-grow-1">
       <div class="imput-form" style="flex: 1">
         <div id="form-floating-consulta-pedido">
           <div class="form-floating">
-            <input type="text" class="form-control custom-input" name="Codigoreserva" id="Codigoreserva" placeholder=" " [(ngModel)]="codigoReserva" required #codigoReservaInput="ngModel" />
+            <input
+              type="text"
+              class="form-control custom-input"
+              name="Codigoreserva"
+              id="Codigoreserva"
+              placeholder=" "
+              [(ngModel)]="codigoReserva"
+              required
+              #codigoReservaInput="ngModel"
+            />
             <label for="consulta">Digite o código de reserva</label>
           </div>
-          <div *ngIf="codigoReservaInput.invalid && codigoReservaInput.touched" class="text-danger">
+          <div
+            *ngIf="codigoReservaInput.invalid && codigoReservaInput.touched"
+            class="text-danger"
+          >
             O campo Código de Reserva é obrigatório.
           </div>
         </div>
       </div>
     </div>
     <div class="container-button">
-      <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar btn_blue" [disabled]="codigoReservaInput.invalid" (click)="consultarReserva()">
+      <button
+        type="submit"
+        class="btn btn-primary custom-btn custom-btn-consultar btn_blue"
+        [disabled]="codigoReservaInput.invalid"
+        (click)="consultarReserva()"
+      >
         Consultar
       </button>
     </div>
@@ -38,17 +63,21 @@
           <th>Estado da Reserva</th>
         </tr>
         <tr>
-          <td>{{reserva.codigoReserva}} </td>
-          <td> {{reserva.codigoVoo}} </td>
-          <td> {{reserva.dataHoraReserva}} </td>
-          <td> {{reserva.estadoReserva}} </td>
+          <td>{{ reserva.codigoReserva }}</td>
+          <td>{{ reserva.codigoVoo }}</td>
+          <td>{{ reserva.dataHoraReserva | date : "dd/MM/yyyy - HH:mm" }}</td>
+          <td>{{ reserva.estadoReserva }}</td>
         </tr>
       </tbody>
     </table>
-
   </div>
   <div class="modal-footer" *ngIf="reservaEncontrada">
-    <button type="submit" class="btn btn-primary custom-btn btn_blue" (click)="confirmaReserva()">
+    <button
+      type="submit"
+      class="btn btn-primary custom-btn btn_blue"
+      (click)="confirmaReserva()"
+    >
       Confirmar embarque
     </button>
   </div>
+</div>

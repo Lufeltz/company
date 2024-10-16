@@ -10,60 +10,98 @@
             </h6>
           </div>
           <form class="container-form d-flex">
-            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
+            <div
+              class="d-flex align-items-start justify-content-start mb-3 flex-grow-1"
+            >
               <div class="imput-form" style="flex: 1">
                 <div id="form-floating-consulta-pedido">
                   <div class="form-floating">
-                    <input type="text" class="form-control custom-input" name="aeroportoOrigem" id="aeroportoOrigem" placeholder=" " required [(ngModel)]="aeroportoOrigem" />
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      name="aeroportoOrigem"
+                      id="aeroportoOrigem"
+                      placeholder=" "
+                      required
+                      [(ngModel)]="aeroportoOrigem"
+                    />
                     <label for="consulta">Aeroporto de origem</label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
+            <div
+              class="d-flex align-items-start justify-content-start mb-3 flex-grow-1"
+            >
               <div class="imput-form" style="flex: 1">
                 <div id="form-floating-consulta-pedido">
                   <div class="form-floating">
-                    <input type="text" class="form-control custom-input" name="aeroportoDestino" id="aeroportoDestino" placeholder=" " required [(ngModel)]="aeroportoDestino" />
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      name="aeroportoDestino"
+                      id="aeroportoDestino"
+                      placeholder=" "
+                      required
+                      [(ngModel)]="aeroportoDestino"
+                    />
                     <label for="consulta">Aeroporto de destino</label>
                   </div>
                 </div>
               </div>
             </div>
             <div class="container-button">
-              <button type="submit" class="btn btn-primary custom-btn custom-btn-consultar" [disabled]="!isFormValid()" (click)="listarVoos()">
+              <button
+                type="submit"
+                class="btn btn-primary custom-btn custom-btn-consultar"
+                [disabled]="!isFormValid()"
+                (click)="listarVoos()"
+              >
                 Consultar
               </button>
             </div>
           </form>
-          <div *ngIf="mensagem.length>0" class="alert alert-danger alert-dismissible fade show" role="alert">
-            <h6 class="alert-heading">{{mensagem}}</h6>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <div
+            *ngIf="mensagem.length > 0"
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+          >
+            <h6 class="alert-heading">{{ mensagem }}</h6>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
           </div>
           <table class="table table-hover" *ngIf="voos.length > 0">
             <tbody>
               <tr>
                 <th>Codigo do voo</th>
                 <th>Data do Voo</th>
-                <th> Aeroporto origem</th>
-                <th> Aeroporto destino</th>
+                <th>Aeroporto origem</th>
+                <th>Aeroporto destino</th>
                 <th>Ações</th>
               </tr>
               <tr *ngFor="let voo of voos">
-                <td> {{voo.codigoVoo}} </td>
-                <td> {{voo.dataHora}} </td>
-                <td> {{voo.aeroportoOrigem}} </td>
-                <td> {{voo.aeroportoDestino}}</td>
+                <td>{{ voo.codigoVoo }}</td>
+                <td>{{ voo.dataHora | date : "dd/MM/yyyy - HH:mm" }}</td>
+                <td>{{ voo.aeroportoOrigem }}</td>
+                <td>{{ voo.aeroportoDestino }}</td>
                 <td style="width: 300px">
-                  <a href="#" (click)="selecionarVoo(voo, $event)" title="Reservar" class="btn btn_blue">
+                  <a
+                    href="#"
+                    (click)="selecionarVoo(voo, $event)"
+                    title="Reservar"
+                    class="btn btn_blue"
+                  >
                     <i class="fa fa-edit" aria-hidden="true"></i> Reservar
                   </a>
-
                 </td>
               </tr>
             </tbody>
           </table>
-          <p *ngIf="voos.length===0">Nenhum voo encontrado.</p>
+          <p *ngIf="voos.length === 0">Nenhum voo encontrado.</p>
         </div>
       </div>
     </div>
