@@ -12,7 +12,7 @@
   </div>
 
   <div class="shadow-lg p-3 mb-5 bg-white rounded">
-    <h5 class="custom-header-text">Transações de milhas</h5>
+    <h5 class="custom-header-text">Compras de milhas</h5>
     <div class="container-table">
       <table class="table table-hover">
         <thead>
@@ -29,6 +29,27 @@
           <td>{{ milha.tipoTransacao }}</td>
           <td>{{ milha.quantidadeMilhas }}</td>
           <td>{{ milha.descricao }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <h5 class="custom-header-text">Utilização de milhas</h5>
+    <div class="container-table">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Dia/Hora</th>
+          <th>Quantidade de milhas</th>
+          <th>Origem/Destino</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let voo of voos">
+          <td>{{ voo.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ voo.valorPassagemReais }}</td>
+          <td>{{ voo.aeroportoOrigem }}/{{ voo.aeroportoOrigem }}</td>
         </tr>
         </tbody>
       </table>

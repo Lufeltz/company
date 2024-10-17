@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MilhasService } from "../../services/prototipo/milhas.service";
 import {Milha} from "../../shared/models/prototipo/milha.model";
+import {VoosService} from "../../services/prototipo/voos.service";
+import {Voo} from "../../shared/models/prototipo/voo.model";
 
 @Component({
   selector: 'app-r06-consultar-extrato-milhas',
@@ -13,18 +15,21 @@ import {Milha} from "../../shared/models/prototipo/milha.model";
 export class R06ConsultarExtratoMilhasComponent implements OnInit {
   totalMilhas: number = 0;
   milhas: Milha[] = [];
+  voos: Voo[] = [];
   loading: boolean = false;
   mensagemErro: string = '';
 
   constructor(
     private milhasService: MilhasService,
+    private voosService: VoosService,
   ) {}
 
   ngOnInit() {
-    this.carregarMilhas();
+    this.carregarCompraMilhas();
+    this.carregarUsoMilhas();
   }
 
-  carregarMilhas() {
+  carregarCompraMilhas() {
     this.loading = true;
 
     this.milhasService.getAllMilhas().subscribe({
@@ -49,6 +54,26 @@ export class R06ConsultarExtratoMilhasComponent implements OnInit {
 
         this.loading = false;
         this.mensagemErro = `Erro ao carregar as milhas`;
+      },
+    });
+  }
+
+  carregarUsoMilhas() {
+    this.loading = true;
+
+    this.voosService.getAllVoos().subscribe({
+      next: (voos: Voo[] | null) => {
+        this.loading = false;
+
+        if (voos) {
+          this.voos = voos;
+        }
+      },
+      error: (err) => {
+        console.error('Erro ao carregar as voos', err);
+
+        this.loading = false;
+        this.mensagemErro = `Erro ao carregar as voos`;
       },
     });
   }
