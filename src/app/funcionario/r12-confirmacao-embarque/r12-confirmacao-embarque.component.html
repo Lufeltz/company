@@ -28,6 +28,16 @@
               #codigoReservaInput="ngModel"
             />
             <label for="consulta">Digite o código de reserva</label>
+            <div class="container-button">
+              <button
+                type="submit"
+                class="btn btn-primary custom-btn custom-btn-consultar btn_blue"
+                [disabled]="codigoReservaInput.invalid"
+                (click)="consultarReserva()"
+              >
+                Consultar
+              </button>
+            </div>
           </div>
           <div
             *ngIf="codigoReservaInput.invalid && codigoReservaInput.touched"
@@ -37,16 +47,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="container-button">
-      <button
-        type="submit"
-        class="btn btn-primary custom-btn custom-btn-consultar btn_blue"
-        [disabled]="codigoReservaInput.invalid"
-        (click)="consultarReserva()"
-      >
-        Consultar
-      </button>
     </div>
   </form>
   <div class="alert alert-danger" *ngIf="reservaNaoEncontrada">

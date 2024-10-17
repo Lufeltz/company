@@ -1,8 +1,10 @@
 .modal-title {
   color: #0084d1;
+  font-weight: 600;
 }
 
 h5 {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin: 20px 0px;
+  color: #4b5256;
 }

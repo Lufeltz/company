@@ -2,12 +2,12 @@
   <h1 class="text-center t_blue">Check-in</h1>
   <div class="container">
     
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-      <h6 class="card-subtitle text-center mb-3" *ngIf="exibeLista">
+    <div class="card-body shadow-lg p-3 mb-5 bg-white rounded">
+      <h6 class="card-subtitle mb-3" *ngIf="exibeLista">
         Faça o Check-in de seus voos agendados para as próximas 48 horas
       </h6>
       <div id="listaVoos" *ngIf="exibeLista">
-        <table class="table">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col">Data Viagem</th>
@@ -25,7 +25,7 @@
               <td>{{ formatarTempoEntreDatas(voo.dataHora) }}</td>
               <td>
                 <button
-                  class="btn btn-success"
+                  class="btn btn_blue"
                   (click)="fazerCheckIn(voo)"
                 >
                   Check-In

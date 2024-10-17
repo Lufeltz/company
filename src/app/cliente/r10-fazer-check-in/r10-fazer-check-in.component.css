@@ -2,3 +2,19 @@
   margin-top: 50px;
   color: #626e76;
 }
+
+.card-body {
+  padding-left: 41px !important;
+  padding-right: 41px !important;
+}
+
+.card-subtitle {
+  text-align: left;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.table th, td {
+  color: #4b5256 !important;
+  vertical-align: middle;
+}

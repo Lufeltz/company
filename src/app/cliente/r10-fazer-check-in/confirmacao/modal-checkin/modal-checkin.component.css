@@ -1,0 +1,24 @@
+.modal-title {
+  color: #0084d1;
+  font-weight: 600;
+}
+
+.modal-body {
+  font-weight: 400;
+  color: #4b5256 ;
+}
+
+.modal-body div {
+  border: 1px solid #0084d1;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.modal-body label {
+  font-weight: 600;
+  /* color: #fff; */
+}
+
+.btn_blue {
+  padding: 6px !important;
+}
