@@ -11,6 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalCanceladoComponent {
   @Input() isCancelado: boolean = false;
+  @Input() isOcorrido: boolean = false;
 
   constructor(public activeModal: NgbActiveModal) {}
 }

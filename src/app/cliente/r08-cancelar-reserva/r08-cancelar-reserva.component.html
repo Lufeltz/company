@@ -4,11 +4,12 @@
   (click)="activeModal.close()"></button>
 </div>
 <div class="modal-body">
-  <p>Data e hora: {{ reserva.reserva.dataHoraReserva | date : "dd/MM/yyyy HH:mm" }}</p>
+  <p>Data e hora da reserva: {{ reserva.reserva.dataHoraReserva | date : "dd/MM/yyyy HH:mm" }}</p>
+  <p>Data e hora do voo: {{ reserva.voo?.dataHora | date : "dd/MM/yyyy HH:mm" }}</p>
   <p>Origem: {{ reserva.voo?.aeroportoOrigem }} </p>
   <p>Destino: {{ reserva.voo?.aeroportoDestino }} </p>
   <p>Valor em milhas: {{ reserva.voo?.valorPassagemReais }} </p>
-  <p>Valor em reais: {{ reserva.voo?.valorPassagemReais }} </p>
+  <p>Valor em reais: {{ reserva.voo?.valorPassagemReais | currency: 'BRL'}} </p>
   <p>Situação: {{ reserva.reserva.estadoReserva }} </p>
 </div>
 <div class="modal-footer">

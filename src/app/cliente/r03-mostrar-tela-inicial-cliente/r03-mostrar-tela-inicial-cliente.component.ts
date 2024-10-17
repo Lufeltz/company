@@ -76,11 +76,18 @@ export class R03MostrarTelaInicialClienteComponent {
   }
 
   associarReservasComVoos(): void {
-    this.reservasComVoos = this.reservas.map(reserva => {
-      const vooRelacionado = this.voos.find(voo => voo.codigoVoo === reserva.codigoVoo);
-      return { reserva, voo: vooRelacionado };
-    });
+    this.reservasComVoos = this.reservas
+      .map(reserva => {
+        const vooRelacionado = this.voos.find(voo => voo.codigoVoo === reserva.codigoVoo);
+        return { reserva, voo: vooRelacionado };
+      })
+      .sort((a, b) => {
+        const dataA = new Date(a.voo?.dataHora || 0).getTime();
+        const dataB = new Date(b.voo?.dataHora || 0).getTime();
+        return dataB - dataA; 
+      });
   }
+  
 
   getClienteByUser(): void{
     this.usuario = this.loginService.getUsuarioLogado();
@@ -111,9 +118,12 @@ export class R03MostrarTelaInicialClienteComponent {
   }
 
   cancelarReserva(reserva: { reserva: Reserva; voo: Voo | undefined }, cliente: Cliente): void {
-    if(reserva.reserva.estadoReserva == "cancelada"){
+    if(reserva.reserva.estadoReserva == "cancelada" || reserva.reserva.estadoReserva == "cancelado voo"){
       const modalRef = this.modalService.open(ModalCanceladoComponent);
       modalRef.componentInstance.isCancelado = true;
+    } else if ((reserva.reserva.estadoReserva == "embarcado" || reserva.reserva.estadoReserva == "não realizado")){
+      const modalRef = this.modalService.open(ModalCanceladoComponent);
+      modalRef.componentInstance.isOcorrido = true;
     } else {
     const modalRef = this.modalService.open(R08CancelarReservaComponent);
     modalRef.componentInstance.reserva = reserva;
