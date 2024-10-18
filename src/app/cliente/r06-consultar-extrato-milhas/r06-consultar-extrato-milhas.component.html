@@ -19,6 +19,7 @@
         <tr>
           <th>Dia/Hora</th>
           <th>Tipo</th>
+          <th>Valor</th>
           <th>Quantidade de milhas</th>
           <th>Descrição</th>
         </tr>
@@ -27,6 +28,7 @@
         <tr *ngFor="let milha of milhas">
           <td>{{ milha.dataHoraTransacao | date:'dd/MM/yyyy HH:mm' }}</td>
           <td>{{ milha.tipoTransacao }}</td>
+          <td>R$ {{ milha.quantidadeMilhas * 5 | pipeDinheiroBR}}</td>
           <td>{{ milha.quantidadeMilhas }}</td>
           <td>{{ milha.descricao }}</td>
         </tr>
@@ -49,7 +51,7 @@
         <tr *ngFor="let voo of voos">
           <td>{{ voo.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
           <td>{{ voo.valorPassagemReais }}</td>
-          <td>{{ voo.aeroportoOrigem }}/{{ voo.aeroportoOrigem }}</td>
+          <td>{{ voo.aeroportoOrigem }}->{{ voo.aeroportoOrigem }}</td>
         </tr>
         </tbody>
       </table>
