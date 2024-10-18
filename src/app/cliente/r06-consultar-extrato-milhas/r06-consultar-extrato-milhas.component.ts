@@ -4,11 +4,12 @@ import { MilhasService } from "../../services/prototipo/milhas.service";
 import {Milha} from "../../shared/models/prototipo/milha.model";
 import {VoosService} from "../../services/prototipo/voos.service";
 import {Voo} from "../../shared/models/prototipo/voo.model";
+import { PipeDinheiroBRPipe } from '../../shared/pipes/pipe-dinheiro-br.pipe';
 
 @Component({
   selector: 'app-r06-consultar-extrato-milhas',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PipeDinheiroBRPipe],
   templateUrl: './r06-consultar-extrato-milhas.component.html',
   styleUrl: './r06-consultar-extrato-milhas.component.css'
 })
