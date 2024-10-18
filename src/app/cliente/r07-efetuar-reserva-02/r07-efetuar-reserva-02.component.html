@@ -39,17 +39,7 @@
       <div class="dadosreserva">
         <div class="col-md-6 reserva-assentos">
           <label for="qntd" class="label-size">Quantidade:</label>
-          <input
-            type="number"
-            class="form-control"
-            id="qntd"
-            #quantidade
-            min="1"
-            max="100"
-            value="1"
-            [(ngModel)]="qntPassagens"
-            (input)="calculaValorPassagem()"
-          />
+          <input type="number" class="form-control" id="qntd" #quantidade min="1" max="100" value="1" [(ngModel)]="qntPassagens" (input)="calculaValorPassagem()" />
         </div>
       </div>
       <div *ngIf="qntPassagens > 0">
@@ -70,24 +60,10 @@
         </h6>
         <div class="col-md-6 reserva-assentos">
           <label for="qntd" class="label-size">Milhas:</label>
-          <input
-            type="input"
-            class="form-control"
-            id="qntd"
-            #quantidade
-            [max]="valorMilhas"
-            min="1"
-            [(ngModel)]="qntMilhasPagamento"
-          />
-          <button
-            href="#"
-            title="Reservar"
-            class="btn btn_blue"
-            [disabled]="
+          <input type="input" class="form-control" id="qntd" #quantidade [max]="valorMilhas" min="1" [(ngModel)]="qntMilhasPagamento" />
+          <button href="#" title="Reservar" class="btn btn_blue" [disabled]="
               qntMilhasPagamento > valorMilhas || qntMilhasPagamento < 1
-            "
-            (click)="pagarReserva()"
-          >
+            " (click)="pagarReserva()">
             <i class="fa fa-edit" aria-hidden="true"></i> Pagar
           </button>
         </div>
@@ -115,12 +91,7 @@
             </tr>
           </tbody>
         </table>
-        <button
-          href="#"
-          title="confirma-pagamento"
-          class="btn btn_blue align-right"
-          (click)="confirmaPagamento()"
-        >
+        <button href="#" title="confirma-pagamento" class="btn btn_blue align-right" (click)="confirmaPagamento()">
           <i class="fa fa-edit" aria-hidden="true"></i> Confirmar pagamento
         </button>
       </div>
