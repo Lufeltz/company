@@ -51,7 +51,7 @@
         <tr *ngFor="let voo of voos">
           <td>{{ voo.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
           <td>{{ voo.valorPassagemReais }}</td>
-          <td>{{ voo.aeroportoOrigem }}->{{ voo.aeroportoOrigem }}</td>
+          <td>{{ voo.aeroportoOrigem }}->{{ voo.aeroportoDestino }}</td>
         </tr>
         </tbody>
       </table>
