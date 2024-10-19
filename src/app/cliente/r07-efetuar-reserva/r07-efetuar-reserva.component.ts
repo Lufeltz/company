@@ -29,16 +29,22 @@ export class R07EfetuarReservaComponent {
 
   //****ainda temos que adicionar uma verificação que pega somente a partir da data atual****
   listarVoos(): Voo[] {
+    const dataAtual = new Date(); // Obtem a data atual
+
     this.vooService.getAllVoos().subscribe({
       next: (data: Voo[] | null) => {
         if (data == null) {
           this.voos = [];
         } else {
-          this.voos = data.filter(
-            (voo) =>
+          this.voos = data.filter((voo) => {
+            const dataVoo = new Date(voo.dataHora);
+
+            return (
               voo.aeroportoOrigem.includes(this.aeroportoOrigem) &&
-              voo.aeroportoDestino.includes(this.aeroportoDestino)
-          );
+              voo.aeroportoDestino.includes(this.aeroportoDestino) &&
+              dataVoo >= dataAtual
+            );
+          });
           if (this.voos.length === 0) {
             this.mensagem = 'Nenhum voo encontrado para esses aeroportos';
           } else {

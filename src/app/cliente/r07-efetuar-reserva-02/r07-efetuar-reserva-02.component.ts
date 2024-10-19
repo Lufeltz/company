@@ -9,11 +9,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReservasService } from '../../services/prototipo/reservas.service';
 import { Reserva } from '../../shared/models/prototipo/reserva.model';
+import { PipeDinheiroBRPipe } from '../../shared/pipes/pipe-dinheiro-br.pipe';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-r07-efetuar-reserva-02',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PipeDinheiroBRPipe, NgxMaskDirective],
   templateUrl: './r07-efetuar-reserva-02.component.html',
   styleUrl: './r07-efetuar-reserva-02.component.css',
 })

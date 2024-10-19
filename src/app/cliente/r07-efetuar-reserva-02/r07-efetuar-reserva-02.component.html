@@ -28,7 +28,7 @@
             <td>{{ vooSelecionado.aeroportoOrigem }}</td>
             <td>{{ vooSelecionado.aeroportoDestino }}</td>
             <td>{{ vooSelecionado.dataHora | date : "dd/MM/yyyy - HH:mm" }}</td>
-            <td>{{ vooSelecionado.valorPassagemReais }}</td>
+            <td>{{ vooSelecionado.valorPassagemReais | pipeDinheiroBR }}</td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +50,7 @@
               <th>Milhas necessárias</th>
             </tr>
             <tr>
-              <td>{{ valorTotal }}</td>
+              <td>{{ valorTotal | pipeDinheiroBR}}</td>
               <td>{{ valorMilhas }}</td>
             </tr>
           </tbody>
@@ -60,7 +60,7 @@
         </h6>
         <div class="col-md-6 reserva-assentos">
           <label for="qntd" class="label-size">Milhas:</label>
-          <input type="input" class="form-control" id="qntd" #quantidade [max]="valorMilhas" min="1" [(ngModel)]="qntMilhasPagamento" />
+          <input type="input" class="form-control" id="qntd" #quantidade [max]="valorMilhas" min="1" [(ngModel)]="qntMilhasPagamento" mask="separator.0" thousandSeparator="." />
           <button href="#" title="Reservar" class="btn btn_blue" [disabled]="
               qntMilhasPagamento > valorMilhas || qntMilhasPagamento < 1
             " (click)="pagarReserva()">
@@ -84,10 +84,10 @@
               <th>Valor para pagar em dinheiro</th>
             </tr>
             <tr>
-              <td>{{ valorTotal }}</td>
+              <td>{{ valorTotal | pipeDinheiroBR}}</td>
               <td>{{ valorMilhas }}</td>
               <td>{{ qntMilhasPagamento }}</td>
-              <td>{{ qntMilhasSaldoFinal }}</td>
+              <td>{{ qntMilhasSaldoFinal | pipeDinheiroBR }}</td>
             </tr>
           </tbody>
         </table>

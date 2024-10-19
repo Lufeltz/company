@@ -110,7 +110,7 @@
       "cep": "80020000",
       "cidade": "Curitiba",
       "estado": "Paraná",
-      "milhas": 15185,
+      "milhas": 15165,
       "id": "964c"
     },
     {
@@ -571,6 +571,13 @@
       "codigoVoo": "AZ123",
       "dataHoraReserva": "Thu Oct 17 2024 20:04:43 GMT-0300 (Horário Padrão de Brasília)",
       "estadoReserva": "reservado"
+    },
+    {
+      "id": "1729305001522",
+      "codigoReserva": "NIL200",
+      "codigoVoo": "AZ123",
+      "dataHoraReserva": "Fri Oct 18 2024 23:30:01 GMT-0300 (Horário Padrão de Brasília)",
+      "estadoReserva": "reservado"
     }
   ],
   "usuarios": [
@@ -683,6 +690,26 @@
       "quantidadePoltronasTotal": 190,
       "quantidadePoltronasOcupadas": 170,
       "id": "e67a"
+    },
+    {
+      "id": "",
+      "codigoVoo": "TADSdasd",
+      "dataHora": "2024-12-20T15:00",
+      "aeroportoOrigem": "GRU",
+      "aeroportoDestino": "GIG",
+      "valorPassagemReais": 1200,
+      "quantidadePoltronasTotal": 50,
+      "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "iaushdiu",
+      "dataHora": "2024-10-20T18:00",
+      "aeroportoOrigem": "GRU",
+      "aeroportoDestino": "GIG",
+      "valorPassagemReais": 10000,
+      "quantidadePoltronasTotal": 50,
+      "quantidadePoltronasOcupadas": 0
     }
   ]
 }

@@ -28,12 +28,18 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
   }
 
   getAllvoos() {
+    const dataAtual = new Date();
+    const dataLimite = new Date(dataAtual.getTime() + 48 * 60 * 60 * 1000); // Adiciona 48 horas
+
     this.voosService.getAllVoos().subscribe({
       next: (data: Voo[] | null) => {
         if (data == null) {
           this.voos = [];
         } else {
-          this.voos = data;
+          this.voos = data.filter((voo) => {
+            const dataVoo = new Date(voo.dataHora);
+            return dataVoo >= dataAtual && dataVoo <= dataLimite;
+          });
         }
       },
       error: (err) => {
