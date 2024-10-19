@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MilhasService } from "../../services/prototipo/milhas.service";
-import {Milha} from "../../shared/models/prototipo/milha.model";
-import {VoosService} from "../../services/prototipo/voos.service";
-import {Voo} from "../../shared/models/prototipo/voo.model";
+import { Milha } from "../../shared/models/prototipo/milha.model";
+import { VoosService } from "../../services/prototipo/voos.service";
+import { Voo } from "../../shared/models/prototipo/voo.model";
 import { PipeDinheiroBRPipe } from '../../shared/pipes/pipe-dinheiro-br.pipe';
 
 @Component({
@@ -11,7 +11,7 @@ import { PipeDinheiroBRPipe } from '../../shared/pipes/pipe-dinheiro-br.pipe';
   standalone: true,
   imports: [CommonModule, PipeDinheiroBRPipe],
   templateUrl: './r06-consultar-extrato-milhas.component.html',
-  styleUrl: './r06-consultar-extrato-milhas.component.css'
+  styleUrls: ['./r06-consultar-extrato-milhas.component.css']
 })
 export class R06ConsultarExtratoMilhasComponent implements OnInit {
   totalMilhas: number = 0;
@@ -19,6 +19,8 @@ export class R06ConsultarExtratoMilhasComponent implements OnInit {
   voos: Voo[] = [];
   loading: boolean = false;
   mensagemErro: string = '';
+
+  selectedTab: string = 'compras'; // Aba selecionada
 
   constructor(
     private milhasService: MilhasService,
@@ -78,5 +80,8 @@ export class R06ConsultarExtratoMilhasComponent implements OnInit {
       },
     });
   }
-}
 
+  selectTab(tab: string) {
+    this.selectedTab = tab;
+  }
+}

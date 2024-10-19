@@ -28,7 +28,7 @@
             <td>{{ vooSelecionado.aeroportoOrigem }}</td>
             <td>{{ vooSelecionado.aeroportoDestino }}</td>
             <td>{{ vooSelecionado.dataHora | date : "dd/MM/yyyy - HH:mm" }}</td>
-            <td>{{ vooSelecionado.valorPassagemReais | pipeDinheiroBR }}</td>
+            <td>R$ {{ vooSelecionado.valorPassagemReais | pipeDinheiroBR }}</td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +50,7 @@
               <th>Milhas necessárias</th>
             </tr>
             <tr>
-              <td>{{ valorTotal | pipeDinheiroBR}}</td>
+              <td>R$ {{ valorTotal | pipeDinheiroBR}}</td>
               <td>{{ valorMilhas }}</td>
             </tr>
           </tbody>
@@ -84,10 +84,10 @@
               <th>Valor para pagar em dinheiro</th>
             </tr>
             <tr>
-              <td>{{ valorTotal | pipeDinheiroBR}}</td>
+              <td>R$ {{ valorTotal | pipeDinheiroBR}}</td>
               <td>{{ valorMilhas }}</td>
               <td>{{ qntMilhasPagamento }}</td>
-              <td>{{ qntMilhasSaldoFinal | pipeDinheiroBR }}</td>
+              <td>R$ {{ qntMilhasSaldoFinal | pipeDinheiroBR }}</td>
             </tr>
           </tbody>
         </table>

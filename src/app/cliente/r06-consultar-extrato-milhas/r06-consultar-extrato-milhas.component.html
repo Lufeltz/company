@@ -11,48 +11,54 @@
     </div>
   </div>
 
-  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+  <div class="tabs">
+    <button (click)="selectTab('compras')" [class.active]="selectedTab === 'compras'">Compras de milhas</button>
+    <button (click)="selectTab('utilizacao')" [class.active]="selectedTab === 'utilizacao'">Utilização de milhas</button>
+  </div>
+
+  <div *ngIf="selectedTab === 'compras'" class="shadow-lg p-3 mb-5 bg-white rounded">
     <h5 class="custom-header-text">Compras de milhas</h5>
     <div class="container-table">
       <table class="table table-hover">
         <thead>
-        <tr>
-          <th>Dia/Hora</th>
-          <th>Tipo</th>
-          <th>Valor</th>
-          <th>Quantidade de milhas</th>
-          <th>Descrição</th>
-        </tr>
+          <tr>
+            <th>Dia/Hora</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Quantidade de milhas</th>
+            <th>Descrição</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let milha of milhas">
-          <td>{{ milha.dataHoraTransacao | date:'dd/MM/yyyy HH:mm' }}</td>
-          <td>{{ milha.tipoTransacao }}</td>
-          <td>R$ {{ milha.quantidadeMilhas * 5 | pipeDinheiroBR}}</td>
-          <td>{{ milha.quantidadeMilhas }}</td>
-          <td>{{ milha.descricao }}</td>
-        </tr>
+          <tr *ngFor="let milha of milhas">
+            <td>{{ milha.dataHoraTransacao | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ milha.tipoTransacao }}</td>
+            <td>R$ {{ milha.quantidadeMilhas * 5 | pipeDinheiroBR}}</td>
+            <td>{{ milha.quantidadeMilhas }}</td>
+            <td>{{ milha.descricao }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+
+  <div *ngIf="selectedTab === 'utilizacao'" class="shadow-lg p-3 mb-5 bg-white rounded">
     <h5 class="custom-header-text">Utilização de milhas</h5>
     <div class="container-table">
       <table class="table table-hover">
         <thead>
-        <tr>
-          <th>Dia/Hora</th>
-          <th>Quantidade de milhas</th>
-          <th>Origem/Destino</th>
-        </tr>
+          <tr>
+            <th>Dia/Hora</th>
+            <th>Quantidade de milhas</th>
+            <th>Origem/Destino</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let voo of voos">
-          <td>{{ voo.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
-          <td>{{ voo.valorPassagemReais }}</td>
-          <td>{{ voo.aeroportoOrigem }}->{{ voo.aeroportoDestino }}</td>
-        </tr>
+          <tr *ngFor="let voo of voos">
+            <td>{{ voo.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ voo.valorPassagemReais }}</td>
+            <td>{{ voo.aeroportoOrigem }}->{{ voo.aeroportoDestino }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
