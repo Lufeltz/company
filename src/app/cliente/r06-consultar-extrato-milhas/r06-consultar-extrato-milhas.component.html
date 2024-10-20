@@ -33,7 +33,7 @@
           <tr *ngFor="let milha of milhas">
             <td>{{ milha.dataHoraTransacao | date:'dd/MM/yyyy HH:mm' }}</td>
             <td>{{ milha.tipoTransacao }}</td>
-            <td>R$ {{ milha.quantidadeMilhas * 5 | pipeDinheiroBR}}</td>
+            <td>{{ milha.quantidadeMilhas * 5 | currency: "BRL"}}</td>
             <td>{{ milha.quantidadeMilhas }}</td>
             <td>{{ milha.descricao }}</td>
           </tr>

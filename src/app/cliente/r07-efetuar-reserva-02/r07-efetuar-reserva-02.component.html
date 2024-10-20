@@ -28,7 +28,7 @@
             <td>{{ vooSelecionado.aeroportoOrigem }}</td>
             <td>{{ vooSelecionado.aeroportoDestino }}</td>
             <td>{{ vooSelecionado.dataHora | date : "dd/MM/yyyy - HH:mm" }}</td>
-            <td>R$ {{ vooSelecionado.valorPassagemReais | pipeDinheiroBR }}</td>
+            <td>{{ vooSelecionado.valorPassagemReais | currency : "BRL" }}</td>
           </tr>
         </tbody>
       </table>
@@ -39,7 +39,17 @@
       <div class="dadosreserva">
         <div class="col-md-6 reserva-assentos">
           <label for="qntd" class="label-size">Quantidade:</label>
-          <input type="number" class="form-control" id="qntd" #quantidade min="1" max="100" value="1" [(ngModel)]="qntPassagens" (input)="calculaValorPassagem()" />
+          <input
+            type="number"
+            class="form-control"
+            id="qntd"
+            #quantidade
+            min="1"
+            max="100"
+            value="1"
+            [(ngModel)]="qntPassagens"
+            (input)="calculaValorPassagem()"
+          />
         </div>
       </div>
       <div *ngIf="qntPassagens > 0">
@@ -50,7 +60,7 @@
               <th>Milhas necessárias</th>
             </tr>
             <tr>
-              <td>R$ {{ valorTotal | pipeDinheiroBR}}</td>
+              <td>{{ valorTotal | currency : "BRL" }}</td>
               <td>{{ valorMilhas }}</td>
             </tr>
           </tbody>
@@ -60,10 +70,26 @@
         </h6>
         <div class="col-md-6 reserva-assentos">
           <label for="qntd" class="label-size">Milhas:</label>
-          <input type="input" class="form-control" id="qntd" #quantidade [max]="valorMilhas" min="1" [(ngModel)]="qntMilhasPagamento" mask="separator.0" thousandSeparator="." />
-          <button href="#" title="Reservar" class="btn btn_blue" [disabled]="
+          <input
+            type="input"
+            class="form-control"
+            id="qntd"
+            #quantidade
+            [max]="valorMilhas"
+            min="1"
+            [(ngModel)]="qntMilhasPagamento"
+            mask="separator.0"
+            thousandSeparator="."
+          />
+          <button
+            href="#"
+            title="Reservar"
+            class="btn btn_blue"
+            [disabled]="
               qntMilhasPagamento > valorMilhas || qntMilhasPagamento < 1
-            " (click)="pagarReserva()">
+            "
+            (click)="pagarReserva()"
+          >
             <i class="fa fa-edit" aria-hidden="true"></i> Pagar
           </button>
         </div>
@@ -84,14 +110,19 @@
               <th>Valor para pagar em dinheiro</th>
             </tr>
             <tr>
-              <td>R$ {{ valorTotal | pipeDinheiroBR}}</td>
+              <td>{{ valorTotal | currency : "BRL" }}</td>
               <td>{{ valorMilhas }}</td>
               <td>{{ qntMilhasPagamento }}</td>
-              <td>R$ {{ qntMilhasSaldoFinal | pipeDinheiroBR }}</td>
+              <td>{{ qntMilhasSaldoFinal | currency : "BRL" }}</td>
             </tr>
           </tbody>
         </table>
-        <button href="#" title="confirma-pagamento" class="btn btn_blue align-right" (click)="confirmaPagamento()">
+        <button
+          href="#"
+          title="confirma-pagamento"
+          class="btn btn_blue align-right"
+          (click)="confirmaPagamento()"
+        >
           <i class="fa fa-edit" aria-hidden="true"></i> Confirmar pagamento
         </button>
       </div>

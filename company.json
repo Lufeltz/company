@@ -106,6 +106,83 @@
       "dataHoraAlteracao": "2024-10-19T03:22:15.714Z",
       "estadoOrigem": "reservado",
       "estadoDestino": "confirmada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "FLJ733",
+      "dataHoraAlteracao": "2024-10-19T22:45:14.208Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "confirmada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES11223",
+      "dataHoraAlteracao": "2024-10-19T23:27:10.868Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES99887",
+      "dataHoraAlteracao": "2024-10-19T23:27:23.299Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES44556",
+      "dataHoraAlteracao": "2024-10-19T23:32:32.794Z",
+      "estadoOrigem": "cancelado voo",
+      "estadoDestino": "confirmada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES44556",
+      "dataHoraAlteracao": "2024-10-19T23:37:38.405Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "IUF701",
+      "dataHoraAlteracao": "2024-10-19T23:42:50.491Z",
+      "estadoOrigem": "reservado",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES67890",
+      "dataHoraAlteracao": "2024-10-19T23:45:41.716Z",
+      "estadoOrigem": "não realizado",
+      "estadoDestino": "confirmada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "JMR284",
+      "dataHoraAlteracao": "2024-10-20T00:15:10.521Z",
+      "estadoOrigem": "reservado",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES67890",
+      "dataHoraAlteracao": "2024-10-20T00:17:19.247Z",
+      "estadoOrigem": "não realizado",
+      "estadoDestino": "confirmada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES12345",
+      "dataHoraAlteracao": "2024-10-20T00:33:24.355Z",
+      "estadoOrigem": "confirmada",
+      "estadoDestino": "cancelada"
+    },
+    {
+      "id": "",
+      "codigoReserva": "RES67890",
+      "dataHoraAlteracao": "2024-10-20T00:35:42.234Z",
+      "estadoOrigem": "não realizado",
+      "estadoDestino": "confirmada"
     }
   ],
   "clientes": [
@@ -117,7 +194,7 @@
       "cep": "80020000",
       "cidade": "Curitiba",
       "estado": "Paraná",
-      "milhas": 15165,
+      "milhas": 15455,
       "id": "964c"
     },
     {
@@ -190,39 +267,11 @@
       "telefone": "41 93456-7890"
     },
     {
-      "id": "0f7e",
-      "nome": "João Silva Castro",
-      "cpf": "012.221.674-00",
-      "email": "joao.silva@hotmail.com",
-      "telefone": "11 98765-4321"
-    },
-    {
-      "id": "1a2b",
-      "nome": "Maria Fernandes",
-      "cpf": "234.567.890-12",
-      "email": "maria.fernandes@yahoo.com",
-      "telefone": "21 91234-5678"
-    },
-    {
       "id": "3c4d",
       "nome": "Carlos Alberto",
       "cpf": "345.678.901-23",
       "email": "carlos.alberto@gmail.com",
       "telefone": "31 99876-5432"
-    },
-    {
-      "id": "5e6f",
-      "nome": "Patrícia Lima",
-      "cpf": "567.890.123-45",
-      "email": "patricia.lima@hotmail.com",
-      "telefone": "51 93456-1234"
-    },
-    {
-      "id": "7g8h",
-      "nome": "Ricardo Martins",
-      "cpf": "678.901.234-56",
-      "email": "ricardo.martins@gmail.com",
-      "telefone": "61 98765-6789"
     },
     {
       "id": "9i0j",
@@ -239,11 +288,39 @@
       "telefone": "81 99876-1234"
     },
     {
+      "id": "0f7e",
+      "nome": "João Silva Castro",
+      "cpf": "012.221.674-00",
+      "email": "joao.silva@hotmail.com",
+      "telefone": "11 98765-4321"
+    },
+    {
       "id": "4m5n",
       "nome": "Juliana Oliveira",
       "cpf": "901.234.567-89",
       "email": "juliana.oliveira@gmail.com",
       "telefone": "91 93456-7890"
+    },
+    {
+      "id": "1a2b",
+      "nome": "Maria Fernandes",
+      "cpf": "234.567.890-12",
+      "email": "maria.fernandes@yahoo.com",
+      "telefone": "21 91234-5678"
+    },
+    {
+      "id": "5e6f",
+      "nome": "Patrícia Lima",
+      "cpf": "567.890.123-45",
+      "email": "patricia.lima@hotmail.com",
+      "telefone": "51 93456-1234"
+    },
+    {
+      "id": "7g8h",
+      "nome": "Ricardo Martins",
+      "cpf": "678.901.234-56",
+      "email": "ricardo.martins@gmail.com",
+      "telefone": "61 98765-6789"
     },
     {
       "id": "6o7p",
@@ -499,6 +576,105 @@
       "quantidadeMilhas": 160,
       "tipoTransacao": "entrada",
       "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "idCliente": "",
+      "dataHoraTransacao": "2024-10-19T23:27:10.867Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "idCliente": "",
+      "dataHoraTransacao": "2024-10-19T23:27:23.298Z",
+      "quantidadeMilhas": 170,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "gpz9ghvsy",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-19T20:27:55.502Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "idCliente": "",
+      "dataHoraTransacao": "2024-10-19T23:37:38.404Z",
+      "quantidadeMilhas": 140,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "2xyw9adym",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-19T20:38:00.621Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "idCliente": "",
+      "dataHoraTransacao": "2024-10-19T23:42:50.490Z",
+      "quantidadeMilhas": 120,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "0gdqfdcki",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-19T20:43:20.300Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "idCliente": "",
+      "dataHoraTransacao": "2024-10-20T00:15:10.520Z",
+      "quantidadeMilhas": 160,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "agjc8tfw8",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-19T21:15:26.233Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
+    },
+    {
+      "id": "",
+      "cliente": "maria silva",
+      "idCliente": "",
+      "dataHoraTransacao": "2024-10-20T00:33:24.354Z",
+      "quantidadeMilhas": 160,
+      "tipoTransacao": "entrada",
+      "descricao": "Cancelamento de reserva"
+    },
+    {
+      "id": "345td0esd",
+      "cliente": "maria.silva",
+      "idCliente": "adfd",
+      "dataHoraTransacao": "2024-10-19T21:33:36.768Z",
+      "quantidadeMilhas": 100,
+      "tipoTransacao": "entrada",
+      "descricao": "Compra de milhas"
     }
   ],
   "reservas": [
@@ -506,7 +682,7 @@
       "codigoReserva": "RES12345",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "2024-09-15T10:30:00Z",
-      "estadoReserva": "confirmada",
+      "estadoReserva": "cancelada",
       "id": "5206"
     },
     {
@@ -520,21 +696,21 @@
       "codigoReserva": "RES11223",
       "codigoVoo": "LA789",
       "dataHoraReserva": "2024-09-17T16:45:00Z",
-      "estadoReserva": "confirmada",
+      "estadoReserva": "cancelada",
       "id": "34b2"
     },
     {
       "codigoReserva": "RES44556",
       "codigoVoo": "AD321",
       "dataHoraReserva": "2024-09-18T09:00:00Z",
-      "estadoReserva": "cancelado voo",
+      "estadoReserva": "cancelada",
       "id": "5be2"
     },
     {
       "codigoReserva": "RES99887",
       "codigoVoo": "TP654",
       "dataHoraReserva": "2024-09-19T11:15:00Z",
-      "estadoReserva": "confirmada",
+      "estadoReserva": "cancelada",
       "id": "18a7"
     },
     {
@@ -542,7 +718,7 @@
       "codigoReserva": "JMR284",
       "codigoVoo": "AZ123",
       "dataHoraReserva": "Tue Oct 15 2024 19:52:49 GMT-0300 (Brasilia Standard Time)",
-      "estadoReserva": "reservado"
+      "estadoReserva": "cancelada"
     },
     {
       "id": "1729032837780",
@@ -591,14 +767,14 @@
       "codigoReserva": "QRI425",
       "codigoVoo": "TADSdasd",
       "dataHoraReserva": "Sat Oct 19 2024 00:18:39 GMT-0300 (Brasilia Standard Time)",
-      "estadoReserva": "reservado"
+      "estadoReserva": "cancelada"
     },
     {
       "id": "1729308046168",
       "codigoReserva": "FLJ733",
       "codigoVoo": "iaushdiu",
       "dataHoraReserva": "Sat Oct 19 2024 00:20:46 GMT-0300 (Brasilia Standard Time)",
-      "estadoReserva": "confirmada"
+      "estadoReserva": "não realizado"
     },
     {
       "id": "1729308094439",
@@ -619,14 +795,14 @@
       "codigoReserva": "SIN670",
       "codigoVoo": "iaushdiu",
       "dataHoraReserva": "Sat Oct 19 2024 00:22:51 GMT-0300 (Brasilia Standard Time)",
-      "estadoReserva": "reservado"
+      "estadoReserva": "não realizado"
     },
     {
       "id": "1729308208886",
       "codigoReserva": "UUB089",
       "codigoVoo": "iaushdiu",
       "dataHoraReserva": "Sat Oct 19 2024 00:23:28 GMT-0300 (Brasilia Standard Time)",
-      "estadoReserva": "reservado"
+      "estadoReserva": "não realizado"
     },
     {
       "id": "1729374705826",
@@ -634,6 +810,69 @@
       "codigoVoo": "TADSdasd",
       "dataHoraReserva": "Sat Oct 19 2024 18:51:45 GMT-0300 (Brasilia Standard Time)",
       "estadoReserva": "reservado"
+    },
+    {
+      "id": "1729374923917",
+      "codigoReserva": "PER045",
+      "codigoVoo": "TADSdasd",
+      "dataHoraReserva": "Sat Oct 19 2024 18:55:23 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "reservado"
+    },
+    {
+      "id": "1729376803834",
+      "codigoReserva": "OZI273",
+      "codigoVoo": "iaushdiu",
+      "dataHoraReserva": "Sat Oct 19 2024 19:26:43 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "não realizado"
+    },
+    {
+      "id": "1729376877695",
+      "codigoReserva": "CGA100",
+      "codigoVoo": "TADSdasd",
+      "dataHoraReserva": "Sat Oct 19 2024 19:27:57 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "reservado"
+    },
+    {
+      "id": "1729377222139",
+      "codigoReserva": "RXI437",
+      "codigoVoo": "TADSdasd",
+      "dataHoraReserva": "Sat Oct 19 2024 19:33:42 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "reservado"
+    },
+    {
+      "id": "1729380657329",
+      "codigoReserva": "IUF701",
+      "codigoVoo": "JJ456",
+      "dataHoraReserva": "Sat Oct 19 2024 20:30:57 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "não realizado"
+    },
+    {
+      "id": "1729381149910",
+      "codigoReserva": "LRJ140",
+      "codigoVoo": "JJ456",
+      "dataHoraReserva": "Sat Oct 19 2024 20:39:09 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "não realizado"
+    },
+    {
+      "id": "1729381467069",
+      "codigoReserva": "NHQ190",
+      "codigoVoo": "JJ456",
+      "dataHoraReserva": "Sat Oct 19 2024 20:44:27 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "não realizado"
+    },
+    {
+      "id": "1729383393152",
+      "codigoReserva": "ZRK034",
+      "codigoVoo": "JJ456",
+      "dataHoraReserva": "Sat Oct 19 2024 21:16:33 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "não realizado"
+    },
+    {
+      "id": "1729384488689",
+      "codigoReserva": "UJP437",
+      "codigoVoo": "JJ456",
+      "dataHoraReserva": "Sat Oct 19 2024 21:34:48 GMT-0300 (Brasilia Standard Time)",
+      "estadoReserva": "não realizado"
     }
   ],
   "usuarios": [
@@ -684,12 +923,60 @@
       "login": "roberto",
       "senha": "700",
       "tipo": "funcionario"
+    },
+    {
+      "id": "5ba4",
+      "login": "",
+      "senha": "",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "5935",
+      "login": "",
+      "senha": "",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "a040",
+      "login": "",
+      "senha": "",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "6931",
+      "login": "Maria Silva",
+      "senha": "800",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "a147",
+      "login": "Maria Silva",
+      "senha": "800",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "4487",
+      "login": "Maria Silva",
+      "senha": "988",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "77bc",
+      "login": "Maria silva",
+      "senha": "700",
+      "tipo": "funcionario"
+    },
+    {
+      "id": "d2f6",
+      "login": "Maria Silva",
+      "senha": "7061",
+      "tipo": "funcionario"
     }
   ],
   "voos": [
     {
       "codigoVoo": "AZ123",
-      "dataHora": "2024-10-16T15:00:00Z",
+      "dataHora": "2024-10-18T15:00:00Z",
       "aeroportoOrigem": "GRU",
       "aeroportoDestino": "GIG",
       "valorPassagemReais": 800,
@@ -699,7 +986,7 @@
     },
     {
       "codigoVoo": "KB363",
-      "dataHora": "2024-10-16T15:00:00Z",
+      "dataHora": "2024-10-18T15:00:00Z",
       "aeroportoOrigem": "GRU",
       "aeroportoDestino": "GIG",
       "valorPassagemReais": 800,
@@ -709,7 +996,7 @@
     },
     {
       "codigoVoo": "JJ456",
-      "dataHora": "2024-10-16T09:30:00Z",
+      "dataHora": "2024-10-20T09:30:00Z",
       "aeroportoOrigem": "GIG",
       "aeroportoDestino": "BSB",
       "valorPassagemReais": 600,
@@ -719,7 +1006,7 @@
     },
     {
       "codigoVoo": "LA789",
-      "dataHora": "2024-10-16T22:45:00Z",
+      "dataHora": "2024-10-20T22:45:00Z",
       "aeroportoOrigem": "BSB",
       "aeroportoDestino": "SSA",
       "valorPassagemReais": 500,
@@ -729,7 +1016,7 @@
     },
     {
       "codigoVoo": "AD321",
-      "dataHora": "2024-10-17T07:00:00Z",
+      "dataHora": "2024-10-20T18:00:00Z",
       "aeroportoOrigem": "SSA",
       "aeroportoDestino": "GRU",
       "valorPassagemReais": 700,
@@ -739,7 +1026,7 @@
     },
     {
       "codigoVoo": "TP654",
-      "dataHora": "2024-10-16T12:00:00Z",
+      "dataHora": "2024-10-20T17:00:00Z",
       "aeroportoOrigem": "GRU",
       "aeroportoDestino": "FOR",
       "valorPassagemReais": 850,
@@ -749,22 +1036,12 @@
     },
     {
       "id": "",
-      "codigoVoo": "TADSdasd",
-      "dataHora": "2024-12-21T15:00",
-      "aeroportoOrigem": "GRU",
-      "aeroportoDestino": "GIG",
-      "valorPassagemReais": 1200,
-      "quantidadePoltronasTotal": 50,
-      "quantidadePoltronasOcupadas": 0
-    },
-    {
-      "id": "",
-      "codigoVoo": "iaushdiu",
-      "dataHora": "2024-10-20T18:00",
-      "aeroportoOrigem": "GRU",
-      "aeroportoDestino": "GIG",
-      "valorPassagemReais": 10000,
-      "quantidadePoltronasTotal": 50,
+      "codigoVoo": "tads1231",
+      "dataHora": "2024-10-21T21:40",
+      "aeroportoOrigem": "GIG",
+      "aeroportoDestino": "BSB",
+      "valorPassagemReais": 100,
+      "quantidadePoltronasTotal": 1,
       "quantidadePoltronasOcupadas": 0
     }
   ]

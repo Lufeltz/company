@@ -48,7 +48,7 @@ export class R01AutocadastroComponent {
   cadastrarUsuario(): void {
     this.cadastroService.postCadastro(this.cadastro).subscribe({
       next: (usuario) => {
-        this.router.navigate(['/gerenciar-funcionarios']);
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         this.mensagem = `Erro inserindo funcionario ${this.cadastro.login}`;
