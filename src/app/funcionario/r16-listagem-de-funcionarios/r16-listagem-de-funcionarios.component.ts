@@ -9,16 +9,19 @@ import { R18AlteracaoDeFuncionarioComponent } from '../r18-alteracao-de-funciona
 import { NgForm } from '@angular/forms';
 import { R19RemocaoDeFuncionarioComponent } from '../r19-remocao-de-funcionario/r19-remocao-de-funcionario.component';
 import { NgxMaskPipe } from 'ngx-mask';
+import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
+import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
 
 @Component({
   selector: 'app-r16-listagem-de-funcionarios',
   standalone: true,
   imports: [CommonModule, NgxMaskPipe],
   templateUrl: './r16-listagem-de-funcionarios.component.html',
-  styleUrl: './r16-listagem-de-funcionarios.component.css'
+  styleUrl: './r16-listagem-de-funcionarios.component.css',
 })
 export class R16ListagemDeFuncionariosComponent {
   funcionarios: Funcionario[] = [];
+  funcionariosGateway: FuncionarioGateway[] = [];
   mensagem: string = '';
   mensagem_detalhes = '';
   funcionariosIsPresent: boolean | any = null;
@@ -29,11 +32,32 @@ export class R16ListagemDeFuncionariosComponent {
   constructor(
     private router: Router,
     private funcionarioService: FuncionarioService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private funcionarioGatewayService: FuncionarioGatewayService
   ) {}
 
   ngOnInit(): void {
     this.listarFuncionarios();
+    this.listarFuncionariosGateway();
+  }
+
+  listarFuncionariosGateway(): void {
+    this.funcionarioGatewayService.getAllFuncionarios().subscribe({
+      next: (data: FuncionarioGateway[] | null) => {
+        if (data == null) {
+          this.funcionariosGateway = [];
+          this.funcionariosIsPresent = false;
+        } else {
+          this.funcionariosGateway = data;
+          console.log('funcionarios gateway', this.funcionariosGateway);
+          this.funcionariosIsPresent = true;
+        }
+      },
+      error: (err) => {
+        this.mensagem = 'Erro buscando lista de funcionários';
+        this.mensagem_detalhes = `[${err.status} ${err.message}]`;
+      },
+    });
   }
 
   listarFuncionarios(): Funcionario[] {
@@ -44,7 +68,7 @@ export class R16ListagemDeFuncionariosComponent {
           this.funcionariosIsPresent = false;
         } else {
           this.funcionarios = data;
-          console.log(this.funcionarios)
+          console.log(this.funcionarios);
           this.funcionariosIsPresent = true;
         }
       },
@@ -56,15 +80,13 @@ export class R16ListagemDeFuncionariosComponent {
     return this.funcionarios;
   }
 
-
-
   // CRIAÇÃO DOS MODAIS
 
   adicionar(): void {
-    const modalRef = this.modalService.open(
-      R17InsercaoDeFuncionarioComponent,
-      { backdrop: 'static', centered: true }
-    );
+    const modalRef = this.modalService.open(R17InsercaoDeFuncionarioComponent, {
+      backdrop: 'static',
+      centered: true,
+    });
     modalRef.componentInstance.voltarClicked.subscribe(() => {
       modalRef.close();
     });
@@ -76,10 +98,13 @@ export class R16ListagemDeFuncionariosComponent {
 
   editar(funcionario: Funcionario) {
     this.funcionarioParaEditar = funcionario;
-    const modalRef = this.modalService.open(R18AlteracaoDeFuncionarioComponent, {
-      backdrop: 'static',
-      centered: true,
-    });
+    const modalRef = this.modalService.open(
+      R18AlteracaoDeFuncionarioComponent,
+      {
+        backdrop: 'static',
+        centered: true,
+      }
+    );
     modalRef.componentInstance.funcionarioParaEditar =
       this.funcionarioParaEditar;
     modalRef.componentInstance.voltarClicked.subscribe(() => {
@@ -107,5 +132,4 @@ export class R16ListagemDeFuncionariosComponent {
       modalRef.close();
     });
   }
-
 }
