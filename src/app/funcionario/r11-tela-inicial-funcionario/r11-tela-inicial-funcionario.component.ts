@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { R12ConfirmacaoEmbarqueComponent } from '../r12-confirmacao-embarque/r12-confirmacao-embarque.component';
 import { R13CancelamentoDoVooComponent } from '../r13-cancelamento-do-voo/r13-cancelamento-do-voo.component';
 import { R14RealizacaoDoVooComponent } from '../r14-realizacao-do-voo/r14-realizacao-do-voo.component';
+import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
+import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
 
 @Component({
   selector: 'app-r11-tela-inicial-funcionario',
@@ -17,16 +19,35 @@ import { R14RealizacaoDoVooComponent } from '../r14-realizacao-do-voo/r14-realiz
 })
 export class R11TelaInicialFuncionarioComponent implements OnInit {
   public voos: Voo[] = [];
+  public voosGateway: VooGateway[] = []
 
   constructor(
     private voosService: VoosService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private vooGatewayService: VooGatewayService
   ) {}
 
   ngOnInit(): void {
     this.getAllvoos();
+    this.getAllVoosGateway()
   }
 
+  getAllVoosGateway() {
+    this.vooGatewayService.getAllVoos().subscribe({
+      next: (data: VooGateway[] | null) => {
+        if (data == null) {
+          this.voosGateway = [];
+        } else {
+          this.voosGateway = data;
+          console.log(this.voosGateway);
+        }
+      },
+      error: (err) => {
+        console.log('Erro ao carregar voos', err);
+      },
+    });
+  }
+  
   getAllvoos() {
     const dataAtual = new Date();
     const dataLimite = new Date(dataAtual.getTime() + 48 * 60 * 60 * 1000); // Adiciona 48 horas

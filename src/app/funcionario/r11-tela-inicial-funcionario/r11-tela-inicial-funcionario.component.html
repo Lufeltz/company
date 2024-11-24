@@ -20,32 +20,55 @@
             </tr>
           </thead>
           <tbody class="table-items-body custom-tr-items">
-            <tr *ngFor="let item of voos">
-              <td style="width: 15%"> {{ item.dataHora | date: 'dd/MM/yyyy - HH:mm' }}</td>
-              <td style="width: 15%"> {{item.aeroportoOrigem}} </td>
-              <td style="width: 15%"> {{item.aeroportoDestino}} </td>
+            <tr *ngFor="let item of voosGateway">
+              <td style="width: 15%"> {{ item.dataVoo | date: 'dd/MM/yyyy - HH:mm' }}</td>
+              <td style="width: 15%"> {{item.aeroportoOrigem.codigoAeroporto}} </td>
+              <td style="width: 15%"> {{item.aeroportoDestino.codigoAeroporto}} </td>
+
+
               <td style="width: 5%; text-align: center; border-right: none">
-                <button type="button" class="btn-table btn_blue btn-edit" (click)="abrirModalConfirmacaoEmbarque(item)">
+                <button type="button" class="btn-table btn_blue btn-edit">
                   Confirmação de embarque
                 </button>
               </td>
+
+              <!-- <td style="width: 5%; text-align: center; border-right: none">
+                <button type="button" class="btn-table btn_blue btn-edit" (click)="abrirModalConfirmacaoEmbarque(item)">
+                  Confirmação de embarque
+                </button>
+              </td> -->
+
               <td style="width: 5%; text-align: center;  border-right: none">
-                <button type="button" class="btn-table btn btn-danger" (click)="abrirModalCancelamentoVoo(item)">
+                <button type="button" class="btn-table btn btn-danger">
                   Cancelamento do voo
                 </button>
               </td>
-              <td style="width: 5%; text-align: center;  border-right: none" (click)="abrirModalRealizacaoVoo(item)">
+              
+              <!-- <td style="width: 5%; text-align: center;  border-right: none">
+                <button type="button" class="btn-table btn btn-danger" (click)="abrirModalCancelamentoVoo(item)">
+                  Cancelamento do voo
+                </button>
+              </td> -->
+
+              <td style="width: 5%; text-align: center;  border-right: none">
                 <button type="button" class="btn-table btn-add">
                   Realização do voo
                 </button>
               </td>
+
+              <!-- <td style="width: 5%; text-align: center;  border-right: none" (click)="abrirModalRealizacaoVoo(item)">
+                <button type="button" class="btn-table btn-add">
+                  Realização do voo
+                </button>
+              </td> -->
+
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <div *ngIf="voos.length === 0" class="alert-container">
+    <div *ngIf="voosGateway.length === 0" class="alert-container">
       <div class="alert-container row justify-content-center">
         <div class="alert alert-danger mt-3 text-center">
           <p class="mb-0">Nenhum voo encontrado!</p>
