@@ -18,6 +18,29 @@ export class FuncionarioGatewayService {
     }),
   };
 
+  inativarFuncionario(email: string): Observable<FuncionarioGateway | null> {
+    return this._http
+      .put<FuncionarioGateway>(
+        `${this.NEW_URL}/funcionarios/inativar/${email}`,
+        null,
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<FuncionarioGateway>) => {
+          console.log('Resposta da API:', resp); // Adicionando log para verificar a resposta
+          if (resp.status === 202) {
+            return resp.body;
+          } else {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao excluir funcionário:', err); // Log para o erro
+          return throwError(() => err);
+        })
+      );
+  }
+
   getAllFuncionarios(): Observable<FuncionarioGateway[] | null> {
     return this._http
       .get<FuncionarioGateway[]>(
@@ -92,26 +115,6 @@ export class FuncionarioGatewayService {
   //     .put<Funcionario>(
   //       `${this.NEW_URL}/funcionarios/${funcionario.id}`,
   //       JSON.stringify(funcionario),
-  //       this.httpOptions
-  //     )
-  //     .pipe(
-  //       map((resp: HttpResponse<Funcionario>) => {
-  //         if (resp.status == 200) {
-  //           return resp.body;
-  //         } else {
-  //           return null;
-  //         }
-  //       }),
-  //       catchError((err, caught) => {
-  //         return throwError(() => err);
-  //       })
-  //     );
-  // }
-
-  // deleteFuncionario(id: string): Observable<Funcionario | null> {
-  //   return this._http
-  //     .delete<Funcionario>(
-  //       `${this.NEW_URL}/funcionarios/${id}`,
   //       this.httpOptions
   //     )
   //     .pipe(

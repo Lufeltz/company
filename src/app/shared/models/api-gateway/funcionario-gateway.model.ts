@@ -4,4 +4,5 @@ export class FuncionarioGateway {
   email: string = '';
   nome: string = '';
   telefone: string = '';
+  senha?: string = '';
 }

@@ -39,7 +39,7 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
           this.voosGateway = [];
         } else {
           this.voosGateway = data;
-          console.log(this.voosGateway);
+          console.log('voos 48h', this.voosGateway);
         }
       },
       error: (err) => {

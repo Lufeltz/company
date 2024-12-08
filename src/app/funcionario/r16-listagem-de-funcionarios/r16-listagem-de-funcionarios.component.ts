@@ -20,17 +20,16 @@ import { FuncionarioGatewayService } from '../../services/api-gateway/funcionari
   styleUrl: './r16-listagem-de-funcionarios.component.css',
 })
 export class R16ListagemDeFuncionariosComponent {
-  funcionarios: Funcionario[] = [];
+  funcionarios: FuncionarioGateway[] = [];
   funcionariosGateway: FuncionarioGateway[] = [];
   mensagem: string = '';
   mensagem_detalhes = '';
   funcionariosIsPresent: boolean | any = null;
-  @Input() funcionarioParaEditar!: Funcionario;
+  @Input() funcionarioParaEditar!: FuncionarioGateway;
   @ViewChild('formEditarFuncionario') formEditarFuncionario!: NgForm;
-  @Input() funcionarioParaExcluir!: Funcionario;
+  @Input() funcionarioParaExcluir!: FuncionarioGateway;
 
   constructor(
-    private router: Router,
     private funcionarioService: FuncionarioService,
     private modalService: NgbModal,
     private funcionarioGatewayService: FuncionarioGatewayService
@@ -60,15 +59,14 @@ export class R16ListagemDeFuncionariosComponent {
     });
   }
 
-  listarFuncionarios(): Funcionario[] {
-    this.funcionarioService.getAllFuncionarios().subscribe({
-      next: (data: Funcionario[] | null) => {
+  listarFuncionarios(): FuncionarioGateway[] {
+    this.funcionarioGatewayService.getAllFuncionarios().subscribe({
+      next: (data: FuncionarioGateway[] | null) => {
         if (data == null) {
           this.funcionarios = [];
           this.funcionariosIsPresent = false;
         } else {
           this.funcionarios = data;
-          console.log(this.funcionarios);
           this.funcionariosIsPresent = true;
         }
       },
@@ -96,7 +94,7 @@ export class R16ListagemDeFuncionariosComponent {
     });
   }
 
-  editar(funcionario: Funcionario) {
+  editar(funcionario: FuncionarioGateway) {
     this.funcionarioParaEditar = funcionario;
     const modalRef = this.modalService.open(
       R18AlteracaoDeFuncionarioComponent,
@@ -116,7 +114,7 @@ export class R16ListagemDeFuncionariosComponent {
     });
   }
 
-  excluir(funcionario: Funcionario) {
+  excluir(funcionario: FuncionarioGateway) {
     this.funcionarioParaExcluir = funcionario;
     const modalRef = this.modalService.open(R19RemocaoDeFuncionarioComponent, {
       backdrop: 'static',
@@ -124,12 +122,15 @@ export class R16ListagemDeFuncionariosComponent {
     });
     modalRef.componentInstance.funcionarioParaExcluir =
       this.funcionarioParaExcluir;
+
     modalRef.componentInstance.voltarClicked.subscribe(() => {
-      modalRef.close();
-    });
-    modalRef.componentInstance.exclusaoConcluida.subscribe(() => {
       this.listarFuncionarios();
       modalRef.close();
+    });
+
+    modalRef.componentInstance.exclusaoConcluida.subscribe(() => {
+      this.listarFuncionarios();
+      modalRef.close(); // Also close the modal when the deletion is completed
     });
   }
 }

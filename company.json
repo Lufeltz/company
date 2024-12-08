@@ -1043,6 +1043,16 @@
       "valorPassagemReais": 100,
       "quantidadePoltronasTotal": 1,
       "quantidadePoltronasOcupadas": 0
+    },
+    {
+      "id": "",
+      "codigoVoo": "tadsxxxx",
+      "dataHora": "2024-12-19T22:53",
+      "aeroportoOrigem": "GRU",
+      "aeroportoDestino": "GIG",
+      "valorPassagemReais": 6666,
+      "quantidadePoltronasTotal": 666,
+      "quantidadePoltronasOcupadas": 0
     }
   ]
 }
