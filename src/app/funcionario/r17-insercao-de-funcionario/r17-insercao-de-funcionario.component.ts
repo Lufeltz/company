@@ -6,9 +6,10 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FuncionarioService } from '../../services/prototipo/funcionarios.service';
-import { Router } from '@angular/router';
-import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
+
 import { FuncionarioSemId } from '../../shared/models/prototipo/funcionario-sem-id.model';
+import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
+import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
 
 @Component({
   selector: 'app-r17-insercao-de-funcionario',
@@ -30,14 +31,11 @@ export class R17InsercaoDeFuncionarioComponent {
   @Output() adicaoConcluida = new EventEmitter<void>();
   @ViewChild('formAdicionarFuncionario') formAdicionarFuncionario!: NgForm;
 
-  constructor(
-    private funcionarioService: FuncionarioService,
-    private router: Router
-  ) {}
+  constructor(private funcionarioGatewayService: FuncionarioGatewayService) {}
 
-  funcionarios: Funcionario[] = [];
+  funcionarios: FuncionarioGateway[] = [];
   novoFuncionario: boolean = true;
-  funcionario: Funcionario = new Funcionario();
+  funcionario: FuncionarioGateway = new FuncionarioGateway();
   funcionarioSemId: FuncionarioSemId = new FuncionarioSemId();
   id!: string;
   loading!: boolean;
@@ -52,21 +50,25 @@ export class R17InsercaoDeFuncionarioComponent {
 
   adicionar(): void {
     this.loading = true;
+
     if (this.formAdicionarFuncionario.form.valid) {
       if (this.novoFuncionario) {
-        this.funcionarioService.postFuncionario(this.funcionarioSemId).subscribe({
-          next: (funcionario) => {
-            this.loading = false;
-            this.router.navigate(['/gerenciar-funcionarios']);
-          },
-          error: (err) => {
-            this.loading = false;
-            this.mensagem = `Erro inserindo funcionario ${this.funcionario.nome}`;
-            if (err.status == 409) {
-              this.mensagem_detalhes = `[${err.status}] ${err.message}`;
-            }
-          },
-        });
+        this.funcionarioGatewayService
+          .postFuncionario(this.funcionario)
+          .subscribe({
+            next: (funcionario) => {
+              this.loading = false;
+            },
+            error: (err) => {
+              console.log('Funcionário criado error!');
+              console.log(this.funcionario);
+              this.loading = false;
+              this.mensagem = `Erro inserindo funcionario ${this.funcionario.nome}`;
+              if (err.status == 409) {
+                this.mensagem_detalhes = `[${err.status}] ${err.message}`;
+              }
+            },
+          });
       }
     } else {
       this.loading = false;
@@ -75,9 +77,9 @@ export class R17InsercaoDeFuncionarioComponent {
     this.listarFuncionarios();
   }
 
-  listarFuncionarios(): Funcionario[] {
-    this.funcionarioService.getAllFuncionarios().subscribe({
-      next: (data: Funcionario[] | null) => {
+  listarFuncionarios(): FuncionarioGateway[] {
+    this.funcionarioGatewayService.getAllFuncionarios().subscribe({
+      next: (data: FuncionarioGateway[] | null) => {
         this.funcionarios = data ? data : [];
       },
       error: (err) => {

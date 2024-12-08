@@ -1,8 +1,8 @@
 export class FuncionarioGateway {
-  idFuncionario: string = '';
+  idFuncionario: string| number = '';
   cpf: string = '';
   email: string = '';
   nome: string = '';
   telefone: string = '';
-  senha?: string = '';
+  senha: string = '';
 }

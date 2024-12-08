@@ -114,24 +114,28 @@ export class FuncionarioGatewayService {
       );
   }
 
-  // postFuncionario(funcionario: Funcionario): Observable<Funcionario | null> {
-  //   return this._http
-  //     .post<Funcionario>(
-  //       `${this.NEW_URL}/funcionarios`,
-  //       JSON.stringify(funcionario),
-  //       this.httpOptions
-  //     )
-  //     .pipe(
-  //       map((resp: HttpResponse<Funcionario>) => {
-  //         if (resp.status == 201) {
-  //           return resp.body;
-  //         } else {
-  //           return null;
-  //         }
-  //       }),
-  //       catchError((err, caught) => {
-  //         return throwError(() => err);
-  //       })
-  //     );
-  // }
+  // Método POST para criar um novo funcionário
+  postFuncionario(
+    funcionario: FuncionarioGateway
+  ): Observable<FuncionarioGateway | null> {
+    return this._http
+      .post<FuncionarioGateway>(
+        `${this.NEW_URL}/funcionarios`, // Endpoint no API Gateway
+        JSON.stringify(funcionario),
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<FuncionarioGateway>) => {
+          if (resp.status === 202) {
+            return resp.body; // Retorna o funcionário criado com sucesso
+          } else {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao criar funcionário', err);
+          return throwError(() => err);
+        })
+      );
+  }
 }
