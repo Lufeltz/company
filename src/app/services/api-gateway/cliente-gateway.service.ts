@@ -12,7 +12,7 @@ import { CadastroGateway } from '../../shared/models/api-gateway/cadastro-gatewa
 export class ClienteGatewayService {
   constructor(private _http: HttpClient) {}
 
-  NEW_URL = 'http://localhost:3015/api'; // URL do API Gateway
+  NEW_URL = 'http://localhost:3015/api';
 
   httpOptions = {
     observe: 'response' as 'response',
@@ -21,32 +21,30 @@ export class ClienteGatewayService {
     }),
   };
 
-  // Método para cadastrar um cliente, usando o endpoint correto na API Gateway
   cadastrarCliente(
     cliente: CadastroGateway
   ): Observable<CadastroGateway | null> {
     return this._http
       .post<CadastroGateway>(
-        `${this.NEW_URL}/clientes/cadastrar-cliente`, // Endpoint na API Gateway
+        `${this.NEW_URL}/clientes/cadastrar-cliente`,
         JSON.stringify(cliente),
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<CadastroGateway>) => {
           if (resp.status === 201) {
-            return resp.body; // Retorna o cliente cadastrado com sucesso
+            return resp.body;
           } else {
-            return null; // Se o status não for 201, retorna null
+            return null;
           }
         }),
         catchError((err) => {
           console.error('Erro ao cadastrar cliente', err);
-          return throwError(() => err); // Lança o erro para ser tratado onde a função é chamada
+          return throwError(() => err);
         })
       );
   }
 
-  // Método para consultar o endereço via CEP
   consultarEndereco(cep: string): Observable<EnderecoGateway | null> {
     return this._http
       .get<EnderecoGateway>(
@@ -55,17 +53,15 @@ export class ClienteGatewayService {
       )
       .pipe(
         map((resp: HttpResponse<EnderecoGateway>) => {
-          // Verifica se a resposta foi bem-sucedida (status 200)
           if (resp.status === 200) {
-            return resp.body; // Retorna o corpo da resposta, que é o EnderecoGateway
+            return resp.body;
           } else {
-            return null; // Se o status não for 200, retorna null
+            return null;
           }
         }),
         catchError((err) => {
-          // Caso haja erro, trata o erro com um Observable null
           console.error('Erro ao consultar endereço:', err);
-          return of(null); // Retorna null em caso de erro
+          return of(null);
         })
       );
   }

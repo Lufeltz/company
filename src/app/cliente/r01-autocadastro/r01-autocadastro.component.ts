@@ -27,9 +27,6 @@ export class R01AutocadastroComponent {
   mensagem_detalhes!: string;
 
   constructor(
-    // private clienteService: ClienteService,
-    // private enderecoService: EnderecoService
-    // private cadastroService: AutocadastroService,
     private router: Router,
     private clienteGatewayService: ClienteGatewayService
   ) {}
@@ -46,7 +43,6 @@ export class R01AutocadastroComponent {
       },
       error: (err) => {
         console.error('Erro ao cadastrar cliente:', err);
-        // Aqui você pode tratar o erro, como exibir uma mensagem de erro para o usuário
       },
     });
   }
@@ -55,12 +51,10 @@ export class R01AutocadastroComponent {
     this.clienteGatewayService.consultarEndereco(cep).subscribe({
       next: (endereco) => {
         if (endereco) {
-          // Preenche os campos de endereço com os dados retornados
           this.cadastro.endereco.rua = endereco.rua || '';
           this.cadastro.endereco.bairro = endereco.bairro || '';
           this.cadastro.endereco.cidade = endereco.cidade || '';
-          this.cadastro.endereco.estado = endereco.estado || ''; // Atualiza o estado (UF)
-          // Caso o endereço tenha complementos, pode ser ajustado aqui também
+          this.cadastro.endereco.estado = endereco.estado || '';
           this.cadastro.endereco.complemento = endereco.complemento || '';
         } else {
           console.error('Endereço não encontrado para o CEP fornecido.');

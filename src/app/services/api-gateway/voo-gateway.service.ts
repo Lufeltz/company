@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
+import { CadastroVooGateway } from '../../shared/models/api-gateway/cadastro-voo-gateway.model';
 
 @Injectable({
   providedIn: 'root',
@@ -104,22 +105,24 @@ export class VooGatewayService {
       );
   }
 
-  postVoo(voo: VooGateway): Observable<VooGateway | null> {
+  // Método para cadastrar um voo
+  cadastrarVoo(voo: CadastroVooGateway): Observable<CadastroVooGateway | null> {
     return this._http
-      .post<VooGateway>(
-        `${this.NEW_URL}/voos`,
+      .post<CadastroVooGateway>(
+        `${this.NEW_URL}/voos/cadastrar-voo`,
         JSON.stringify(voo),
         this.httpOptions
       )
       .pipe(
-        map((resp: HttpResponse<VooGateway>) => {
-          if (resp.status == 201) {
+        map((resp: HttpResponse<CadastroVooGateway>) => {
+          if (resp.status === 201) {
             return resp.body;
           } else {
             return null;
           }
         }),
-        catchError((err, caught) => {
+        catchError((err) => {
+          console.error('Erro ao cadastrar voo', err);
           return throwError(() => err);
         })
       );

@@ -1,53 +1,117 @@
 <div class="container">
   <h1 class="text-center t_blue">Cadastro de Voo</h1>
   <div class="custom-card">
-    <form #vooForm="ngForm" (ngSubmit)="onSubmit(vooForm)">
+    <form #vooForm="ngForm">
       <div class="container-input">
-
         <div class="input-form">
           <label for="flight-number">Código do Voo</label>
-          <input type="text" id="flight-number" name="flight-number" placeholder="TADSXXXX" minlength="8" maxlength="8" required [(ngModel)]="voo.codigoVoo" #flightNumber="ngModel">
-          <div *ngIf="flightNumber.invalid && flightNumber.touched">Este campo é obrigatório</div>
+          <input
+            type="text"
+            id="flight-number"
+            name="flight-number"
+            placeholder="TADSXXXX"
+            minlength="8"
+            maxlength="8"
+            required
+            [(ngModel)]="voo.codigoVoo"
+            #flightNumber="ngModel"
+          />
+          <div *ngIf="flightNumber.invalid && flightNumber.touched">
+            Este campo é obrigatório
+          </div>
         </div>
 
         <div class="input-form">
           <label for="flight-date">Data/Hora</label>
-          <input type="datetime-local" id="flight-date" name="flight-date" required [(ngModel)]="voo.dataHora" #flightDate="ngModel">
-          <div *ngIf="flightDate.invalid && flightDate.touched">Este campo é obrigatório</div>
+          <input
+            type="datetime-local"
+            id="flight-date"
+            name="flight-date"
+            required
+            [(ngModel)]="voo.dataHora"
+            #flightDate="ngModel"
+          />
+          <div *ngIf="flightDate.invalid && flightDate.touched">
+            Este campo é obrigatório
+          </div>
         </div>
 
         <div class="input-form">
           <label for="origin">Aeroporto Origem</label>
-          <input type="text" id="origin" name="origin" minlength="3" maxlength="3" required [(ngModel)]="voo.aeroportoOrigem" #origin="ngModel">
-          <div *ngIf="origin.invalid && origin.touched">Este campo é obrigatório</div>
+          <input
+            type="text"
+            id="origin"
+            name="origin"
+            minlength="3"
+            maxlength="3"
+            required
+            [(ngModel)]="voo.aeroportoOrigem"
+            #origin="ngModel"
+          />
+          <div *ngIf="origin.invalid && origin.touched">
+            Este campo é obrigatório
+          </div>
         </div>
 
         <div class="input-form">
           <label for="destination">Aeroporto Destino</label>
-          <input type="text" id="destination" name="destination" minlength="3" maxlength="3"
-                 required [(ngModel)]="voo.aeroportoDestino"
-                 #destination="ngModel"
-          >
-          <div *ngIf="destination.invalid && destination.touched">Este campo é obrigatório</div>
+          <input
+            type="text"
+            id="destination"
+            name="destination"
+            minlength="3"
+            maxlength="3"
+            required
+            [(ngModel)]="voo.aeroportoDestino"
+            #destination="ngModel"
+          />
+          <div *ngIf="destination.invalid && destination.touched">
+            Este campo é obrigatório
+          </div>
         </div>
 
         <div class="input-form">
           <label for="flight-value">Valor da passagem</label>
-          <input type="number" id="flight-value" name="flight-value" required min="1" [(ngModel)]="voo.valorPassagemReais" #flightValue="ngModel">
-          <div *ngIf="flightValue.invalid && flightValue.touched">Este campo é obrigatório</div>
+          <input
+            type="number"
+            id="flight-value"
+            name="flight-value"
+            required
+            min="1"
+            [(ngModel)]="voo.valorPassagemReais"
+            #flightValue="ngModel"
+          />
+          <div *ngIf="flightValue.invalid && flightValue.touched">
+            Este campo é obrigatório
+          </div>
         </div>
 
         <div class="input-form">
-          <label for="quantity">Quantidade</label>
-          <input type="number" id="quantity" name="quantity" required min="1" [(ngModel)]="voo.quantidadePoltronasTotal" #quantity="ngModel">
-          <div *ngIf="quantity.invalid && quantity.touched">Este campo é obrigatório</div>
+          <label for="quantity">Quantidade Total de Poltronas</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            required
+            min="1"
+            [(ngModel)]="voo.quantidadePoltronasTotal"
+            #quantity="ngModel"
+          />
+          <div *ngIf="quantity.invalid && quantity.touched">
+            Este campo é obrigatório
+          </div>
         </div>
-
       </div>
 
       <div class="container-button">
         <button type="reset" class="btn btn-danger">Cancelar</button>
-        <button type="submit" class="btn btn_blue" >Adicionar</button>
+        <button
+          type="submit"
+          class="btn btn_blue"
+          (click)="cadastrarVoo(vooForm)"
+        >
+          Adicionar
+        </button>
       </div>
     </form>
   </div>
