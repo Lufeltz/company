@@ -18,6 +18,31 @@ export class FuncionarioGatewayService {
     }),
   };
 
+  // Método PUT para atualizar funcionário
+  atualizarFuncionario(
+    funcionario: FuncionarioGateway
+  ): Observable<FuncionarioGateway | null> {
+    return this._http
+      .put<FuncionarioGateway>(
+        `${this.NEW_URL}/funcionarios/atualizar-funcionario`, // Novo endpoint
+        JSON.stringify(funcionario),
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<FuncionarioGateway>) => {
+          if (resp.status === 202) {
+            return resp.body;
+          } else {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao atualizar funcionário', err);
+          return throwError(() => err);
+        })
+      );
+  }
+
   inativarFuncionario(email: string): Observable<FuncionarioGateway | null> {
     return this._http
       .put<FuncionarioGateway>(
@@ -99,27 +124,6 @@ export class FuncionarioGatewayService {
   //     .pipe(
   //       map((resp: HttpResponse<Funcionario>) => {
   //         if (resp.status == 201) {
-  //           return resp.body;
-  //         } else {
-  //           return null;
-  //         }
-  //       }),
-  //       catchError((err, caught) => {
-  //         return throwError(() => err);
-  //       })
-  //     );
-  // }
-
-  // putFuncionario(funcionario: Funcionario): Observable<Funcionario | null> {
-  //   return this._http
-  //     .put<Funcionario>(
-  //       `${this.NEW_URL}/funcionarios/${funcionario.id}`,
-  //       JSON.stringify(funcionario),
-  //       this.httpOptions
-  //     )
-  //     .pipe(
-  //       map((resp: HttpResponse<Funcionario>) => {
-  //         if (resp.status == 200) {
   //           return resp.body;
   //         } else {
   //           return null;

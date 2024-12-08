@@ -12,6 +12,8 @@ import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { LetrasSomenteDirective } from '../../shared/directives/letras-somente.directive';
 import { NgxMaskDirective } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
+import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
+import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
 
 @Component({
   selector: 'app-r18-alteracao-de-funcionario',
@@ -29,30 +31,27 @@ import { CommonModule } from '@angular/common';
 export class R18AlteracaoDeFuncionarioComponent {
   @Output() voltarClicked = new EventEmitter<void>();
   @Output() edicaoConcluida = new EventEmitter<void>();
-  @Input() funcionarioParaEditar!: Funcionario;
+  @Input() funcionarioParaEditar!: FuncionarioGateway;
   @ViewChild('formEditarFuncionario') formEditarFuncionario!: NgForm;
 
-  constructor(
-    private funcionarioService: FuncionarioService,
-    private router: Router
-  ) {}
+  constructor(private funcionarioGatewayService: FuncionarioGatewayService) {}
 
-  funcionarios: Funcionario[] = [];
+  funcionarios: FuncionarioGateway[] = [];
   mensagem: string = '';
   mensagem_detalhes: string = '';
 
   salvar(): void {
     if (this.formEditarFuncionario.form.valid) {
-      // console.log(this.funcionarioParaEditar);
-      this.funcionarioService
-        .putFuncionario(this.funcionarioParaEditar)
+      this.funcionarioGatewayService
+        .atualizarFuncionario(this.funcionarioParaEditar)
         .subscribe({
-          next: (funcionario: Funcionario | null) => {
-            this.router.navigate(['/gerenciar-funcionarios']);
-            this.edicaoConcluida.emit();
-            this.listarFuncionarios();
+          next: (funcionario: FuncionarioGateway | null) => {
+            // this.router.navigate(['/gerenciar-funcionarios']);
           },
           error: (err) => {
+            this.edicaoConcluida.emit();
+            this.listarFuncionarios();
+            console.log(this.funcionarioParaEditar);
             this.mensagem = `Erro atualizando funcionario ${this.funcionarioParaEditar.nome}`;
             this.mensagem_detalhes = `[${err.status}] ${err.message}`;
           },
@@ -60,9 +59,9 @@ export class R18AlteracaoDeFuncionarioComponent {
     }
   }
 
-  listarFuncionarios(): Funcionario[] {
-    this.funcionarioService.getAllFuncionarios().subscribe({
-      next: (data: Funcionario[] | null) => {
+  listarFuncionarios(): FuncionarioGateway[] {
+    this.funcionarioGatewayService.getAllFuncionarios().subscribe({
+      next: (data: FuncionarioGateway[] | null) => {
         if (data == null) {
           this.funcionarios = [];
         } else {
@@ -76,11 +75,6 @@ export class R18AlteracaoDeFuncionarioComponent {
     });
     return this.funcionarios;
   }
-
-  nomeFuncionario: string = '';
-  emailFuncionario: string = '';
-  dataNascimentoFuncionario: Date = new Date();
-  senhaFuncionario: string = '';
 
   valueInvalid: boolean = false;
 
