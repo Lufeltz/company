@@ -17,7 +17,6 @@ export class ReservaGatewayService {
     }),
   };
 
-  // Método para consultar reserva
   consultarReserva(codigoReserva: string): Observable<any> {
     return this._http
       .get<any>(

@@ -18,6 +18,28 @@ export class VooGatewayService {
     }),
   };
 
+  cancelarVoo(codigoVoo: string): Observable<any> {
+    return this._http
+      .put<any>(
+        `${this.NEW_URL}/voos/cancelar-voo/${codigoVoo}`, // Adiciona '/voos' à URL
+        null, // Corpo da requisição permanece vazio
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<any>) => {
+          if (resp.status === 202) {
+            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+          } else {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao cancelar voo', err);
+          return throwError(() => err);
+        })
+      );
+  }
+
   getAllVoos(): Observable<VooGateway[] | null> {
     return this._http
       .get<VooGateway[]>(`${this.NEW_URL}/voos`, this.httpOptions)
