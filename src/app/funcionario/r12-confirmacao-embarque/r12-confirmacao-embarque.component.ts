@@ -6,6 +6,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Voo } from '../../shared/models/prototipo/voo.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Reserva } from '../../shared/models/prototipo/reserva.model';
+import { ReservaGatewayService } from '../../services/api-gateway/reserva-gateway.service';
+import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
+import { ReservaGateway } from '../../shared/models/api-gateway/reserva-gateway.model';
 
 @Component({
   selector: 'app-r12-confirmacao-embarque',
@@ -15,82 +18,75 @@ import { Reserva } from '../../shared/models/prototipo/reserva.model';
   styleUrl: './r12-confirmacao-embarque.component.css',
 })
 export class R12ConfirmacaoEmbarqueComponent implements OnInit {
-  @Input() vooRecebido!: Voo;
+  @Input() vooRecebido!: VooGateway;
   @ViewChild('formCodigoreserva') formCodigoReserva!: NgForm;
 
   ngOnInit() {}
 
-  private reservas: Reserva[] = [];
+  private reservas: ReservaGateway[] = [];
   codigoReserva: string = '';
   reservaNaoEncontrada: boolean = false;
   reservaEncontrada: boolean = false;
-  reserva!: Reserva;
+  reserva!: ReservaGateway;
 
   constructor(
-    private voosService: VoosService,
-    private reservaService: ReservasService,
+    private reservaGatewayService: ReservaGatewayService,
     public activeModal: NgbActiveModal
   ) {}
 
   consultarReserva() {
-    this.reservaService.getAllReservas().subscribe({
-      next: (data: Reserva[] | null) => {
+    this.reservaGatewayService.consultarReserva(this.codigoReserva).subscribe({
+      next: (data: ReservaGateway | null) => {
         if (data == null) {
-          this.reservas = [];
+          this.reservaNaoEncontrada = true;
+          this.reservaEncontrada = false;
+          console.log('não achei');
         } else {
-          this.reservas = data;
-
-          // Filtra a lista de reservas para encontrar a reserva com o código digitado
-          const reservaEncontradanaLista = this.reservas.find(
-            (reserva) => reserva.codigoReserva === this.codigoReserva
-          );
-
-          // Verifica se a reserva foi encontrada
-          if (reservaEncontradanaLista) {
-            // Verifica se o código do voo na reserva corresponde ao voo recebido
-            if (
-              reservaEncontradanaLista.codigoVoo === this.vooRecebido.codigoVoo
-            ) {
-              this.reserva = reservaEncontradanaLista;
-              this.reservaEncontrada = true;
-              this.reservaNaoEncontrada = false;
-            } else {
-              // A reserva não pertence ao voo recebido
-              this.reservaNaoEncontrada = true;
-              this.reservaEncontrada = false;
-            }
+          console.log('achei');
+          this.reserva = data; // Atribui a reserva encontrada à variável
+          console.log('reserva ', this.reserva);
+          // Verifica se o código do voo da reserva corresponde ao voo recebido
+          if (this.reserva.voo.codigoVoo === this.vooRecebido.codigoVoo) {
+            this.reservaEncontrada = true;
+            this.reservaNaoEncontrada = false;
           } else {
-            // Nenhuma reserva com o código foi encontrada
+            // Se o voo não corresponder
             this.reservaNaoEncontrada = true;
             this.reservaEncontrada = false;
           }
         }
       },
       error: (err) => {
-        console.log('Erro ao carregar reservas da base de dados:', err);
+        console.log('Erro ao consultar reserva', err);
+        this.reservaNaoEncontrada = true;
+        this.reservaEncontrada = false;
       },
     });
   }
 
   confirmaReserva() {
-    this.reserva.estadoReserva = 'embarcado';
-    this.reservaService.putReserva(this.reserva).subscribe({
-      next: (response) => {
-        if (response) {
-          alert(
-            'Reserva alterada com sucesso! Status da Reserva: ' +
-              this.reserva.estadoReserva
-          );
-          this.activeModal.close();
-        } else {
-          console.log('Falha ao criar a reserva.');
+    console.log(this.reserva);
+    // this.reserva.tipoEstadoReserva = 'EMBARCADO';
+    this.reservaGatewayService
+      .confirmarEmbarque(this.reserva.voo.codigoVoo, this.reserva.codigoReserva)
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            alert(
+              'Reserva alterada com sucesso! Status da Reserva: ' +
+                this.reserva.tipoEstadoReserva
+            );
+            console.log(this.reserva);
+            this.activeModal.close();
+          } else {
+            console.log('Falha ao criar a reserva.');
+            alert('Falha ao confirmar a reserva. Tente novamente.');
+          }
+        },
+        error: (err) => {
+          console.error('Erro ao confirmar a reserva:', err);
           alert('Falha ao confirmar a reserva. Tente novamente.');
-        }
-      },
-      error: (err) => {
-        console.error('Erro ao confirmar a reserva:', err);
-        alert('Falha ao confirmar a reserva. Tente novamente.');
-      },
-    });
+        },
+      });
   }
 }

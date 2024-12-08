@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VoosService } from '../../services/prototipo/voos.service';
 import { CommonModule } from '@angular/common';
-import { Voo } from '../../shared/models/prototipo/voo.model';
 import { RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { R12ConfirmacaoEmbarqueComponent } from '../r12-confirmacao-embarque/r12-confirmacao-embarque.component';
@@ -18,18 +16,17 @@ import { VooGatewayService } from '../../services/api-gateway/voo-gateway.servic
   styleUrl: './r11-tela-inicial-funcionario.component.css',
 })
 export class R11TelaInicialFuncionarioComponent implements OnInit {
-  public voos: Voo[] = [];
-  public voosGateway: VooGateway[] = []
+  public voos: VooGateway[] = [];
+  public voosGateway: VooGateway[] = [];
 
   constructor(
-    private voosService: VoosService,
     private modalService: NgbModal,
     private vooGatewayService: VooGatewayService
   ) {}
 
   ngOnInit(): void {
     this.getAllvoos();
-    this.getAllVoosGateway()
+    this.getAllVoosGateway();
   }
 
   getAllVoosGateway() {
@@ -47,18 +44,18 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
       },
     });
   }
-  
+
   getAllvoos() {
     const dataAtual = new Date();
     const dataLimite = new Date(dataAtual.getTime() + 48 * 60 * 60 * 1000); // Adiciona 48 horas
 
-    this.voosService.getAllVoos().subscribe({
-      next: (data: Voo[] | null) => {
+    this.vooGatewayService.getAllVoos().subscribe({
+      next: (data: VooGateway[] | null) => {
         if (data == null) {
           this.voos = [];
         } else {
           this.voos = data.filter((voo) => {
-            const dataVoo = new Date(voo.dataHora);
+            const dataVoo = new Date(voo.dataVoo);
             return dataVoo >= dataAtual && dataVoo <= dataLimite;
           });
         }
@@ -71,17 +68,17 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
 
   //AÇÕES DOS BOTÕES
 
-  abrirModalConfirmacaoEmbarque(voo: Voo) {
+  abrirModalConfirmacaoEmbarque(voo: VooGateway) {
     const modalRef = this.modalService.open(R12ConfirmacaoEmbarqueComponent);
     modalRef.componentInstance.vooRecebido = voo;
   }
 
-  abrirModalCancelamentoVoo(voo: Voo) {
+  abrirModalCancelamentoVoo(voo: VooGateway) {
     const modalRef = this.modalService.open(R13CancelamentoDoVooComponent);
     modalRef.componentInstance.vooRecebido = voo;
   }
 
-  abrirModalRealizacaoVoo(voo: Voo) {
+  abrirModalRealizacaoVoo(voo: VooGateway) {
     const modalRef = this.modalService.open(R14RealizacaoDoVooComponent);
     modalRef.componentInstance.vooRecebido = voo;
   }

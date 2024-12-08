@@ -1,9 +1,4 @@
-export class Aeroporto {
-  codigoAeroporto: string = '';
-  nome: string = '';
-  cidade: string = '';
-  estado: string = '';
-}
+import { AeroportoGateway } from './aeroporto-gateway.model';
 
 export class VooGateway {
   codigoVoo: string = '';
@@ -12,6 +7,6 @@ export class VooGateway {
   quantidadePoltronasTotal: number = 0;
   quantidadePoltronasOcupadas: number = 0;
   estadoVoo: string = '';
-  aeroportoOrigem: Aeroporto = new Aeroporto();
-  aeroportoDestino: Aeroporto = new Aeroporto();
+  aeroportoOrigem: AeroportoGateway = new AeroportoGateway();
+  aeroportoDestino: AeroportoGateway = new AeroportoGateway();
 }

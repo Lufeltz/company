@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
-import { Voo } from '../../shared/models/prototipo/voo.model';
 import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
 
 @Injectable({

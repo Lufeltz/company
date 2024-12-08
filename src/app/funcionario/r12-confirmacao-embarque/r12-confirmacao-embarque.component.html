@@ -64,9 +64,9 @@
         </tr>
         <tr>
           <td>{{ reserva.codigoReserva }}</td>
-          <td>{{ reserva.codigoVoo }}</td>
-          <td>{{ reserva.dataHoraReserva | date : "dd/MM/yyyy - HH:mm" }}</td>
-          <td>{{ reserva.estadoReserva }}</td>
+          <td>{{ reserva.voo.codigoVoo }}</td>
+          <td>{{ reserva.dataReserva | date : "dd/MM/yyyy - HH:mm" }}</td>
+          <td>{{ reserva.tipoEstadoReserva }}</td>
         </tr>
       </tbody>
     </table>
