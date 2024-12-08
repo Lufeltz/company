@@ -25,7 +25,7 @@
                       id="cpf"
                       name="cpf"
                       placeholder=" "
-                      [(ngModel)]="cadastroCPF"
+                      [(ngModel)]="cadastro.cpf"
                       #cpf="ngModel"
                       required
                       [class.invalid-border]="
@@ -54,7 +54,7 @@
                       id="nome"
                       name="nome"
                       placeholder=" "
-                      [(ngModel)]="cadastro.login"
+                      [(ngModel)]="cadastro.nome"
                       #nome="ngModel"
                       required
                       [class.invalid-border]="
@@ -85,7 +85,7 @@
                       id="email"
                       name="email"
                       placeholder=" "
-                      [(ngModel)]="cadastroEmail"
+                      [(ngModel)]="cadastro.email"
                       #email="ngModel"
                       required
                       [class.invalid-border]="
@@ -117,7 +117,7 @@
                       id="telefone"
                       name="telefone"
                       placeholder=" "
-                      [(ngModel)]="cadastroTelefone"
+                      [(ngModel)]="cadastro.telefone"
                       #telefone="ngModel"
                       required
                       [class.invalid-border]="
@@ -153,7 +153,7 @@
                       id="cep"
                       name="cep"
                       placeholder=" "
-                      [(ngModel)]="cadastroCep"
+                      [(ngModel)]="cadastro.endereco.cep"
                       #cep="ngModel"
                       required
                       [class.invalid-border]="
@@ -166,6 +166,7 @@
                   <button
                     type="submit"
                     class="btn btn-primary custom-btn-cep ml-2 btn_blue"
+                    (click)="pesquisarCep(cadastro.endereco.cep)"
                   >
                     Pesquisar CEP
                   </button>
@@ -187,7 +188,7 @@
                     id="uf"
                     name="uf"
                     placeholder=" "
-                    [(ngModel)]="cadastroUf"
+                    [(ngModel)]="cadastro.endereco.estado"
                     #uf="ngModel"
                     
                   />
@@ -204,7 +205,7 @@
                     id="cidade"
                     name="cidade"
                     placeholder=" "
-                    [(ngModel)]="cadastroCidade"
+                    [(ngModel)]="cadastro.endereco.cidade"
                     #cidade="ngModel"
                     
                   />
@@ -219,7 +220,7 @@
                     id="bairro"
                     name="bairro"
                     placeholder=" "
-                    [(ngModel)]="cadastroBairro"
+                    [(ngModel)]="cadastro.endereco.bairro"
                     #bairro="ngModel"
                     
                   />
@@ -236,7 +237,7 @@
                     id="rua"
                     name="rua"
                     placeholder=" "
-                    [(ngModel)]="cadastroRua"
+                    [(ngModel)]="cadastro.endereco.rua"
                     #rua="ngModel"
                     
                   />
@@ -251,7 +252,7 @@
                     id="numero"
                     name="numero"
                     placeholder=" "
-                    [(ngModel)]="cadastro.senha"
+                    [(ngModel)]="cadastro.endereco.numero"
                     #numero="ngModel"
                   />
                   <label for="numero">Número</label>
@@ -266,7 +267,7 @@
                   id="complemento"
                   name="complemento"
                   placeholder=" "
-                  [(ngModel)]="cadastroComplemento"
+                  [(ngModel)]="cadastro.endereco.complemento"
                   #complemento="ngModel"
                 />
                 <label for="complemento">Complemento</label>
@@ -280,7 +281,7 @@
               <button
                 type="submit"
                 class="btn btn-primary custom-btn btn_blue"
-                (click)="cadastrarUsuario()"
+                (click)="cadastrarCliente(cadastro)"
               >
                 Cadastrar
               </button>

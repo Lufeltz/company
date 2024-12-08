@@ -4,8 +4,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NgxMaskDirective } from 'ngx-mask';
 import { LetrasSomenteDirective } from '../../shared/directives/letras-somente.directive';
-import { Cadastro } from '../../shared/models/prototipo/cadastro.model';
-import { AutocadastroService } from '../../services/prototipo/autocadastro.service';
+import { ClienteGatewayService } from '../../services/api-gateway/cliente-gateway.service';
+import { CadastroGateway } from '../../shared/models/api-gateway/cadastro-gateway.model';
 
 @Component({
   selector: 'app-r01-autocadastro',
@@ -22,39 +22,52 @@ import { AutocadastroService } from '../../services/prototipo/autocadastro.servi
 })
 export class R01AutocadastroComponent {
   @ViewChild('formCadastro') formCadastro!: NgForm;
-  cadastro: Cadastro = new Cadastro();
+  cadastro: CadastroGateway = new CadastroGateway();
   mensagem!: string;
   mensagem_detalhes!: string;
-
-  cadastroCPF: string = '';
-  cadastroTelefone: string = '';
-  cadastroEmail: string = '';
-  cadastroNome: string = '';
-  cadastroCep: string = '';
-  cadastroUf: string = '';
-  cadastroCidade: string = '';
-  cadastroBairro: string = '';
-  cadastroRua: string = '';
-  cadastroNumero: string = '';
-  cadastroComplemento: string = '';
 
   constructor(
     // private clienteService: ClienteService,
     // private enderecoService: EnderecoService
-    private cadastroService: AutocadastroService,
-    private router: Router
+    // private cadastroService: AutocadastroService,
+    private router: Router,
+    private clienteGatewayService: ClienteGatewayService
   ) {}
 
-  cadastrarUsuario(): void {
-    this.cadastroService.postCadastro(this.cadastro).subscribe({
-      next: (usuario) => {
-        this.router.navigate(['/login']);
+  cadastrarCliente(cliente: CadastroGateway) {
+    this.clienteGatewayService.cadastrarCliente(cliente).subscribe({
+      next: (clienteCadastrado) => {
+        if (clienteCadastrado) {
+          console.log('Cliente cadastrado com sucesso:', clienteCadastrado);
+          this.router.navigate(['/login']);
+        } else {
+          console.log('Erro ao cadastrar cliente.');
+        }
       },
       error: (err) => {
-        this.mensagem = `Erro inserindo funcionario ${this.cadastro.login}`;
-        if (err.status == 409) {
-          this.mensagem_detalhes = `[${err.status}] ${err.message}`;
+        console.error('Erro ao cadastrar cliente:', err);
+        // Aqui você pode tratar o erro, como exibir uma mensagem de erro para o usuário
+      },
+    });
+  }
+
+  pesquisarCep(cep: string) {
+    this.clienteGatewayService.consultarEndereco(cep).subscribe({
+      next: (endereco) => {
+        if (endereco) {
+          // Preenche os campos de endereço com os dados retornados
+          this.cadastro.endereco.rua = endereco.rua || '';
+          this.cadastro.endereco.bairro = endereco.bairro || '';
+          this.cadastro.endereco.cidade = endereco.cidade || '';
+          this.cadastro.endereco.estado = endereco.estado || ''; // Atualiza o estado (UF)
+          // Caso o endereço tenha complementos, pode ser ajustado aqui também
+          this.cadastro.endereco.complemento = endereco.complemento || '';
+        } else {
+          console.error('Endereço não encontrado para o CEP fornecido.');
         }
+      },
+      error: (err) => {
+        console.error('Erro ao consultar endereço:', err);
       },
     });
   }
