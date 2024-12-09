@@ -68,10 +68,6 @@ export class R05ComprarMilhasComponent {
           .subscribe(
             (response) => {
               this.resultado = response;
-              console.log(
-                'Milhas compradas com sucesso:',
-                this.quantidadeMilhas
-              );
               this.mensagemModal = 'Compra registrada com sucesso!';
               this.tipoModal = 'sucesso';
               this.limparCampos();

@@ -67,9 +67,6 @@ export class R06ConsultarExtratoMilhasComponent implements OnInit {
               );
             }
             this.loading = false;
-            // console.log('ENTRADA', this.entradas);
-            // console.log('SAIDA', this.saidas);
-            // console.log(this.milhaDetalhes);
           },
           (error) => {
             this.loading = false;

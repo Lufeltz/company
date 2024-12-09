@@ -128,4 +128,57 @@ export class VooGatewayService {
         })
       );
   }
+
+  // Novo método para listar voos atuais
+  listarVoosAtuais(
+    codigoAeroportoOrigem: string,
+    codigoAeroportoDestino: string
+  ): Observable<VooGateway[] | null> {
+    return this._http
+      .get<VooGateway[]>(
+        `${this.NEW_URL}/voos-atuais?codigoAeroportoOrigem=${codigoAeroportoOrigem}&codigoAeroportoDestino=${codigoAeroportoDestino}`,
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<VooGateway[]>) => {
+          if (resp.status === 200) {
+            return resp.body;
+          } else {
+            return [];
+          }
+        }),
+        catchError((err) => {
+          if (err.status === 404) {
+            return of([]);
+          } else {
+            return throwError(() => err);
+          }
+        })
+      );
+  }
+
+  // Novo método para listar todos os aeroportos
+  listarAeroportos(): Observable<any[] | null> {
+    return this._http
+      .get<any[]>(
+        `${this.NEW_URL}/listar-aeroporto`, // Novo endpoint para listar aeroportos
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<any[]>) => {
+          if (resp.status === 200) {
+            return resp.body;
+          } else {
+            return []; // Retorna uma lista vazia em caso de falha
+          }
+        }),
+        catchError((err) => {
+          if (err.status === 404) {
+            return of([]); // Retorna uma lista vazia caso não haja dados
+          } else {
+            return throwError(() => err); // Lança o erro em outros casos
+          }
+        })
+      );
+  }
 }

@@ -35,12 +35,7 @@ export class R09ConsultarReservaComponent {
 
   voo: VooGateway = new VooGateway();
 
-  erro: string = ''; // Para armazenar erros, caso ocorram
-
-  // private reserva?: { reserva: Reserva; voo: Voo | undefined } = {
-  //   reserva: {} as Reserva,
-  //   voo: undefined,
-  // };
+  erro: string = '';
 
   reserva: ReservaGateway = new ReservaGateway();
 

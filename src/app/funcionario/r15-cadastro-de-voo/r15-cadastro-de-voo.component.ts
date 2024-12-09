@@ -18,10 +18,28 @@ export class R15CadastroDeVooComponent {
   mensagemErro: string = '';
 
   voo: CadastroVooGateway = new CadastroVooGateway();
+  aeroportos: any[] | null = []; // Lista de aeroportos recebida do backend
 
   constructor(private vooGatewayService: VooGatewayService) {}
 
+  ngOnInit(): void {
+    // Chama o serviço para listar os aeroportos
+    this.listarAeroportos();
+  }
+
+  listarAeroportos(): void {
+    this.vooGatewayService.listarAeroportos().subscribe(
+      (data) => {
+        this.aeroportos = data; // Preenche a lista de aeroportos com os dados recebidos
+      },
+      (error) => {
+        console.error('Erro ao carregar aeroportos', error);
+      }
+    );
+  }
+
   cadastrarVoo(form: NgForm) {
+    console.log(this.voo)
     if (form.invalid) {
       Object.keys(form.controls).forEach((controlName) => {
         const control = form.controls[controlName];

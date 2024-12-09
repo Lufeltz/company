@@ -11,6 +11,12 @@ import { ReservasService } from '../../services/prototipo/reservas.service';
 import { Reserva } from '../../shared/models/prototipo/reserva.model';
 import { PipeDinheiroBRPipe } from '../../shared/pipes/pipe-dinheiro-br.pipe';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
+import { AuthGatewayService } from '../../services/api-gateway/auth-gateway.service';
+import { MilhasGatewayService } from '../../services/api-gateway/milhas-gateway.service';
+import { MilhaDetalhesGateway } from '../../shared/models/api-gateway/milha-detalhes-gateway.model';
+import { ReservaGatewayService } from '../../services/api-gateway/reserva-gateway.service';
+import { ReservaCriacaoGateway } from '../../shared/models/api-gateway/reserva-criacao-gateway.model';
 
 @Component({
   selector: 'app-r07-efetuar-reserva-02',
@@ -20,15 +26,15 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
   styleUrl: './r07-efetuar-reserva-02.component.css',
 })
 export class R07EfetuarReserva02Component implements OnInit {
-  vooSelecionado!: Voo;
-  private usuario: Usuario = new Usuario();
-  private cliente: Cliente = new Cliente();
-  private reserva: Reserva = new Reserva();
+  vooSelecionado!: VooGateway;
+  reserva: ReservaCriacaoGateway = new ReservaCriacaoGateway();
 
   qntMilhasCliente: number = 0;
   qntPassagens: number = 0;
   valorTotal: number = 0;
   valorMilhas: number = 0;
+
+  idCliente: number = 0;
 
   qntMilhasPagamento: number = 0;
   qntMilhasSaldoFinal: number = 0;
@@ -37,9 +43,9 @@ export class R07EfetuarReserva02Component implements OnInit {
 
   constructor(
     private router: Router,
-    private clienteService: ClientesService,
-    private loginService: LoginService,
-    private reservaService: ReservasService
+    private reservaGatewayService: ReservaGatewayService,
+    private authGatewayService: AuthGatewayService,
+    private milhaGatewayService: MilhasGatewayService
   ) {}
 
   ngOnInit(): void {
@@ -55,93 +61,73 @@ export class R07EfetuarReserva02Component implements OnInit {
   }
 
   getClienteByUser(): void {
-    this.usuario = this.loginService.getUsuarioLogado();
-    let clientes: Cliente[] = [];
-    this.clienteService.getAllClientes().subscribe({
-      next: (data: Cliente[] | null) => {
-        if (data == null) {
-          clientes = [];
-        } else {
-          clientes = data;
-          for (let i: number = 0; i < clientes.length; i++) {
-            if (clientes[i].email.split('@')[0] === this.usuario.login) {
-              // compara somente a primeira parte do email (que corresponde ao login)
-              this.cliente = clientes[i];
-              this.qntMilhasCliente = this.cliente.milhas;
-              break;
+    const usuario = this.authGatewayService.getUser();
+    if (usuario) {
+      const role = this.authGatewayService.getRoleFromToken();
+      let idUsuario: number | null = null;
+
+      if (role === 'CLIENTE' && 'idCliente' in usuario) {
+        idUsuario = Number(usuario.idCliente);
+        this.idCliente = idUsuario;
+      } else if (role === 'FUNCIONARIO' && 'idFuncionario' in usuario) {
+        idUsuario = Number(usuario.idFuncionario);
+        this.idCliente = idUsuario;
+      }
+
+      if (idUsuario !== null) {
+        // Consultar o extrato de milhas do cliente
+        this.milhaGatewayService.consultarExtrato(idUsuario).subscribe({
+          next: (extrato: MilhaDetalhesGateway | null) => {
+            if (extrato) {
+              this.qntMilhasCliente = extrato.saldoMilhas; // Atualizando o saldo de milhas
             }
-          }
-        }
-      },
-      error: (err) => {
-        console.log('Erro ao carregar clientes da base de dados');
-      },
-    });
+          },
+          error: (err) => {
+            console.error('Erro ao consultar extrato de milhas', err);
+          },
+        });
+      }
+    }
   }
 
   calculaValorPassagem(): void {
     this.valorTotal =
-      this.qntPassagens * this.vooSelecionado.valorPassagemReais;
+      this.reserva.quantidadePoltronas * this.vooSelecionado.valorPassagem;
     this.valorMilhas = this.valorTotal / 5;
   }
 
   pagarReserva(): void {
-    this.qntMilhasSaldoFinal = this.valorTotal - this.qntMilhasPagamento * 5;
+    this.qntMilhasSaldoFinal =
+      this.valorTotal - this.reserva.milhasUtilizadas * 5;
     this.mostradados1 = true;
   }
 
-  gerarCodigoReserva(): string {
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const numeros = '0123456789';
-
-    // Gerar três letras aleatórias
-    let codigo = '';
-    for (let i = 0; i < 3; i++) {
-      const randomLetraIndex = Math.floor(Math.random() * letras.length);
-      codigo += letras[randomLetraIndex];
-    }
-
-    // Gerar três números aleatórios
-    for (let i = 0; i < 3; i++) {
-      const randomNumeroIndex = Math.floor(Math.random() * numeros.length);
-      codigo += numeros[randomNumeroIndex];
-    }
-
-    return codigo;
-  }
-
   confirmaPagamento(): void {
-    //atualiza o saldo de milhas do cliente
-    this.cliente.milhas = this.cliente.milhas - this.qntMilhasPagamento;
-    //solicita a atualização pro back
-    this.clienteService.putCliente(this.cliente).subscribe({
-      next: (response) => {
-        if (response) {
-          console.log('Cliente atualizado com sucesso:', response);
-          this.router.navigate(['/homepage-cliente']);
-        } else {
-          console.log('Falha ao atualizar o cliente');
-        }
-      },
-      error: (err) => {
-        console.error('Erro ao atualizar o cliente:', err);
-      },
-    });
+    console.log(this.reserva);
 
-    //faz a criação do objeto reserva e manda pro back cadastrar
-    this.reserva.id = Date.now().toString(); // Retorna o timestamp atual como string
-    this.reserva.codigoReserva = this.gerarCodigoReserva();
+    this.reserva.codigoReserva = null;
+    this.reserva.dataReserva = null;
+    this.reserva.valorReserva = this.valorTotal;
+    this.reserva.milhasUtilizadas = this.qntMilhasPagamento;
+    this.reserva.quantidadePoltronas = this.reserva.quantidadePoltronas;
+    this.reserva.idCliente = this.idCliente;
+    this.reserva.siglaEstadoReserva = null;
+    this.reserva.tipoEstadoReserva = null;
     this.reserva.codigoVoo = this.vooSelecionado.codigoVoo;
-    this.reserva.dataHoraReserva = new Date().toString();
-    this.reserva.estadoReserva = 'reservado';
+    this.reserva.codigoAeroportoOrigem =
+      this.vooSelecionado.aeroportoOrigem.codigoAeroporto;
+    this.reserva.codigoAeroportoDestino =
+      this.vooSelecionado.aeroportoDestino.codigoAeroporto;
 
-    this.reservaService.postReserva(this.reserva).subscribe({
+    this.reservaGatewayService.criarReserva(this.reserva).subscribe({
       next: (response) => {
         if (response) {
           alert(
             'Reserva criada com sucesso! Código da Reserva: ' +
-              this.reserva.codigoReserva
+              response.codigoReserva
           );
+
+          this.router.navigate(['/homepage-cliente']);
         } else {
           console.log('Falha ao criar a reserva.');
           alert('Falha ao criar a reserva. Tente novamente.');

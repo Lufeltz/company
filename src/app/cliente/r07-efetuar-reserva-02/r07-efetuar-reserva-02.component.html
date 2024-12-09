@@ -25,10 +25,10 @@
             <th>Preço do Assento</th>
           </tr>
           <tr>
-            <td>{{ vooSelecionado.aeroportoOrigem }}</td>
-            <td>{{ vooSelecionado.aeroportoDestino }}</td>
-            <td>{{ vooSelecionado.dataHora | date : "dd/MM/yyyy - HH:mm" }}</td>
-            <td>{{ vooSelecionado.valorPassagemReais | currency : "BRL" }}</td>
+            <td>{{ vooSelecionado.aeroportoOrigem.cidade }}</td>
+            <td>{{ vooSelecionado.aeroportoDestino.cidade }}</td>
+            <td>{{ vooSelecionado.dataVoo | date : "dd/MM/yyyy - HH:mm" }}</td>
+            <td>{{ vooSelecionado.valorPassagem | currency : "BRL" }}</td>
           </tr>
         </tbody>
       </table>
@@ -47,12 +47,12 @@
             min="1"
             max="100"
             value="1"
-            [(ngModel)]="qntPassagens"
+            [(ngModel)]="reserva.quantidadePoltronas"
             (input)="calculaValorPassagem()"
           />
         </div>
       </div>
-      <div *ngIf="qntPassagens > 0">
+      <div *ngIf="reserva.quantidadePoltronas > 0">
         <table class="table table-striped table-bordered table-hover tabela2">
           <tbody>
             <tr>

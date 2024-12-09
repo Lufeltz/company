@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ReservasService } from '../../services/prototipo/reservas.service';
 import { CommonModule } from '@angular/common';
-import { VoosService } from '../../services/prototipo/voos.service';
 import { Voo } from '../../shared/models/prototipo/voo.model';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
+import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
 
 @Component({
   selector: 'app-r07-efetuar-reserva',
@@ -16,52 +17,50 @@ import { Router, RouterModule } from '@angular/router';
 export class R07EfetuarReservaComponent {
   voos: Voo[] = [];
   mensagem: string = '';
+  aeroportos: any[] | null = []; // Lista de aeroportos recebida do backend
+
+  voosAtuais: VooGateway[] = [];
 
   //variaveis que armazenam valores dos inputs
   aeroportoOrigem: string = '';
   aeroportoDestino: string = '';
 
   constructor(
-    private reservaService: ReservasService,
-    private vooService: VoosService,
+    private vooGatewayService: VooGatewayService,
     private router: Router
   ) {}
 
-  //****ainda temos que adicionar uma verificação que pega somente a partir da data atual****
-  listarVoos(): Voo[] {
-    const dataAtual = new Date(); // Obtem a data atual
+  ngOnInit(): void {
+    // Chama o serviço para listar os aeroportos
+    this.listarAeroportos();
+  }
 
-    this.vooService.getAllVoos().subscribe({
-      next: (data: Voo[] | null) => {
-        if (data == null) {
-          this.voos = [];
-        } else {
-          this.voos = data.filter((voo) => {
-            const dataVoo = new Date(voo.dataHora);
-
-            return (
-              voo.aeroportoOrigem.includes(this.aeroportoOrigem) &&
-              voo.aeroportoDestino.includes(this.aeroportoDestino) &&
-              dataVoo >= dataAtual
-            );
-          });
-          if (this.voos.length === 0) {
-            this.mensagem = 'Nenhum voo encontrado para esses aeroportos';
-          } else {
-            this.mensagem = '';
-          }
+  listarVoosAtuais(
+    codigoAeroportoOrigem: string,
+    codigoAeroportoDestino: string
+  ): void {
+    this.vooGatewayService
+      .listarVoosAtuais(codigoAeroportoOrigem, codigoAeroportoDestino)
+      .subscribe(
+        (data) => {
+          this.voosAtuais = data || [];
+          console.log(this.voosAtuais);
+        },
+        (error) => {
+          console.error('Erro ao listar voos atuais', error);
         }
-        this.aeroportoOrigem = '';
-        this.aeroportoDestino = '';
-      },
-      error: (err) => {
-        this.mensagem = 'Erro buscando voos';
-        this.aeroportoOrigem = '';
-        this.aeroportoDestino = '';
-      },
-    });
+      );
+  }
 
-    return this.voos;
+  listarAeroportos(): void {
+    this.vooGatewayService.listarAeroportos().subscribe(
+      (data) => {
+        this.aeroportos = data; // Preenche a lista de aeroportos com os dados recebidos
+      },
+      (error) => {
+        console.error('Erro ao carregar aeroportos', error);
+      }
+    );
   }
 
   // Valida se os campos estão preenchidos
@@ -71,7 +70,7 @@ export class R07EfetuarReservaComponent {
     );
   }
 
-  selecionarVoo(voo: Voo, event: Event): void {
+  selecionarVoo(voo: VooGateway, event: Event): void {
     event.preventDefault(); // Previne o comportamento padrão do link
     this.router.navigate(['efetuar-reserva-2'], {
       state: { vooSelecionado: voo },

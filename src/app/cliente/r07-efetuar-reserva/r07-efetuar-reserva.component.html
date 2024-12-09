@@ -10,42 +10,43 @@
             </h6>
           </div>
           <form class="container-form d-flex">
-            <div
-              class="d-flex align-items-start justify-content-start mb-3 flex-grow-1"
-            >
+            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
               <div class="imput-form" style="flex: 1">
                 <div id="form-floating-consulta-pedido">
                   <div class="form-floating">
-                    <input
-                      type="text"
+                    <select
                       class="form-control custom-input"
                       name="aeroportoOrigem"
                       id="aeroportoOrigem"
-                      placeholder=" "
                       required
                       [(ngModel)]="aeroportoOrigem"
-                    />
-                    <label for="consulta">Aeroporto de origem</label>
+                    >
+                      <option *ngFor="let aeroporto of aeroportos" [value]="aeroporto.codigoAeroporto">
+                        {{ aeroporto.codigoAeroporto }}
+                      </option>
+                    </select>
+                    <label for="aeroportoOrigem">Aeroporto de origem</label>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              class="d-flex align-items-start justify-content-start mb-3 flex-grow-1"
-            >
+            
+            <div class="d-flex align-items-start justify-content-start mb-3 flex-grow-1">
               <div class="imput-form" style="flex: 1">
                 <div id="form-floating-consulta-pedido">
                   <div class="form-floating">
-                    <input
-                      type="text"
+                    <select
                       class="form-control custom-input"
                       name="aeroportoDestino"
                       id="aeroportoDestino"
-                      placeholder=" "
                       required
                       [(ngModel)]="aeroportoDestino"
-                    />
-                    <label for="consulta">Aeroporto de destino</label>
+                    >
+                      <option *ngFor="let aeroporto of aeroportos" [value]="aeroporto.codigoAeroporto">
+                        {{ aeroporto.codigoAeroporto }}
+                      </option>
+                    </select>
+                    <label for="aeroportoDestino">Aeroporto de destino</label>
                   </div>
                 </div>
               </div>
@@ -55,7 +56,7 @@
                 type="submit"
                 class="btn btn-primary custom-btn custom-btn-consultar"
                 [disabled]="!isFormValid()"
-                (click)="listarVoos()"
+                (click)="listarVoosAtuais(aeroportoOrigem, aeroportoDestino)"
               >
                 Consultar
               </button>
@@ -74,7 +75,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <table class="table table-hover" *ngIf="voos.length > 0">
+          <table class="table table-hover" *ngIf="voosAtuais.length > 0">
             <tbody>
               <tr>
                 <th>Codigo do voo</th>
@@ -83,11 +84,11 @@
                 <th>Aeroporto destino</th>
                 <th>Ações</th>
               </tr>
-              <tr *ngFor="let voo of voos">
+              <tr *ngFor="let voo of voosAtuais">
                 <td>{{ voo.codigoVoo }}</td>
-                <td>{{ voo.dataHora | date : "dd/MM/yyyy - HH:mm" }}</td>
-                <td>{{ voo.aeroportoOrigem }}</td>
-                <td>{{ voo.aeroportoDestino }}</td>
+                <td>{{ voo.dataVoo | date : "dd/MM/yyyy - HH:mm" }}</td>
+                <td>{{ voo.aeroportoOrigem.codigoAeroporto }}</td>
+                <td>{{ voo.aeroportoDestino.codigoAeroporto }}</td>
                 <td style="width: 300px">
                   <a
                     href="#"
@@ -101,7 +102,7 @@
               </tr>
             </tbody>
           </table>
-          <p *ngIf="voos.length === 0">Nenhum voo encontrado.</p>
+          <p *ngIf="voosAtuais.length === 0">Nenhum voo encontrado.</p>
         </div>
       </div>
     </div>

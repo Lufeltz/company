@@ -38,37 +38,44 @@
 
         <div class="input-form">
           <label for="origin">Aeroporto Origem</label>
-          <input
-            type="text"
+          <select
+            class="form-control custom-input"
+            name="aeroportoOrigem"
             id="origin"
-            name="origin"
-            minlength="3"
-            maxlength="3"
             required
             [(ngModel)]="voo.aeroportoOrigem"
             #origin="ngModel"
-          />
+          >
+            <option value="" disabled selected>Selecione o aeroporto de origem</option>
+            <option *ngFor="let aeroporto of aeroportos" [value]="aeroporto.codigoAeroporto">
+              {{ aeroporto.codigoAeroporto }}
+            </option>
+          </select>
           <div *ngIf="origin.invalid && origin.touched">
             Este campo é obrigatório
           </div>
         </div>
-
+        
         <div class="input-form">
           <label for="destination">Aeroporto Destino</label>
-          <input
-            type="text"
+          <select
+            class="form-control custom-input"
+            name="aeroportoDestino"
             id="destination"
-            name="destination"
-            minlength="3"
-            maxlength="3"
             required
             [(ngModel)]="voo.aeroportoDestino"
             #destination="ngModel"
-          />
+          >
+            <option value="" disabled selected>Selecione o aeroporto de destino</option>
+            <option *ngFor="let aeroporto of aeroportos" [value]="aeroporto.codigoAeroporto">
+              {{ aeroporto.codigoAeroporto }}
+            </option>
+          </select>
           <div *ngIf="destination.invalid && destination.touched">
             Este campo é obrigatório
           </div>
         </div>
+        
 
         <div class="input-form">
           <label for="flight-value">Valor da passagem</label>
