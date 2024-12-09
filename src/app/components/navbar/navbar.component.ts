@@ -1,44 +1,52 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Usuario } from '../../shared/models/prototipo/usuario.model';
-import { LoginService } from '../../services/prototipo/login.service';
-
+import { AuthGatewayService } from '../../services/api-gateway/auth-gateway.service';
+import { ClienteGateway } from '../../shared/models/api-gateway/cliente-gateway.model';
+import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterLink, NgbModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(
+    private router: Router,
+    private authGatewayService: AuthGatewayService
+  ) {}
 
   sair() {
     this.router.navigate(['/login']);
   }
 
-  get usuarioLogado(): Usuario | null {
-    return this.loginService.usuarioLogado;
+  get usuarioLogado(): ClienteGateway | FuncionarioGateway | null {
+    return this.authGatewayService.getUser();
   }
 
   logout() {
-    this.loginService.logout();
+    this.authGatewayService.logout();
     this.router.navigate(['/login']);
   }
 
   temPermissao(...perfis: string[]): boolean {
-    let usu = this.usuarioLogado;
-    if (usu && usu.tipo && perfis.length > 0) {
-      for (let p of perfis) {
-        if (usu.tipo.toUpperCase().indexOf(p.toUpperCase()) !== -1) {
+    const role = this.authGatewayService.getRoleFromToken();
+    if (role && perfis.length > 0) {
+      for (let perfil of perfis) {
+        if (role.toUpperCase() === perfil.toUpperCase()) {
           return true;
         }
       }
     }
     return false;
+  }
+
+  getHomePageLink(): string {
+    const role = this.authGatewayService.getRoleFromToken();
+    return role === 'CLIENTE' ? '/homepage-cliente' : '/homepage';
   }
 }

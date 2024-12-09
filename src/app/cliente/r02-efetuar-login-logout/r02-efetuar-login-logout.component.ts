@@ -3,8 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuariosService } from '../../services/prototipo/usuarios.service';
 import { Usuario } from '../../shared/models/prototipo/usuario.model';
 import { FormsModule, NgForm } from '@angular/forms';
-import { LoginService } from '../../services/prototipo/login.service';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { LoginRequestGateway } from '../../shared/models/api-gateway/login-request-gateway.model';
+import { AuthGatewayService } from '../../services/api-gateway/auth-gateway.service';
 
 @Component({
   selector: 'app-r02-efetuar-login-logout',
@@ -19,14 +20,13 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
   mensagem_detalhes!: string;
   message!: string;
   loginError: boolean = false;
-  login: Usuario = new Usuario();
+  login: LoginRequestGateway = new LoginRequestGateway();
   @ViewChild('formLogin') formLogin!: NgForm;
 
   constructor(
     private usuarioService: UsuariosService,
-    private loginService: LoginService,
     private router: Router,
-    private route: ActivatedRoute,
+    private authGatewayService: AuthGatewayService
   ) {}
 
   ngOnInit(): void {
@@ -50,34 +50,45 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
     });
   }
 
-  // Método para verificar se o login e a senha correspondem a um usuário no array
-  validarLogin(login: string, senha: string) {
-    return this.usuarios.find(
-      (usuario) => usuario.login === login && usuario.senha === senha
-    );
-  }
-
-  // Método logar
   logar(): void {
+    console.log(this.login);
     if (this.formLogin.form.valid) {
-      const usuario = this.validarLogin(this.login.login, this.login.senha);
-      if (usuario) {
-        console.log(`Usuário ${usuario.login} logado com sucesso!`);
-        // Aqui você pode redirecionar o usuário para outra página ou realizar outras ações de login
-
-        this.loginService.usuarioLogado = usuario;
-        console.log(usuario)
-
-        if (usuario.tipo.toUpperCase() == 'FUNCIONARIO') {
-          this.router.navigate(['/homepage']);
-        } else if (usuario.tipo.toUpperCase() == 'CLIENTE') {
-          this.router.navigate(['/homepage-cliente']);
-        } else {
-          this.router.navigate(['/login']);
-        }
-      } else {
-        console.log('Login ou senha incorretos!');
-      }
+      this.authGatewayService.login(this.login).subscribe({
+        next: (token) => {
+          if (token) {
+            console.log('Token recebido:', token);
+  
+            localStorage.setItem('jwt', token);
+  
+            // Chama loadUserData e aguarda a resposta
+            this.authGatewayService.loadUserData().subscribe({
+              next: () => {
+                // Após o carregamento dos dados, faça o redirecionamento
+                const role = this.authGatewayService.getRoleFromToken();
+                console.log('role', role);
+                if (role === 'FUNCIONARIO') {
+                  this.router.navigate(['/homepage']);
+                } else if (role === 'CLIENTE') {
+                  this.router.navigate(['/homepage-cliente']);
+                } else {
+                  this.router.navigate(['/login']);
+                }
+              },
+              error: (err) => {
+                console.error('Erro ao carregar os dados do usuário:', err);
+                this.loginError = true;
+                this.message = 'Erro ao carregar dados do usuário após login.';
+              },
+            });
+          }
+        },
+        error: (err) => {
+          console.error('Erro ao realizar login:', err);
+          this.loginError = true;
+          this.message = 'Login ou senha incorretos!';
+        },
+      });
     }
   }
+  
 }
