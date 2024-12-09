@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MilhasService } from '../../services/prototipo/milhas.service';
 import { LoginService } from '../../services/prototipo/login.service';
 import { CommonModule } from '@angular/common';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { Milha } from '../../shared/models/prototipo/milha.model';
 import { ModalNotificacaoComponent } from './modal-notificacao/modal-notificacao.component';
 import { NgbModalModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MilhasGatewayService } from '../../services/api-gateway/milhas-gateway.service';
+import { AuthGatewayService } from '../../services/api-gateway/auth-gateway.service';
 
 @Component({
   selector: 'app-r05-comprar-milhas',
   standalone: true,
-  imports: [FormsModule, CurrencyMaskModule, CommonModule, ModalNotificacaoComponent, NgbModalModule],
+  imports: [
+    FormsModule,
+    CurrencyMaskModule,
+    CommonModule,
+    ModalNotificacaoComponent,
+    NgbModalModule,
+  ],
   templateUrl: './r05-comprar-milhas.component.html',
-  styleUrls: ['./r05-comprar-milhas.component.css']
+  styleUrls: ['./r05-comprar-milhas.component.css'],
 })
-
 export class R05ComprarMilhasComponent {
   valorReais: number = 0;
   quantidadeMilhas: number = 0;
@@ -24,20 +29,70 @@ export class R05ComprarMilhasComponent {
   idCliente: string = '';
   mostrarModal: boolean = false;
   mensagemModal: string = '';
-  tipoModal: 'sucesso' | 'erro' = 'sucesso'; 
+  tipoModal: 'sucesso' | 'erro' = 'sucesso';
+
+  resultado: any;
+  erro!: string;
 
   constructor(
-    private milhasService: MilhasService,
+    private milhasGatewayService: MilhasGatewayService,
     private loginService: LoginService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authGatewayService: AuthGatewayService
+  ) {
+    const usuarioLogado = this.loginService.getUsuarioLogado();
 
-    ){
-      const usuarioLogado = this.loginService.getUsuarioLogado();
+    if (usuarioLogado) {
+      this.loginCliente = usuarioLogado.login;
+      this.idCliente = usuarioLogado.id;
+    }
+  }
 
-      if (usuarioLogado) {
-        this.loginCliente = usuarioLogado.login;
-        this.idCliente = usuarioLogado.id;
+  comprarMilhas(quantidadeMilhas: number): void {
+    const usuario = this.authGatewayService.getUser();
+
+    if (usuario) {
+      const role = this.authGatewayService.getRoleFromToken();
+
+      let idUsuario: number | null = null;
+
+      if (role === 'CLIENTE' && 'idCliente' in usuario) {
+        idUsuario = Number(usuario.idCliente);
+      } else if (role === 'FUNCIONARIO' && 'idFuncionario' in usuario) {
+        idUsuario = Number(usuario.idFuncionario);
       }
+
+      if (idUsuario !== null) {
+        this.milhasGatewayService
+          .comprarMilhas(idUsuario, quantidadeMilhas)
+          .subscribe(
+            (response) => {
+              this.resultado = response;
+              console.log(
+                'Milhas compradas com sucesso:',
+                this.quantidadeMilhas
+              );
+              this.mensagemModal = 'Compra registrada com sucesso!';
+              this.tipoModal = 'sucesso';
+              this.limparCampos();
+              this.abrirModal();
+            },
+            (error) => {
+              this.erro = 'Erro ao comprar milhas';
+              console.error('Erro:', error);
+              this.mensagemModal = 'Erro ao registrar a compra';
+              this.tipoModal = 'erro';
+              this.abrirModal();
+            }
+          );
+      } else {
+        this.erro = 'ID do usuário não encontrado!';
+        console.error('Erro: ID do usuário não encontrado');
+      }
+    } else {
+      this.erro = 'Usuário não autenticado!';
+      console.error('Erro: Usuário não encontrado');
+    }
   }
 
   calcularMilhas(): void {
@@ -59,40 +114,6 @@ export class R05ComprarMilhasComponent {
       this.quantidadeMilhas = 0;
       this.erroValor = 'O valor não pode ser inferior a R$ 5,00.';
     }
-  }
-
-  onSubmit(): void {
-    if (this.erroValor || this.valorReais <= 0) {
-      this.erroValor = 'A compra de milhas não pode ser realizada com valor igual ou menor que zero.';
-      return; // Não permite o envio do formulário se houver erro
-    }
-
-    const usuarioLogado = this.loginService.getUsuarioLogado();
-    console.log(usuarioLogado); 
-
-    const compra: Milha = {
-        id: this.gerarIdUnico(), // Gera um ID único para a transação
-        cliente: this.loginCliente,
-        idCliente: this.idCliente,
-        dataHoraTransacao: new Date(new Date().getTime() - (3 * 60 * 60 * 1000)).toISOString(), // Ajusta para UTC-3
-        quantidadeMilhas: this.quantidadeMilhas,
-        tipoTransacao: 'entrada',
-        descricao: 'Compra de milhas'
-    };
-
-    this.milhasService.postMilha(compra).subscribe({
-        next: (res) => {
-          this.mensagemModal = 'Compra registrada com sucesso!';
-          this.tipoModal = 'sucesso';
-          this.limparCampos();
-          this.abrirModal();
-        },
-        error: (err) => {
-          this.mensagemModal = 'Erro ao registrar a compra';
-          this.tipoModal = 'erro';
-          this.abrirModal();
-        }
-    });
   }
 
   gerarIdUnico(): string {

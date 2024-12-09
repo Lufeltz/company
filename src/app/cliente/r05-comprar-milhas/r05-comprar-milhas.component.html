@@ -5,23 +5,32 @@
     <div class="comprar-milhas-descrição">
       <h4>Instruções de Compra</h4>
       <p>
-        Você pode comprar milhas com base na proporção de 1 milha para cada R$ 5,00. O valor em reais deve ser um múltiplo de R$ 5,00 e não pode ser inferior a R$ 5,00. Insira o valor desejado e as milhas correspondentes serão automaticamente calculadas e creditadas em sua conta. Certifique-se de inserir um valor válido para concluir a compra.
+        Você pode comprar milhas com base na proporção de 1 milha para cada R$
+        5,00. O valor em reais deve ser um múltiplo de R$ 5,00 e não pode ser
+        inferior a R$ 5,00. Insira o valor desejado e as milhas correspondentes
+        serão automaticamente calculadas e creditadas em sua conta.
+        Certifique-se de inserir um valor válido para concluir a compra.
       </p>
     </div>
 
-    <form class="form-comprar-milhas display-flex" (ngSubmit)="onSubmit()">
+    <form class="form-comprar-milhas display-flex">
       <div class="display-flex-column">
         <label for="valor-reais-input">Valor gasto em reais</label>
-        <input type="text"
-               class="form-control"
-               name="valorReais"
-               id="valor-reais-input"
-               [(ngModel)]="valorReais"
-               (ngModelChange)="calcularMilhas()"
-               [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-               currencyMask
-               placeholder="R$ 0,00" /> <!-- Chama calcularMilhas a cada digitação -->
-        <div *ngIf="erroValor" class="error-message text-danger">{{ erroValor }}</div>
+        <input
+          type="text"
+          class="form-control"
+          name="valorReais"
+          id="valor-reais-input"
+          [(ngModel)]="valorReais"
+          (ngModelChange)="calcularMilhas()"
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          currencyMask
+          placeholder="R$ 0,00"
+        />
+        <!-- Chama calcularMilhas a cada digitação -->
+        <div *ngIf="erroValor" class="error-message text-danger">
+          {{ erroValor }}
+        </div>
       </div>
 
       <div class="linha-centralizada">
@@ -32,8 +41,19 @@
 
       <div class="display-flex-column">
         <label for="qtd-milhas-input">Total em milhas</label>
-        <input class="form-control" type="number" id="qtd-milhas-input" [(ngModel)]="quantidadeMilhas" name="quantidadeMilhas" min="1" readonly />
-        <button class="btn_blue" type="submit" [disabled]="erroValor">Comprar</button>
+        <input
+          class="form-control"
+          type="number"
+          id="qtd-milhas-input"
+          [(ngModel)]="quantidadeMilhas"
+          name="quantidadeMilhas"
+          min="1"
+          readonly
+        />
+        <button class="btn_blue" type="submit" [disabled]="erroValor"
+        (click)="comprarMilhas(quantidadeMilhas)">
+          Comprar
+        </button>
       </div>
     </form>
   </div>
