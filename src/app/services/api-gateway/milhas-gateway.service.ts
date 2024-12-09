@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
+import { MilhaDetalhesGateway } from '../../shared/models/api-gateway/milha-detalhes-gateway.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,27 @@ export class MilhasGatewayService {
         catchError((err) => {
           console.error('Erro ao comprar milhas', err);
           throw err;
+        })
+      );
+  }
+
+  // Função para consultar o extrato de milhas
+  consultarExtrato(idCliente: number): Observable<MilhaDetalhesGateway | null> {
+    const url = `${this.NEW_URL}/extrato-milhas/${idCliente}`;
+
+    return this._http
+      .get<MilhaDetalhesGateway>(url, { observe: 'response' })
+      .pipe(
+        map((resp: HttpResponse<MilhaDetalhesGateway>) => {
+          if (resp.status === 200) {
+            return resp.body;
+          } else {
+            return new MilhaDetalhesGateway(); // ou null, dependendo do seu caso de uso
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao consultar extrato de milhas', err);
+          return throwError(err);
         })
       );
   }

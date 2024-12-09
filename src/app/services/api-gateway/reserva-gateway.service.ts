@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { ReservaCriacaoGateway } from '../../shared/models/api-gateway/reserva-criacao-gateway.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,29 @@ export class ReservaGatewayService {
       'Content-Type': 'application/json',
     }),
   };
+
+  // Método para criar uma nova reserva
+  criarReserva(reserva: ReservaCriacaoGateway): Observable<any> {
+    return this._http
+      .post<any>(
+        `${this.NEW_URL}/reservas/cadastrar-reserva`, // Endpoint para criar reserva
+        reserva, // O corpo da requisição com os dados da reserva
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<any>) => {
+          if (resp.status === 201) {
+            return resp.body; // Retorna o corpo da resposta
+          } else {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao criar reserva', err);
+          return throwError(() => err);
+        })
+      );
+  }
 
   consultarReserva(codigoReserva: string): Observable<any> {
     return this._http
