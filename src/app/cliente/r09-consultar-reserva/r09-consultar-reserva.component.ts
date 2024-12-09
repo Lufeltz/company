@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ReservasService } from '../../services/prototipo/reservas.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClientesService } from '../../services/prototipo/clientes.service';
 import { LoginService } from '../../services/prototipo/login.service';
@@ -12,33 +12,90 @@ import { Voo } from '../../shared/models/prototipo/voo.model';
 import { VoosService } from '../../services/prototipo/voos.service';
 import { R08CancelarReservaComponent } from '../r08-cancelar-reserva/r08-cancelar-reserva.component';
 import { ModalCheckinComponent } from '../r10-fazer-check-in/confirmacao/modal-checkin/modal-checkin.component';
+import { ReservaGatewayService } from '../../services/api-gateway/reserva-gateway.service';
+import { ReservaGateway } from '../../shared/models/api-gateway/reserva-gateway.model';
+import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
+import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
 
 @Component({
   selector: 'app-r09-consultar-reserva',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './r09-consultar-reserva.component.html',
-  styleUrl: './r09-consultar-reserva.component.css'
+  styleUrl: './r09-consultar-reserva.component.css',
 })
 export class R09ConsultarReservaComponent {
   @ViewChild('formConsultaReserva') formConsultaReserva!: NgForm;
   codigoReserva?: string;
-  reservaEncontrada?: boolean | null = null; 
+  reservaEncontrada?: boolean | null = null;
   isPendente: boolean = false;
   isCancelavel: boolean = false;
   private usuario: Usuario = new Usuario();
   private cliente: Cliente = new Cliente();
-  private reserva?: { reserva: Reserva; voo: Voo | undefined } = { reserva: {} as Reserva, voo: undefined };;
+
+  voo: VooGateway = new VooGateway();
+
+  erro: string = ''; // Para armazenar erros, caso ocorram
+
+  // private reserva?: { reserva: Reserva; voo: Voo | undefined } = {
+  //   reserva: {} as Reserva,
+  //   voo: undefined,
+  // };
+
+  reserva: ReservaGateway = new ReservaGateway();
 
   constructor(
-    private reservaService: ReservasService,
-    private voosService: VoosService,
+    private reservaGatewayService: ReservaGatewayService,
     private clienteService: ClientesService,
     private loginService: LoginService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private vooGatewayService: VooGatewayService
   ) {}
 
-  getClienteByUser(): void{
+  // Método para consultar o voo
+  consultarVoo(codigoVoo: string): void {
+    this.vooGatewayService.getVooById(codigoVoo).subscribe(
+      (response) => {
+        if (response) {
+          this.voo = response; // Atribui a resposta diretamente à variável 'voo'
+          console.log('Detalhes do voo:', this.voo);
+          // this.vooEncontrado = true; // Marca o voo como encontrado
+        } else {
+          this.erro = 'Voo não encontrado.'; // Caso não encontre o voo
+          // this.vooEncontrado = false;
+        }
+      },
+      (error) => {
+        this.erro = 'Erro ao consultar o voo.'; // Caso ocorra algum erro
+        // this.vooEncontrado = false;
+        console.error('Erro ao consultar o voo', error);
+      }
+    );
+  }
+
+  // Método para consultar a reserva
+  consultarReserva(codigoReserva: string): void {
+    this.reservaGatewayService.consultarReserva(codigoReserva).subscribe(
+      (response) => {
+        if (response) {
+          this.reserva = response; // Atribui a resposta diretamente à variável 'reserva'
+          console.log('Detalhes da reserva:', this.reserva);
+          if (this.reserva) {
+            this.consultarVoo(this.reserva.voo.codigoVoo);
+            console.log('Detalhes voo:', this.voo);
+          }
+          this.reservaEncontrada = true;
+        } else {
+          this.erro = 'Reserva não encontrada.';
+        }
+      },
+      (error) => {
+        this.erro = 'Erro ao consultar a reserva.';
+        console.error('Erro ao consultar a reserva', error);
+      }
+    );
+  }
+  getClienteByUser(): void {
     this.usuario = this.loginService.getUsuarioLogado();
     let clientes: Cliente[] = [];
     this.clienteService.getAllClientes().subscribe({
@@ -47,8 +104,8 @@ export class R09ConsultarReservaComponent {
           clientes = [];
         } else {
           clientes = data;
-          for(let i: number = 0; i<clientes.length; i++){
-            if(clientes[i].email.split('@')[0] === this.usuario.login){ 
+          for (let i: number = 0; i < clientes.length; i++) {
+            if (clientes[i].email.split('@')[0] === this.usuario.login) {
               this.cliente = clientes[i];
               break;
             }
@@ -61,84 +118,26 @@ export class R09ConsultarReservaComponent {
     });
   }
 
-  consultar(): void{
-    if (this.formConsultaReserva.form.valid && this.codigoReserva) {
-      let achou: boolean = false;
-    if(this.codigoReserva != null){
-    let reservas: Reserva[] = [];
-    this.reservaService.getAllReservas().subscribe({
-      next: (data: Reserva[] | null) => {
-        if(data == null){
-          reservas = [];
-        } else {
-          reservas = data;
-          for(let i: number = 0; i<reservas.length; i++){
-            if(reservas[i].codigoReserva === this.codigoReserva && this.reserva != null){ 
-              this.reserva.reserva = reservas[i];
-              achou = true;
-              this.reservaEncontrada = true;
-              if(reservas[i].estadoReserva == "pendente" || reservas[i].estadoReserva == "confirmada"){
-                this.isCancelavel = true;
-              } else {
-                this.isCancelavel = false;
-              }
-              this.voosService.getAllVoos().subscribe({
-                next:(data: Voo[] | null) => {
-                  if(data == null){
-                    if(this.reserva){
-                    this.reserva.voo = undefined;
-                    }
-                  } else {
-                    for(let i=0; i<data.length; i++){
-                      if(data[i].codigoVoo == this.reserva?.reserva.codigoVoo){
-                        this.reserva.voo = data[i];
-                        let dataAtual = new Date() // new Date("2024-09-30T15:30:00") <- PARA TESTE
-                        if((new Date(data[i].dataHora).getTime() - dataAtual.getTime()) <= (48 * 60 * 60 * 1000) &&
-                        new Date(data[i].dataHora) >= dataAtual &&
-                        this.reserva.reserva.estadoReserva != "cancelada" && this.reserva.reserva.estadoReserva != "confirmada"){
-                          this.isPendente = true;
-                        }
-                        break;
-                      }
-                    }
-                  }
-                }, 
-                error: (err) => {
-                  console.log("Erro ao carregar voos da base de dados");
-                }
-              });
-              break;
-            }
-          }
-          if (!achou) {
-            this.reservaEncontrada = false;
-          }
-        }
-      },
-      error: (err) => {
-        console.log("Erro ao carregar reservas da base de dados");
-      },
-    });
-  }}
-  }
-
-  cancelarReserva(reserva: { reserva: Reserva; voo: Voo | undefined } | null): void {
+  cancelarReserva(
+    reserva: { reserva: Reserva; voo: Voo | undefined } | null
+  ): void {
     const modalRef = this.modalService.open(R08CancelarReservaComponent);
     modalRef.componentInstance.reserva = reserva;
     modalRef.componentInstance.clienteLogado = this.cliente;
   }
 
-  fazerCheckIn(reserva: { reserva: Reserva; voo: Voo | undefined } | null): void{
-    const modalRef = this.modalService.open(ModalCheckinComponent);
-    modalRef.componentInstance.voo = reserva?.voo;
+  fazerCheckIn(
+    reserva: { reserva: Reserva; voo: Voo | undefined } | null
+  ): void {
+    // const modalRef = this.modalService.open(ModalCheckinComponent);
+    // modalRef.componentInstance.voo = reserva?.voo;
   }
 
-  get Reserva(): { reserva: Reserva; voo: Voo | undefined } | null{
-    if(this.reserva != null){
-      return this.reserva;
-    } else {
-      return null;
-    }
-  }
-  
+  // get Reserva(): { reserva: Reserva; voo: Voo | undefined } | null {
+  //   if (this.reserva != null) {
+  //     return this.reserva;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

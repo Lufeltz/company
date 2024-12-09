@@ -84,22 +84,23 @@ export class VooGatewayService {
       );
   }
 
-  getVooById(id: number): Observable<VooGateway | null> {
+  // Método para obter voo por código do voo
+  getVooById(codigoVoo: string): Observable<VooGateway | null> {
     return this._http
-      .get<VooGateway>(`${this.NEW_URL}/voos/${id}`, this.httpOptions)
+      .get<VooGateway>(`${this.NEW_URL}/voos/${codigoVoo}`, this.httpOptions) // Passando o codigoVoo na URL
       .pipe(
         map((resp: HttpResponse<VooGateway>) => {
-          if (resp.status == 200) {
-            return resp.body;
+          if (resp.status === 200) {
+            return resp.body; // Retorna o corpo da resposta (Voo)
           } else {
             return null;
           }
         }),
         catchError((err, caught) => {
-          if (err.status == 404) {
-            return of(null);
+          if (err.status === 404) {
+            return of(null); // Retorna null caso o voo não seja encontrado
           } else {
-            return throwError(() => err);
+            return throwError(() => err); // Lança o erro caso outro tipo de erro aconteça
           }
         })
       );
@@ -127,42 +128,4 @@ export class VooGatewayService {
         })
       );
   }
-
-  // putVoo(voo: VooGateway): Observable<VooGateway | null> {
-  //   return this._http
-  //     .put<VooGateway>(
-  //       `${this.NEW_URL}/voos/${voo.id}`,
-  //       JSON.stringify(voo),
-  //       this.httpOptions
-  //     )
-  //     .pipe(
-  //       map((resp: HttpResponse<VooGateway>) => {
-  //         if (resp.status == 200) {
-  //           return resp.body;
-  //         } else {
-  //           return null;
-  //         }
-  //       }),
-  //       catchError((err, caught) => {
-  //         return throwError(() => err);
-  //       })
-  //     );
-  // }
-
-  // deleteVoo(id: string): Observable<Voo | null> {
-  //   return this._http
-  //     .delete<Voo>(`${this.NEW_URL}/voos/${id}`, this.httpOptions)
-  //     .pipe(
-  //       map((resp: HttpResponse<Voo>) => {
-  //         if (resp.status == 200) {
-  //           return resp.body;
-  //         } else {
-  //           return null;
-  //         }
-  //       }),
-  //       catchError((err, caught) => {
-  //         return throwError(() => err);
-  //       })
-  //     );
-  // }
 }
