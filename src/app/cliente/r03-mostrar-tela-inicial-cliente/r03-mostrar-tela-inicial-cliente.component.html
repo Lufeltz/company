@@ -2,10 +2,10 @@
   <div class="header-com-milhas">
     <h1 class="text-center t_blue">Reservas</h1>
     <div class="mb-4">
-      <div class="card shadow-sm bg-white rounded" style="width: 12rem;">
+      <div class="card shadow-sm bg-white rounded" style="width: 12rem">
         <div class="card-body">
           <h6 class="card-title text-muted">Saldo em Milhas</h6>
-          <p class="card-text h5 text-primary mb-0">{{ saldo }}</p>
+          <p class="card-text h5 text-primary mb-0">{{ qntMilhasCliente }}</p>
         </div>
       </div>
     </div>
@@ -30,19 +30,22 @@
             <td>{{ reserva.voo?.aeroportoOrigem }}</td>
             <td>{{ reserva.voo?.aeroportoDestino }}</td>
             <td>
-              <button
-                class="btn btn_blue"
-                (click)="visualizarReserva(reserva)"
-              >
+              <button class="btn btn_blue" (click)="visualizarReserva(reserva)">
                 Visualizar
               </button>
               <button
-                  class="btn btn-danger"
-                  (click)="cancelarReserva(reserva, clienteLogado)"
-                >
-                  Cancelar
-                </button>
-              </td>
+                class="btn btn-danger"
+                
+              >
+                Cancelar
+              </button>
+              <!-- <button
+                class="btn btn-danger"
+                (click)="cancelarReserva(reserva, clienteLogado)"
+              >
+                Cancelar
+              </button> -->
+            </td>
           </tr>
         </tbody>
       </table>
