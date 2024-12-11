@@ -4,7 +4,8 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideNgxMask } from 'ngx-mask';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), provideNgxMask()],
+  providers: [provideRouter(routes), provideHttpClient(), provideNgxMask(), CookieService],
 };

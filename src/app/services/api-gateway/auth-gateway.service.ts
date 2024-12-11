@@ -1,29 +1,41 @@
 import { Injectable } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
+
 import { ClienteGateway } from '../../shared/models/api-gateway/cliente-gateway.model';
-import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model'; // Import FuncionarioGateway
+import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { LoginResponseGateway } from '../../shared/models/api-gateway/login-response-gateway.model';
 import { LoginRequestGateway } from '../../shared/models/api-gateway/login-request-gateway.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { TokenService } from './token.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGatewayService {
-  constructor(private _http: HttpClient, private router: Router) {}
-
   private readonly NEW_URL = 'http://localhost:3015/api';
-
   private readonly httpOptions = {
     observe: 'response' as 'response',
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
-
   private user: ClienteGateway | FuncionarioGateway | null = null;
+
+  constructor(
+    private _http: HttpClient,
+    private router: Router,
+    private tokenService: TokenService
+  ) {
+    this.initializeUser();
+  }
+
+  private initializeUser(): void {
+    if (this.isAuthenticated()) {
+      this.loadUserData().subscribe();
+    }
+  }
 
   login(loginRequest: LoginRequestGateway): Observable<string | null> {
     return this._http
@@ -38,8 +50,8 @@ export class AuthGatewayService {
       .pipe(
         tap((resp) => {
           if (resp.token) {
-            localStorage.setItem('jwt', resp.token);
-            this.loadUserData();
+            this.tokenService.setToken(resp.token);
+            this.loadUserData().subscribe();
           }
         }),
         map((resp) => resp.token || null),
@@ -47,21 +59,11 @@ export class AuthGatewayService {
       );
   }
 
-  loadToken(): Observable<void> {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      return of(undefined);
-    }
-    return throwError(() => new Error('Token não encontrado.'));
-  }
-
-  public loadUserData(): Observable<
-    ClienteGateway | FuncionarioGateway | undefined
-  > {
+  loadUserData(): Observable<ClienteGateway | FuncionarioGateway | undefined> {
     const email = this.getEmailFromToken();
     const role = this.getRoleFromToken();
     if (email !== null && role !== null) {
-      const token = this.getToken();
+      const token = this.tokenService.getToken();
       const headers = this.httpOptions.headers.set(
         'Authorization',
         `Bearer ${token}`
@@ -76,7 +78,6 @@ export class AuthGatewayService {
         .get<ClienteGateway | FuncionarioGateway>(endpoint, { headers })
         .pipe(
           tap((user) => {
-            localStorage.setItem('user', JSON.stringify(user));
             this.user = user;
           }),
           catchError((err) => {
@@ -84,34 +85,25 @@ export class AuthGatewayService {
               `Erro ao obter os dados do ${role.toLowerCase()}:`,
               err
             );
-            return of(undefined); // Retorna um observable vazio em caso de erro
+            return of(undefined);
           })
         );
     }
-    return of(undefined); // Retorna um observable vazio caso o email ou role sejam nulos
+    return of(undefined);
   }
 
   logout(): void {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('user');
+    this.tokenService.clearToken();
     this.user = null;
     this.router.navigate(['/login']);
   }
 
   getUser(): ClienteGateway | FuncionarioGateway | null {
-    if (this.user) {
-      return this.user;
-    }
-    const userData = localStorage.getItem('user');
-    return userData ? JSON.parse(userData) : null;
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('jwt');
+    return this.user;
   }
 
   isAuthenticated(): boolean {
-    const token = this.getToken();
+    const token = this.tokenService.getToken();
     if (token) {
       if (this.isTokenExpired(token)) {
         this.logout();
@@ -133,7 +125,7 @@ export class AuthGatewayService {
   }
 
   private getEmailFromToken(): string | null {
-    const token = this.getToken();
+    const token = this.tokenService.getToken();
     if (token) {
       try {
         const decodedToken: any = jwtDecode(token);
@@ -147,7 +139,7 @@ export class AuthGatewayService {
   }
 
   getRoleFromToken(): string | null {
-    const token = this.getToken();
+    const token = this.tokenService.getToken();
     if (token) {
       try {
         const decodedToken: any = jwtDecode(token);

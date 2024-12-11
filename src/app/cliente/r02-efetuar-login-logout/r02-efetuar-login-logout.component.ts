@@ -6,13 +6,14 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LoginRequestGateway } from '../../shared/models/api-gateway/login-request-gateway.model';
 import { AuthGatewayService } from '../../services/api-gateway/auth-gateway.service';
+import { TokenService } from '../../services/api-gateway/token.service';
 
 @Component({
   selector: 'app-r02-efetuar-login-logout',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './r02-efetuar-login-logout.component.html',
-  styleUrl: './r02-efetuar-login-logout.component.css',
+  styleUrls: ['./r02-efetuar-login-logout.component.css'],
 })
 export class R02EfetuarLoginLogoutComponent implements OnInit {
   usuarios: Usuario[] = [];
@@ -26,11 +27,24 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
   constructor(
     private usuarioService: UsuariosService,
     private router: Router,
-    private authGatewayService: AuthGatewayService
+    private authGatewayService: AuthGatewayService,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
     this.getUsuarios();
+
+    // Verifique se o usuário já está autenticado
+    if (this.authGatewayService.isAuthenticated()) {
+      const role = this.authGatewayService.getRoleFromToken();
+      if (role === 'FUNCIONARIO') {
+        this.router.navigate(['/homepage']);
+      } else if (role === 'CLIENTE') {
+        this.router.navigate(['/homepage-cliente']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    }
   }
 
   getUsuarios(): void {
@@ -57,9 +71,8 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
         next: (token) => {
           if (token) {
             console.log('Token recebido:', token);
-  
-            localStorage.setItem('jwt', token);
-  
+            this.tokenService.setToken(token);
+
             // Chama loadUserData e aguarda a resposta
             this.authGatewayService.loadUserData().subscribe({
               next: () => {
@@ -90,5 +103,4 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
       });
     }
   }
-  
 }
