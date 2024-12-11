@@ -102,9 +102,9 @@ export class R03MostrarTelaInicialClienteComponent {
             if (reservas) {
               this.reservasReservadas = reservas;
 
-              this.reservasFiltradas = reservas.filter(
-                (reserva) => reserva.tipoEstadoReserva === 'CONFIRMADO'
-              );
+              // this.reservasFiltradas = reservas.filter(
+              //   (reserva) => reserva.tipoEstadoReserva === 'CONFIRMADO'
+              // );
               console.log(this.reservasReservadas);
             }
           },

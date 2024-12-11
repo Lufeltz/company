@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r13-cancelamento-do-voo',
@@ -12,10 +13,12 @@ import { VooGatewayService } from '../../services/api-gateway/voo-gateway.servic
 })
 export class R13CancelamentoDoVooComponent {
   @Input() vooRecebido!: any; // Aqui pode ser Voo, mas se for outro tipo, ajuste conforme necessário.
+  @Output() voltarClicked = new EventEmitter<void>();
 
   constructor(
     public activeModal: NgbActiveModal, // Para fechar o modal
-    private vooGatewayService: VooGatewayService
+    private vooGatewayService: VooGatewayService,
+    private stateService: StateService
   ) {}
 
   cancelarVoo(): void {
@@ -25,7 +28,9 @@ export class R13CancelamentoDoVooComponent {
         if (response) {
           console.log('Voo cancelado com sucesso!');
           // Fechar o modal após o sucesso
-          this.activeModal.close(); // Fecha o modal
+          // this.activeModal.close(); // Fecha o modal
+          this.voltarClicked.emit(); // Fecha o modal
+          // this.stateService.triggerUpdateListagemVoosFuncionarios();
         } else {
           console.log('Falha ao cancelar voo');
         }
@@ -33,7 +38,9 @@ export class R13CancelamentoDoVooComponent {
       error: (err) => {
         console.log('Erro ao tentar cancelar voo:', err);
         // Você pode fechar o modal também em caso de erro, se necessário
-        this.activeModal.close(); // Fechando modal no erro (opcional)
+        // this.activeModal.close(); // Fechando modal no erro (opcional)
+        this.voltarClicked.emit(); // Fecha o modal
+        // this.stateService.triggerUpdateListagemVoosFuncionarios();
       },
     });
   }

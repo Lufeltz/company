@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Voo } from '../../shared/models/prototipo/voo.model';
 import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r14-realizacao-do-voo',
@@ -14,10 +15,12 @@ import { VooGatewayService } from '../../services/api-gateway/voo-gateway.servic
 })
 export class R14RealizacaoDoVooComponent {
   @Input() vooRecebido!: Voo;
+  @Output() voltarClicked = new EventEmitter<void>();
 
   constructor(
     public activeModal: NgbActiveModal,
-    private vooGatewayService: VooGatewayService
+    private vooGatewayService: VooGatewayService,
+    private stateService: StateService
   ) {}
 
   realizarVoo(): void {
@@ -27,7 +30,8 @@ export class R14RealizacaoDoVooComponent {
         if (response) {
           console.log('Voo realizado com sucesso!');
           // Fechar o modal após o sucesso
-          this.activeModal.close(); // Fecha o modal
+          this.voltarClicked.emit(); // Fecha o modal
+          // this.stateService.triggerUpdateListagemVoosFuncionarios();
         } else {
           console.log('Falha ao realizar voo');
         }
@@ -35,7 +39,8 @@ export class R14RealizacaoDoVooComponent {
       error: (err) => {
         console.log('Erro ao tentar realizar voo:', err);
         // Fechar o modal em caso de erro (opcional)
-        this.activeModal.close(); // Fechando modal no erro (opcional)
+        this.voltarClicked.emit(); // Fecha o modal
+        // this.stateService.triggerUpdateListagemVoosFuncionarios();
       },
     });
   }

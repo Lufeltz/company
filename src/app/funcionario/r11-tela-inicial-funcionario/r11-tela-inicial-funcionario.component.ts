@@ -7,6 +7,7 @@ import { R13CancelamentoDoVooComponent } from '../r13-cancelamento-do-voo/r13-ca
 import { R14RealizacaoDoVooComponent } from '../r14-realizacao-do-voo/r14-realizacao-do-voo.component';
 import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
 import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r11-tela-inicial-funcionario',
@@ -21,12 +22,17 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private vooGatewayService: VooGatewayService
+    private vooGatewayService: VooGatewayService,
+    private stateService: StateService
   ) {}
 
   ngOnInit(): void {
     this.getAllvoos();
     this.getAllVoosGateway();
+
+    this.stateService.updateVoosFuncionarios$.subscribe(() => {
+      this.getAllVoosGateway();
+    });
   }
 
   getAllVoosGateway() {
@@ -69,17 +75,35 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
   //AÇÕES DOS BOTÕES
 
   abrirModalConfirmacaoEmbarque(voo: VooGateway) {
-    const modalRef = this.modalService.open(R12ConfirmacaoEmbarqueComponent);
+    const modalRef = this.modalService.open(R12ConfirmacaoEmbarqueComponent, {
+      backdrop: 'static',
+      centered: true,
+    });
     modalRef.componentInstance.vooRecebido = voo;
   }
 
   abrirModalCancelamentoVoo(voo: VooGateway) {
-    const modalRef = this.modalService.open(R13CancelamentoDoVooComponent);
+    const modalRef = this.modalService.open(R13CancelamentoDoVooComponent, {
+      backdrop: 'static',
+      centered: true,
+    });
     modalRef.componentInstance.vooRecebido = voo;
+    modalRef.componentInstance.voltarClicked.subscribe(() => {
+      // this.getAllVoosGateway();
+      modalRef.close();
+    });
   }
 
   abrirModalRealizacaoVoo(voo: VooGateway) {
-    const modalRef = this.modalService.open(R14RealizacaoDoVooComponent);
+    const modalRef = this.modalService.open(R14RealizacaoDoVooComponent, {
+      backdrop: 'static',
+      centered: true,
+    });
     modalRef.componentInstance.vooRecebido = voo;
+
+    modalRef.componentInstance.voltarClicked.subscribe(() => {
+      // this.getAllVoosGateway();
+      modalRef.close();
+    });
   }
 }
