@@ -4,6 +4,7 @@ import { Funcionario } from '../../shared/models/prototipo/funcionario.model';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
 import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r19-remocao-de-funcionario',
@@ -21,7 +22,10 @@ export class R19RemocaoDeFuncionarioComponent {
   mensagem: string = '';
   mensagem_detalhes: string = '';
 
-  constructor(private funcionarioGatewayService: FuncionarioGatewayService) {}
+  constructor(
+    private funcionarioGatewayService: FuncionarioGatewayService,
+    private stateService: StateService
+  ) {}
 
   ngOnInit(): void {
     // this.listarFuncionarios(); // Carrega a lista de funcionários ao iniciar o componente
@@ -39,6 +43,7 @@ export class R19RemocaoDeFuncionarioComponent {
             // console.log('Funcionario excluído com sucesso next');
             // this.exclusaoConcluida.emit(); // Emite o evento para o pai
             // this.voltarClicked.emit(); // Fecha o modal
+            this.stateService.triggerUpdateListagemFuncionarios();
           },
           error: (err) => {
             this.mensagem = `Erro removendo funcionário ${this.funcionarioParaExcluir.email} - ${this.funcionarioParaExcluir.nome}`;
@@ -46,6 +51,7 @@ export class R19RemocaoDeFuncionarioComponent {
             this.mensagem_detalhes = `[${err.status}] ${err.message}`;
             this.exclusaoConcluida.emit(); // Emite o evento para o pai, mesmo em erro
             this.voltarClicked.emit(); // Fecha o modal
+            this.stateService.triggerUpdateListagemFuncionarios();
           },
         });
     } else {

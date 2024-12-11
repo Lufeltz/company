@@ -10,6 +10,7 @@ import { FuncionarioService } from '../../services/prototipo/funcionarios.servic
 import { FuncionarioSemId } from '../../shared/models/prototipo/funcionario-sem-id.model';
 import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
 import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r17-insercao-de-funcionario',
@@ -31,7 +32,7 @@ export class R17InsercaoDeFuncionarioComponent {
   @Output() adicaoConcluida = new EventEmitter<void>();
   @ViewChild('formAdicionarFuncionario') formAdicionarFuncionario!: NgForm;
 
-  constructor(private funcionarioGatewayService: FuncionarioGatewayService) {}
+  constructor(private funcionarioGatewayService: FuncionarioGatewayService, private stateService: StateService) {}
 
   funcionarios: FuncionarioGateway[] = [];
   novoFuncionario: boolean = true;
@@ -58,10 +59,14 @@ export class R17InsercaoDeFuncionarioComponent {
           .subscribe({
             next: (funcionario) => {
               this.loading = false;
+              this.voltarClicked.emit(); // Fecha o modal
+              this.stateService.triggerUpdateListagemFuncionarios();
             },
             error: (err) => {
               console.log('Funcionário criado error!');
               console.log(this.funcionario);
+              this.voltarClicked.emit(); // Fecha o modal
+              this.stateService.triggerUpdateListagemFuncionarios();
               this.loading = false;
               this.mensagem = `Erro inserindo funcionario ${this.funcionario.nome}`;
               if (err.status == 409) {

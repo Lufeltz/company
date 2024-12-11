@@ -35,6 +35,14 @@ export class R08CancelarReservaComponent {
     private modalService: NgbModal
   ) {}
 
+  formatarEstadoReserva(estado: string): string {
+    if (!estado) return '';
+    return estado
+      .replace(/_/g, ' ')                       // Substitui os underscores por espaços
+      .toLowerCase()                            // Converte tudo para minúsculo
+      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza a primeira letra de cada palavra
+  }
+
   cancelarReserva(reserva: ReservaGateway): void {
     const modalRef = this.modalService.open(ModalConfirmarComponent);
     modalRef.result.then(

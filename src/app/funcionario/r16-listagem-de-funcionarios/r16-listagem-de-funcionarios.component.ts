@@ -11,6 +11,7 @@ import { R19RemocaoDeFuncionarioComponent } from '../r19-remocao-de-funcionario/
 import { NgxMaskPipe } from 'ngx-mask';
 import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
 import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r16-listagem-de-funcionarios',
@@ -30,14 +31,17 @@ export class R16ListagemDeFuncionariosComponent {
   @Input() funcionarioParaExcluir!: FuncionarioGateway;
 
   constructor(
-    private funcionarioService: FuncionarioService,
     private modalService: NgbModal,
-    private funcionarioGatewayService: FuncionarioGatewayService
+    private funcionarioGatewayService: FuncionarioGatewayService,
+    private stateService: StateService
   ) {}
 
   ngOnInit(): void {
-    this.listarFuncionarios();
     this.listarFuncionariosGateway();
+
+    this.stateService.updateFuncionarios$.subscribe(() => {
+      this.listarFuncionariosGateway();
+    });
   }
 
   listarFuncionariosGateway(): void {

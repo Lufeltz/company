@@ -22,7 +22,7 @@
   <p>Destino: {{ reserva.voo.aeroportoDestino.codigoAeroporto }}</p>
   <p>Valor em reais: {{ reserva.voo.valorPassagem | currency : "BRL" }}</p>
   <p>Valor em milhas: {{ reserva.voo.valorPassagem / 5 }}</p>
-  <p>Situação: {{ reserva.tipoEstadoReserva }}</p>
+  <p>Situação: {{ formatarEstadoReserva(reserva.tipoEstadoReserva) }}</p>
 </div>
 <div class="modal-footer">
   <button

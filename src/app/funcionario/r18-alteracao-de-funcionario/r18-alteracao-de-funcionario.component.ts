@@ -14,6 +14,7 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
 import { FuncionarioGatewayService } from '../../services/api-gateway/funcionario-gateway.service';
 import { FuncionarioGateway } from '../../shared/models/api-gateway/funcionario-gateway.model';
+import { StateService } from '../../services/api-gateway/state.service';
 
 @Component({
   selector: 'app-r18-alteracao-de-funcionario',
@@ -34,7 +35,7 @@ export class R18AlteracaoDeFuncionarioComponent {
   @Input() funcionarioParaEditar!: FuncionarioGateway;
   @ViewChild('formEditarFuncionario') formEditarFuncionario!: NgForm;
 
-  constructor(private funcionarioGatewayService: FuncionarioGatewayService) {}
+  constructor(private funcionarioGatewayService: FuncionarioGatewayService, private stateService: StateService) {}
 
   funcionarios: FuncionarioGateway[] = [];
   mensagem: string = '';
@@ -47,10 +48,14 @@ export class R18AlteracaoDeFuncionarioComponent {
         .subscribe({
           next: (funcionario: FuncionarioGateway | null) => {
             // this.router.navigate(['/gerenciar-funcionarios']);
+            this.voltarClicked.emit();
+            this.stateService.triggerUpdateListagemFuncionarios();
+            
           },
           error: (err) => {
             this.edicaoConcluida.emit();
-            this.listarFuncionarios();
+            this.voltarClicked.emit();
+            this.stateService.triggerUpdateListagemFuncionarios();
             console.log(this.funcionarioParaEditar);
             this.mensagem = `Erro atualizando funcionario ${this.funcionarioParaEditar.nome}`;
             this.mensagem_detalhes = `[${err.status}] ${err.message}`;
