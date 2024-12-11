@@ -17,11 +17,10 @@ import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
 export class R07EfetuarReservaComponent {
   voos: Voo[] = [];
   mensagem: string = '';
-  aeroportos: any[] | null = []; // Lista de aeroportos recebida do backend
+  aeroportos: any[] | null = [];
 
   voosAtuais: VooGateway[] = [];
 
-  //variaveis que armazenam valores dos inputs
   aeroportoOrigem: string = '';
   aeroportoDestino: string = '';
 
@@ -31,7 +30,6 @@ export class R07EfetuarReservaComponent {
   ) {}
 
   ngOnInit(): void {
-    // Chama o serviço para listar os aeroportos
     this.listarAeroportos();
   }
 
@@ -55,7 +53,7 @@ export class R07EfetuarReservaComponent {
   listarAeroportos(): void {
     this.vooGatewayService.listarAeroportos().subscribe(
       (data) => {
-        this.aeroportos = data; // Preenche a lista de aeroportos com os dados recebidos
+        this.aeroportos = data;
       },
       (error) => {
         console.error('Erro ao carregar aeroportos', error);
@@ -63,7 +61,6 @@ export class R07EfetuarReservaComponent {
     );
   }
 
-  // Valida se os campos estão preenchidos
   isFormValid(): boolean {
     return (
       this.aeroportoOrigem.trim() !== '' && this.aeroportoDestino.trim() !== ''
@@ -71,7 +68,7 @@ export class R07EfetuarReservaComponent {
   }
 
   selecionarVoo(voo: VooGateway, event: Event): void {
-    event.preventDefault(); // Previne o comportamento padrão do link
+    event.preventDefault();
     this.router.navigate(['efetuar-reserva-2'], {
       state: { vooSelecionado: voo },
     });

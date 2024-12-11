@@ -27,9 +27,7 @@ export class R19RemocaoDeFuncionarioComponent {
     private stateService: StateService
   ) {}
 
-  ngOnInit(): void {
-    // this.listarFuncionarios(); // Carrega a lista de funcionários ao iniciar o componente
-  }
+  ngOnInit(): void {}
 
   inativar(): void {
     this.mensagem = '';
@@ -40,17 +38,14 @@ export class R19RemocaoDeFuncionarioComponent {
         .inativarFuncionario(this.funcionarioParaExcluir.email)
         .subscribe({
           next: () => {
-            // console.log('Funcionario excluído com sucesso next');
-            // this.exclusaoConcluida.emit(); // Emite o evento para o pai
-            // this.voltarClicked.emit(); // Fecha o modal
             this.stateService.triggerUpdateListagemFuncionarios();
           },
           error: (err) => {
             this.mensagem = `Erro removendo funcionário ${this.funcionarioParaExcluir.email} - ${this.funcionarioParaExcluir.nome}`;
             console.log('Funcionario excluído com sucesso error');
             this.mensagem_detalhes = `[${err.status}] ${err.message}`;
-            this.exclusaoConcluida.emit(); // Emite o evento para o pai, mesmo em erro
-            this.voltarClicked.emit(); // Fecha o modal
+            this.exclusaoConcluida.emit();
+            this.voltarClicked.emit();
             this.stateService.triggerUpdateListagemFuncionarios();
           },
         });
@@ -84,6 +79,6 @@ export class R19RemocaoDeFuncionarioComponent {
   }
 
   cancelar(): void {
-    this.voltarClicked.emit(); // Fecha o modal
+    this.voltarClicked.emit();
   }
 }

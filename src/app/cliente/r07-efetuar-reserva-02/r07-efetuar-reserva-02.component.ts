@@ -49,10 +49,8 @@ export class R07EfetuarReserva02Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Recupera o voo selecionado a partir do estado
     this.vooSelecionado = history.state.vooSelecionado;
 
-    // Caso o voo selecionado não seja encontrado (acesso direto à rota), redireciona de volta
     if (!this.vooSelecionado) {
       this.router.navigate(['/efetuar-reserva']);
     }
@@ -75,11 +73,10 @@ export class R07EfetuarReserva02Component implements OnInit {
       }
 
       if (idUsuario !== null) {
-        // Consultar o extrato de milhas do cliente
         this.milhaGatewayService.consultarExtrato(idUsuario).subscribe({
           next: (extrato: MilhaDetalhesGateway | null) => {
             if (extrato) {
-              this.qntMilhasCliente = extrato.saldoMilhas; // Atualizando o saldo de milhas
+              this.qntMilhasCliente = extrato.saldoMilhas;
             }
           },
           error: (err) => {

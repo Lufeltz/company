@@ -21,53 +21,47 @@ import { R16ListagemDeFuncionariosComponent } from './funcionario/r16-listagem-d
 import { R17InsercaoDeFuncionarioComponent } from './funcionario/r17-insercao-de-funcionario/r17-insercao-de-funcionario.component';
 import { R18AlteracaoDeFuncionarioComponent } from './funcionario/r18-alteracao-de-funcionario/r18-alteracao-de-funcionario.component';
 import { R19RemocaoDeFuncionarioComponent } from './funcionario/r19-remocao-de-funcionario/r19-remocao-de-funcionario.component';
-import { CadastroComponent } from './auth/cadastro';
-
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [
-      //angular
-      CommonModule,
-      RouterOutlet,
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  imports: [
+    //angular
+    CommonModule,
+    RouterOutlet,
 
-      //auth
-      R02EfetuarLoginLogoutComponent,
-      CadastroComponent,
+    //auth
+    R02EfetuarLoginLogoutComponent,
 
+    //cliente-pages
 
-      //cliente-pages
+    R03MostrarTelaInicialClienteComponent,
+    R04VerReservaComponent,
+    R05ComprarMilhasComponent,
+    R06ConsultarExtratoMilhasComponent,
+    R07EfetuarReservaComponent,
+    R08CancelarReservaComponent,
+    R09ConsultarReservaComponent,
+    R10FazerCheckInComponent,
 
-      R03MostrarTelaInicialClienteComponent,
-      R04VerReservaComponent,
-      R05ComprarMilhasComponent,
-      R06ConsultarExtratoMilhasComponent,
-      R07EfetuarReservaComponent,
-      R08CancelarReservaComponent,
-      R09ConsultarReservaComponent,
-      R10FazerCheckInComponent,
+    //funcionario-pages
+    R11TelaInicialFuncionarioComponent,
+    R12ConfirmacaoEmbarqueComponent,
+    R13CancelamentoDoVooComponent,
+    R14RealizacaoDoVooComponent,
+    R15CadastroDeVooComponent,
+    R16ListagemDeFuncionariosComponent,
+    R17InsercaoDeFuncionarioComponent,
+    R18AlteracaoDeFuncionarioComponent,
+    R19RemocaoDeFuncionarioComponent,
 
-      //funcionario-pages
-      R11TelaInicialFuncionarioComponent,
-      R12ConfirmacaoEmbarqueComponent,
-      R13CancelamentoDoVooComponent,
-      R14RealizacaoDoVooComponent,
-      R15CadastroDeVooComponent,
-      R16ListagemDeFuncionariosComponent,
-      R17InsercaoDeFuncionarioComponent,
-      R18AlteracaoDeFuncionarioComponent,
-      R19RemocaoDeFuncionarioComponent,
-      
-
-      //components
-      PageNotFoundComponent,
-      NavbarComponent,
-    ]
+    //components
+    PageNotFoundComponent,
+    NavbarComponent,
+  ],
 })
-
 export class AppComponent {
   title = 'Empresa Aérea';
   showNavbar: boolean = true;
@@ -81,5 +75,4 @@ export class AppComponent {
       }
     });
   }
-
 }

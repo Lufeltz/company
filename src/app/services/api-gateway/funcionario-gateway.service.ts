@@ -18,13 +18,12 @@ export class FuncionarioGatewayService {
     }),
   };
 
-  // Método PUT para atualizar funcionário
   atualizarFuncionario(
     funcionario: FuncionarioGateway
   ): Observable<FuncionarioGateway | null> {
     return this._http
       .put<FuncionarioGateway>(
-        `${this.NEW_URL}/funcionarios/atualizar-funcionario`, // Novo endpoint
+        `${this.NEW_URL}/funcionarios/atualizar-funcionario`,
         JSON.stringify(funcionario),
         this.httpOptions
       )
@@ -52,7 +51,7 @@ export class FuncionarioGatewayService {
       )
       .pipe(
         map((resp: HttpResponse<FuncionarioGateway>) => {
-          console.log('Resposta da API:', resp); // Adicionando log para verificar a resposta
+          console.log('Resposta da API:', resp);
           if (resp.status === 202) {
             return resp.body;
           } else {
@@ -60,7 +59,7 @@ export class FuncionarioGatewayService {
           }
         }),
         catchError((err) => {
-          console.error('Erro ao excluir funcionário:', err); // Log para o erro
+          console.error('Erro ao excluir funcionário:', err);
           return throwError(() => err);
         })
       );
@@ -114,20 +113,19 @@ export class FuncionarioGatewayService {
       );
   }
 
-  // Método POST para criar um novo funcionário
   postFuncionario(
     funcionario: FuncionarioGateway
   ): Observable<FuncionarioGateway | null> {
     return this._http
       .post<FuncionarioGateway>(
-        `${this.NEW_URL}/funcionarios`, // Endpoint no API Gateway
+        `${this.NEW_URL}/funcionarios`,
         JSON.stringify(funcionario),
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<FuncionarioGateway>) => {
           if (resp.status === 202) {
-            return resp.body; // Retorna o funcionário criado com sucesso
+            return resp.body;
           } else {
             return null;
           }

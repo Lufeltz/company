@@ -82,8 +82,6 @@ export class R16ListagemDeFuncionariosComponent {
     return this.funcionarios;
   }
 
-  // CRIAÇÃO DOS MODAIS
-
   adicionar(): void {
     const modalRef = this.modalService.open(R17InsercaoDeFuncionarioComponent, {
       backdrop: 'static',
@@ -134,7 +132,7 @@ export class R16ListagemDeFuncionariosComponent {
 
     modalRef.componentInstance.exclusaoConcluida.subscribe(() => {
       this.listarFuncionarios();
-      modalRef.close(); // Also close the modal when the deletion is completed
+      modalRef.close();
     });
   }
 }

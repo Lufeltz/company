@@ -35,7 +35,10 @@ export class R18AlteracaoDeFuncionarioComponent {
   @Input() funcionarioParaEditar!: FuncionarioGateway;
   @ViewChild('formEditarFuncionario') formEditarFuncionario!: NgForm;
 
-  constructor(private funcionarioGatewayService: FuncionarioGatewayService, private stateService: StateService) {}
+  constructor(
+    private funcionarioGatewayService: FuncionarioGatewayService,
+    private stateService: StateService
+  ) {}
 
   funcionarios: FuncionarioGateway[] = [];
   mensagem: string = '';
@@ -47,10 +50,8 @@ export class R18AlteracaoDeFuncionarioComponent {
         .atualizarFuncionario(this.funcionarioParaEditar)
         .subscribe({
           next: (funcionario: FuncionarioGateway | null) => {
-            // this.router.navigate(['/gerenciar-funcionarios']);
             this.voltarClicked.emit();
             this.stateService.triggerUpdateListagemFuncionarios();
-            
           },
           error: (err) => {
             this.edicaoConcluida.emit();

@@ -65,7 +65,7 @@ export class R10FazerCheckInComponent {
   }
 
   formatarTempoEntreDatas(data: string): string {
-    const dataInicial: Date = new Date(); // new Date("2024-09-30T15:30:00") <- PARA TESTE
+    const dataInicial: Date = new Date();
     const dataFinal = new Date(data);
     const diferençaEmMs = dataFinal.getTime() - dataInicial.getTime();
 
@@ -94,7 +94,7 @@ export class R10FazerCheckInComponent {
           const sucessoModalRef = this.modalService.open(
             ModalSuccessCheckinComponent
           );
-          sucessoModalRef.componentInstance.voo = result.voo; // Passe o voo correto
+          sucessoModalRef.componentInstance.voo = result.voo;
         } else {
           console.log('Erro ao realizar check-in:', result?.error);
         }

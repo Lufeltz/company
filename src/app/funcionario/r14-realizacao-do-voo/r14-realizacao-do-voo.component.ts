@@ -24,76 +24,22 @@ export class R14RealizacaoDoVooComponent {
   ) {}
 
   realizarVoo(): void {
-    console.log(this.vooRecebido.codigoVoo); // Exibindo o código do voo
+    console.log(this.vooRecebido.codigoVoo);
     this.vooGatewayService.realizarVoo(this.vooRecebido.codigoVoo).subscribe({
       next: (response) => {
         if (response) {
           console.log('Voo realizado com sucesso!');
-          // Fechar o modal após o sucesso
-          this.voltarClicked.emit(); // Fecha o modal
-          // this.stateService.triggerUpdateListagemVoosFuncionarios();
+
+          this.voltarClicked.emit();
         } else {
           console.log('Falha ao realizar voo');
         }
       },
       error: (err) => {
         console.log('Erro ao tentar realizar voo:', err);
-        // Fechar o modal em caso de erro (opcional)
-        this.voltarClicked.emit(); // Fecha o modal
-        // this.stateService.triggerUpdateListagemVoosFuncionarios();
+
+        this.voltarClicked.emit();
       },
     });
   }
-
-  // realizacaoVoo() {
-  //   this.reservaService.getAllReservas().subscribe({
-  //     next: (reservas: Reserva[] | null) => {
-  //       if (!reservas) {
-  //         reservas = [];
-  //       }
-
-  //       // Filtra as reservas que pertencem ao vooRecebido
-  //       const reservasDoVoo = reservas.filter(
-  //         (reserva) => reserva.codigoVoo === this.vooRecebido.codigoVoo
-  //       );
-
-  //       // Variável para controle de sucesso das atualizações
-  //       let falhaNaAtualizacao = false;
-
-  //       // Itera sobre as reservas do voo e altera o estado
-  //       reservasDoVoo.forEach((reserva) => {
-  //         if (reserva.estadoReserva === 'embarcado') {
-  //           reserva.estadoReserva = 'realizado';
-  //         } else {
-  //           reserva.estadoReserva = 'não realizado';
-  //         }
-
-  //         // Atualiza cada reserva no backend
-  //         this.reservaService.putReserva(reserva).subscribe({
-  //           next: (response) => {
-  //             console.log('Reserva atualizada com sucesso:', reserva);
-  //           },
-  //           error: (err) => {
-  //             console.error('Erro ao atualizar reserva:', err);
-  //             falhaNaAtualizacao = true;
-  //           },
-  //         });
-  //       });
-
-  //       // Mensagem final após o processamento de todas as reservas
-  //       if (falhaNaAtualizacao) {
-  //         alert('Houve um erro ao atualizar algumas reservas.');
-  //       } else {
-  //         alert('Todas as reservas do voo foram atualizadas com sucesso.');
-  //       }
-
-  //       // Fechar o modal após o processo
-  //       this.activeModal.close();
-  //     },
-  //     error: (err) => {
-  //       console.log('Erro ao carregar reservas da base de dados:', err);
-  //       alert('Erro ao carregar as reservas. Tente novamente mais tarde.');
-  //     },
-  //   });
-  // }
 }

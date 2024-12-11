@@ -12,11 +12,11 @@ import { StateService } from '../../services/api-gateway/state.service';
   styleUrl: './r13-cancelamento-do-voo.component.css',
 })
 export class R13CancelamentoDoVooComponent {
-  @Input() vooRecebido!: any; // Aqui pode ser Voo, mas se for outro tipo, ajuste conforme necessário.
+  @Input() vooRecebido!: any;
   @Output() voltarClicked = new EventEmitter<void>();
 
   constructor(
-    public activeModal: NgbActiveModal, // Para fechar o modal
+    public activeModal: NgbActiveModal,
     private vooGatewayService: VooGatewayService,
     private stateService: StateService
   ) {}
@@ -27,20 +27,16 @@ export class R13CancelamentoDoVooComponent {
       next: (response) => {
         if (response) {
           console.log('Voo cancelado com sucesso!');
-          // Fechar o modal após o sucesso
-          // this.activeModal.close(); // Fecha o modal
-          this.voltarClicked.emit(); // Fecha o modal
-          // this.stateService.triggerUpdateListagemVoosFuncionarios();
+
+          this.voltarClicked.emit();
         } else {
           console.log('Falha ao cancelar voo');
         }
       },
       error: (err) => {
         console.log('Erro ao tentar cancelar voo:', err);
-        // Você pode fechar o modal também em caso de erro, se necessário
-        // this.activeModal.close(); // Fechando modal no erro (opcional)
-        this.voltarClicked.emit(); // Fecha o modal
-        // this.stateService.triggerUpdateListagemVoosFuncionarios();
+
+        this.voltarClicked.emit();
       },
     });
   }

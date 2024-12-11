@@ -49,14 +49,14 @@ export class VooGatewayService {
   realizarVoo(codigoVoo: string): Observable<any> {
     return this._http
       .put<any>(
-        `${this.NEW_URL}/voos/realizar-voo/${codigoVoo}`, // Atualizado para o endpoint de realizar voo
-        null, // Corpo da requisição permanece vazio
+        `${this.NEW_URL}/voos/realizar-voo/${codigoVoo}`,
+        null,
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<any>) => {
           if (resp.status === 202) {
-            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+            return resp.body;
           } else {
             return null;
           }
@@ -71,14 +71,14 @@ export class VooGatewayService {
   cancelarVoo(codigoVoo: string): Observable<any> {
     return this._http
       .put<any>(
-        `${this.NEW_URL}/voos/cancelar-voo/${codigoVoo}`, // Adiciona '/voos' à URL
-        null, // Corpo da requisição permanece vazio
+        `${this.NEW_URL}/voos/cancelar-voo/${codigoVoo}`,
+        null,
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<any>) => {
           if (resp.status === 202) {
-            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+            return resp.body;
           } else {
             return null;
           }
@@ -111,29 +111,27 @@ export class VooGatewayService {
       );
   }
 
-  // Método para obter voo por código do voo
   getVooById(codigoVoo: string): Observable<VooGateway | null> {
     return this._http
-      .get<VooGateway>(`${this.NEW_URL}/voos/${codigoVoo}`, this.httpOptions) // Passando o codigoVoo na URL
+      .get<VooGateway>(`${this.NEW_URL}/voos/${codigoVoo}`, this.httpOptions)
       .pipe(
         map((resp: HttpResponse<VooGateway>) => {
           if (resp.status === 200) {
-            return resp.body; // Retorna o corpo da resposta (Voo)
+            return resp.body;
           } else {
             return null;
           }
         }),
         catchError((err, caught) => {
           if (err.status === 404) {
-            return of(null); // Retorna null caso o voo não seja encontrado
+            return of(null);
           } else {
-            return throwError(() => err); // Lança o erro caso outro tipo de erro aconteça
+            return throwError(() => err);
           }
         })
       );
   }
 
-  // Método para cadastrar um voo
   cadastrarVoo(voo: CadastroVooGateway): Observable<CadastroVooGateway | null> {
     return this._http
       .post<CadastroVooGateway>(
@@ -156,7 +154,6 @@ export class VooGatewayService {
       );
   }
 
-  // Novo método para listar voos atuais
   listarVoosAtuais(
     codigoAeroportoOrigem: string,
     codigoAeroportoDestino: string
@@ -184,26 +181,22 @@ export class VooGatewayService {
       );
   }
 
-  // Novo método para listar todos os aeroportos
   listarAeroportos(): Observable<any[] | null> {
     return this._http
-      .get<any[]>(
-        `${this.NEW_URL}/listar-aeroporto`, // Novo endpoint para listar aeroportos
-        this.httpOptions
-      )
+      .get<any[]>(`${this.NEW_URL}/listar-aeroporto`, this.httpOptions)
       .pipe(
         map((resp: HttpResponse<any[]>) => {
           if (resp.status === 200) {
             return resp.body;
           } else {
-            return []; // Retorna uma lista vazia em caso de falha
+            return [];
           }
         }),
         catchError((err) => {
           if (err.status === 404) {
-            return of([]); // Retorna uma lista vazia caso não haja dados
+            return of([]);
           } else {
-            return throwError(() => err); // Lança o erro em outros casos
+            return throwError(() => err);
           }
         })
       );

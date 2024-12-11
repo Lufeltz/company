@@ -48,22 +48,19 @@ export class R09ConsultarReservaComponent {
     private vooGatewayService: VooGatewayService
   ) {}
 
-  // Método para consultar o voo
   consultarVoo(codigoVoo: string): void {
     this.vooGatewayService.getVooById(codigoVoo).subscribe(
       (response) => {
         if (response) {
-          this.voo = response; // Atribui a resposta diretamente à variável 'voo'
+          this.voo = response;
           console.log('Detalhes do voo:', this.voo);
-          // this.vooEncontrado = true; // Marca o voo como encontrado
         } else {
-          this.erro = 'Voo não encontrado.'; // Caso não encontre o voo
-          // this.vooEncontrado = false;
+          this.erro = 'Voo não encontrado.';
         }
       },
       (error) => {
-        this.erro = 'Erro ao consultar o voo.'; // Caso ocorra algum erro
-        // this.vooEncontrado = false;
+        this.erro = 'Erro ao consultar o voo.';
+
         console.error('Erro ao consultar o voo', error);
       }
     );
@@ -73,13 +70,12 @@ export class R09ConsultarReservaComponent {
     this.reservaGatewayService.consultarReserva(codigoReserva).subscribe(
       (response) => {
         if (response) {
-          this.reserva = response; // Atribui a resposta diretamente à variável 'reserva'
+          this.reserva = response;
           console.log('Detalhes da reserva:', this.reserva);
           if (this.reserva) {
             this.consultarVoo(this.reserva.voo.codigoVoo);
             console.log('Detalhes voo:', this.voo);
 
-            // Verifica se o voo é dentro das próximas 48 horas
             this.verificarVoo();
           }
           this.reservaEncontrada = true;
@@ -98,18 +94,20 @@ export class R09ConsultarReservaComponent {
     const vooData = new Date(this.reserva.voo.dataVoo);
     const agora = new Date();
     const tempoRestante = vooData.getTime() - agora.getTime();
-    const horasRestantes = tempoRestante / (1000 * 3600); // Converte o tempo restante para horas
-  
-    // Verifica se o voo será realizado nas próximas 48 horas
-    if (horasRestantes <= 48 && horasRestantes > 0 && this.reserva.tipoEstadoReserva === 'CONFIRMADO') {
-      this.isPendente = true; // Habilita o botão de Check-in
-      this.isCancelavel = true; // Habilita o botão de Cancelar
+    const horasRestantes = tempoRestante / (1000 * 3600);
+
+    if (
+      horasRestantes <= 48 &&
+      horasRestantes > 0 &&
+      this.reserva.tipoEstadoReserva === 'CONFIRMADO'
+    ) {
+      this.isPendente = true;
+      this.isCancelavel = true;
     } else {
       this.isPendente = false;
       this.isCancelavel = false;
     }
   }
-  
 
   getClienteByUser(): void {
     this.usuario = this.loginService.getUsuarioLogado();
@@ -141,15 +139,17 @@ export class R09ConsultarReservaComponent {
   }
 
   fazerCheckIn(reserva: ReservaGateway): void {
-    console.log(reserva)
+    console.log(reserva);
     const modalRef = this.modalService.open(ModalCheckinComponent);
     modalRef.componentInstance.reserva = reserva;
-  
+
     modalRef.result.then(
       (result) => {
         if (result && result.success) {
-          const sucessoModalRef = this.modalService.open(ModalSuccessCheckinComponent);
-          sucessoModalRef.componentInstance.voo = result.voo; // Pass the flight from the result
+          const sucessoModalRef = this.modalService.open(
+            ModalSuccessCheckinComponent
+          );
+          sucessoModalRef.componentInstance.voo = result.voo;
         } else {
           console.log('Erro ao realizar check-in:', result?.error);
         }
@@ -159,5 +159,4 @@ export class R09ConsultarReservaComponent {
       }
     );
   }
-  
 }

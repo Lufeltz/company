@@ -34,7 +34,6 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
   ngOnInit(): void {
     this.getUsuarios();
 
-    // Verifique se o usuário já está autenticado
     if (this.authGatewayService.isAuthenticated()) {
       const role = this.authGatewayService.getRoleFromToken();
       if (role === 'FUNCIONARIO') {
@@ -73,10 +72,8 @@ export class R02EfetuarLoginLogoutComponent implements OnInit {
             console.log('Token recebido:', token);
             this.tokenService.setToken(token);
 
-            // Chama loadUserData e aguarda a resposta
             this.authGatewayService.loadUserData().subscribe({
               next: () => {
-                // Após o carregamento dos dados, faça o redirecionamento
                 const role = this.authGatewayService.getRoleFromToken();
                 console.log('role', role);
                 if (role === 'FUNCIONARIO') {

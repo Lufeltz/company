@@ -18,19 +18,18 @@ export class R15CadastroDeVooComponent {
   mensagemErro: string = '';
 
   voo: CadastroVooGateway = new CadastroVooGateway();
-  aeroportos: any[] | null = []; // Lista de aeroportos recebida do backend
+  aeroportos: any[] | null = [];
 
   constructor(private vooGatewayService: VooGatewayService) {}
 
   ngOnInit(): void {
-    // Chama o serviço para listar os aeroportos
     this.listarAeroportos();
   }
 
   listarAeroportos(): void {
     this.vooGatewayService.listarAeroportos().subscribe(
       (data) => {
-        this.aeroportos = data; // Preenche a lista de aeroportos com os dados recebidos
+        this.aeroportos = data;
       },
       (error) => {
         console.error('Erro ao carregar aeroportos', error);
@@ -39,7 +38,7 @@ export class R15CadastroDeVooComponent {
   }
 
   cadastrarVoo(form: NgForm) {
-    console.log(this.voo)
+    console.log(this.voo);
     if (form.invalid) {
       Object.keys(form.controls).forEach((controlName) => {
         const control = form.controls[controlName];
@@ -48,7 +47,6 @@ export class R15CadastroDeVooComponent {
       return;
     }
 
-    // Formatar a data para ISO 8601 completo com fuso horário
     const date = new Date(this.voo.dataHora);
     this.voo.dataHora = this.formatDateToISO(date);
 

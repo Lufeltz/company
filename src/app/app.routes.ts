@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { CadastroComponent } from './auth/cadastro';
 import { PageNotFoundComponent } from './components/page-not-found';
 import { authGuard } from './auth/auth.guard';
 import { R16ListagemDeFuncionariosComponent } from './funcionario/r16-listagem-de-funcionarios/r16-listagem-de-funcionarios.component';

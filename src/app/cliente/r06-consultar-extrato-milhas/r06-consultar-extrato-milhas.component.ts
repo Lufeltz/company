@@ -28,7 +28,7 @@ export class R06ConsultarExtratoMilhasComponent implements OnInit {
   entradas: MilhaGateway[] = [];
   saidas: MilhaGateway[] = [];
 
-  selectedTab: string = 'compras'; // Aba selecionada
+  selectedTab: string = 'compras';
 
   constructor(
     private milhasGatewayService: MilhasGatewayService,
@@ -36,7 +36,6 @@ export class R06ConsultarExtratoMilhasComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.carregarCompraMilhas();
     this.consultarExtrato();
   }
 

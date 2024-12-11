@@ -19,20 +19,18 @@ export class ReservaGatewayService {
     }),
   };
 
-  // Método para listar todas as reservas de um usuário
   listarReservasUsuario(
     idUsuario: number
   ): Observable<ReservaGateway[] | null> {
-    // Requisição para o API Gateway sem o prefixo "ms-reserva"
     return this._http
       .get<ReservaGateway[]>(
-        `${this.NEW_URL}/listar-reservas-cliente/${idUsuario}`, // Alteração aqui, sem o "ms-reserva"
+        `${this.NEW_URL}/listar-reservas-cliente/${idUsuario}`,
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<ReservaGateway[]>) => {
           if (resp.status === 200) {
-            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+            return resp.body;
           } else {
             return null;
           }
@@ -46,14 +44,11 @@ export class ReservaGatewayService {
 
   realizarCheckin(codigoReserva: string): Observable<any> {
     return this._http
-      .put<any>(
-        `${this.NEW_URL}/reservas/fazer-checkin/${codigoReserva}`, // Endpoint do serviço
-        null // Corpo da requisição vazio
-      )
+      .put<any>(`${this.NEW_URL}/reservas/fazer-checkin/${codigoReserva}`, null)
       .pipe(
         map((resp: HttpResponse<any>) => {
           if (resp.status === 200) {
-            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+            return resp.body;
           } else {
             return null;
           }
@@ -65,18 +60,17 @@ export class ReservaGatewayService {
       );
   }
 
-  // Método para criar uma nova reserva
   criarReserva(reserva: ReservaCriacaoGateway): Observable<any> {
     return this._http
       .post<any>(
-        `${this.NEW_URL}/reservas/cadastrar-reserva`, // Endpoint para criar reserva
-        reserva, // O corpo da requisição com os dados da reserva
+        `${this.NEW_URL}/reservas/cadastrar-reserva`,
+        reserva,
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<any>) => {
           if (resp.status === 201) {
-            return resp.body; // Retorna o corpo da resposta
+            return resp.body;
           } else {
             return null;
           }
@@ -91,13 +85,13 @@ export class ReservaGatewayService {
   consultarReserva(codigoReserva: string): Observable<any> {
     return this._http
       .get<any>(
-        `${this.NEW_URL}/reservas/consultar-reserva/${codigoReserva}`, // Endpoint no API Gateway
+        `${this.NEW_URL}/reservas/consultar-reserva/${codigoReserva}`,
         this.httpOptions
       )
       .pipe(
         map((resp: HttpResponse<any>) => {
           if (resp.status === 200) {
-            return resp.body; // Retorna o corpo da resposta
+            return resp.body;
           } else {
             return null;
           }
@@ -111,21 +105,17 @@ export class ReservaGatewayService {
 
   confirmarEmbarque(codigoVoo: string, codigoReserva: string): Observable<any> {
     return this._http
-      .put<any>(
-        `${this.NEW_URL}/reservas/confirmar-embarque`, // Endpoint no API Gateway
-        null, // O corpo da requisição é vazio (não é necessário passar dados)
-        {
-          ...this.httpOptions,
-          params: {
-            codigoVoo: codigoVoo,
-            codigoReserva: codigoReserva,
-          },
-        }
-      )
+      .put<any>(`${this.NEW_URL}/reservas/confirmar-embarque`, null, {
+        ...this.httpOptions,
+        params: {
+          codigoVoo: codigoVoo,
+          codigoReserva: codigoReserva,
+        },
+      })
       .pipe(
         map((resp: HttpResponse<any>) => {
           if (resp.status === 202) {
-            return resp.body; // Retorna o corpo da resposta
+            return resp.body;
           } else {
             return null;
           }
@@ -137,7 +127,6 @@ export class ReservaGatewayService {
       );
   }
 
-  // Método para cancelar uma reserva
   cancelarReserva(codigoReserva: string): Observable<any> {
     return this._http
       .put<any>(
@@ -160,7 +149,6 @@ export class ReservaGatewayService {
       );
   }
 
-  // Novo método para listar reservas dos voos das próximas 48 horas
   listarReservasVoos48h(
     idUsuario: number
   ): Observable<ReservaGateway[] | null> {
@@ -172,7 +160,7 @@ export class ReservaGatewayService {
       .pipe(
         map((resp: HttpResponse<ReservaGateway[]>) => {
           if (resp.status === 200) {
-            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+            return resp.body;
           } else {
             return null;
           }

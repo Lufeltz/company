@@ -38,9 +38,9 @@ export class R08CancelarReservaComponent {
   formatarEstadoReserva(estado: string): string {
     if (!estado) return '';
     return estado
-      .replace(/_/g, ' ')                       // Substitui os underscores por espaços
-      .toLowerCase()                            // Converte tudo para minúsculo
-      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza a primeira letra de cada palavra
+      .replace(/_/g, ' ')
+      .toLowerCase()
+      .replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
   cancelarReserva(reserva: ReservaGateway): void {
@@ -49,21 +49,17 @@ export class R08CancelarReservaComponent {
       (result) => {
         if (result === 'confirmed') {
           let estadoResAnterior: string = reserva.tipoEstadoReserva;
-          // Atualiza o estado da reserva para "cancelada"
 
-          // Chama o serviço para cancelar a reserva
           this.reservaGatewayService
             .cancelarReserva(reserva.codigoReserva)
             .subscribe(() => {
               let milha = new Milha();
               milha.dataHoraTransacao = new Date().toISOString();
 
-              // Verifica se o voo existe e calcula as milhas
               if (reserva.voo) {
                 milha.quantidadeMilhas = reserva.voo.valorPassagem / 5;
                 this.clienteLogado.milhas += milha.quantidadeMilhas;
 
-                // Atualiza o saldo de milhas do cliente
                 this.clienteService
                   .putCliente(this.clienteLogado)
                   .subscribe(() => {
@@ -71,7 +67,6 @@ export class R08CancelarReservaComponent {
                   });
               }
 
-              // Cria um registro de alteração de reserva
               let registro: AlteracaoEstadoReserva =
                 new AlteracaoEstadoReserva();
               registro.codigoReserva = reserva.codigoReserva;
@@ -82,7 +77,6 @@ export class R08CancelarReservaComponent {
                 .postAlteracaoEstadoReservas(registro)
                 .subscribe(() => {});
 
-              // Cria um registro de transação de milhas
               milha.tipoTransacao = 'entrada';
               milha.descricao = 'Cancelamento de reserva';
               milha.cliente = this.clienteLogado.email
@@ -92,7 +86,6 @@ export class R08CancelarReservaComponent {
                 console.log('Registro de milhas gerado com sucesso!');
               });
 
-              // Exibe o modal de sucesso de cancelamento
               const sucessoModalRef = this.modalService.open(
                 ModalCanceladoComponent
               );

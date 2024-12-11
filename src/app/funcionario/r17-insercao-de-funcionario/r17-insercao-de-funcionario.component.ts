@@ -32,7 +32,10 @@ export class R17InsercaoDeFuncionarioComponent {
   @Output() adicaoConcluida = new EventEmitter<void>();
   @ViewChild('formAdicionarFuncionario') formAdicionarFuncionario!: NgForm;
 
-  constructor(private funcionarioGatewayService: FuncionarioGatewayService, private stateService: StateService) {}
+  constructor(
+    private funcionarioGatewayService: FuncionarioGatewayService,
+    private stateService: StateService
+  ) {}
 
   funcionarios: FuncionarioGateway[] = [];
   novoFuncionario: boolean = true;
@@ -59,13 +62,13 @@ export class R17InsercaoDeFuncionarioComponent {
           .subscribe({
             next: (funcionario) => {
               this.loading = false;
-              this.voltarClicked.emit(); // Fecha o modal
+              this.voltarClicked.emit();
               this.stateService.triggerUpdateListagemFuncionarios();
             },
             error: (err) => {
               console.log('Funcionário criado error!');
               console.log(this.funcionario);
-              this.voltarClicked.emit(); // Fecha o modal
+              this.voltarClicked.emit();
               this.stateService.triggerUpdateListagemFuncionarios();
               this.loading = false;
               this.mensagem = `Erro inserindo funcionario ${this.funcionario.nome}`;

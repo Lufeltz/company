@@ -53,7 +53,7 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
 
   getAllvoos() {
     const dataAtual = new Date();
-    const dataLimite = new Date(dataAtual.getTime() + 48 * 60 * 60 * 1000); // Adiciona 48 horas
+    const dataLimite = new Date(dataAtual.getTime() + 48 * 60 * 60 * 1000);
 
     this.vooGatewayService.getAllVoos().subscribe({
       next: (data: VooGateway[] | null) => {
@@ -72,8 +72,6 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
     });
   }
 
-  //AÇÕES DOS BOTÕES
-
   abrirModalConfirmacaoEmbarque(voo: VooGateway) {
     const modalRef = this.modalService.open(R12ConfirmacaoEmbarqueComponent, {
       backdrop: 'static',
@@ -89,7 +87,6 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
     });
     modalRef.componentInstance.vooRecebido = voo;
     modalRef.componentInstance.voltarClicked.subscribe(() => {
-      // this.getAllVoosGateway();
       modalRef.close();
     });
   }
@@ -102,7 +99,6 @@ export class R11TelaInicialFuncionarioComponent implements OnInit {
     modalRef.componentInstance.vooRecebido = voo;
 
     modalRef.componentInstance.voltarClicked.subscribe(() => {
-      // this.getAllVoosGateway();
       modalRef.close();
     });
   }

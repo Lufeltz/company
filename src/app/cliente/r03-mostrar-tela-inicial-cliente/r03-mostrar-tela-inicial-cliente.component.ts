@@ -47,11 +47,10 @@ export class R03MostrarTelaInicialClienteComponent {
   formatarEstadoReserva(estado: string): string {
     if (!estado) return '';
     return estado
-      .replace(/_/g, ' ')                       // Substitui os underscores por espaços
-      .toLowerCase()                            // Converte tudo para minúsculo
-      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitaliza a primeira letra de cada palavra
+      .replace(/_/g, ' ')
+      .toLowerCase()
+      .replace(/\b\w/g, (char) => char.toUpperCase());
   }
-    
 
   filtrarReservas(event: any): void {
     const tipoEstadoReserva = event.target.value;
@@ -102,9 +101,6 @@ export class R03MostrarTelaInicialClienteComponent {
             if (reservas) {
               this.reservasReservadas = reservas;
 
-              // this.reservasFiltradas = reservas.filter(
-              //   (reserva) => reserva.tipoEstadoReserva === 'CONFIRMADO'
-              // );
               console.log(this.reservasReservadas);
             }
           },

@@ -43,14 +43,13 @@ export class R12ConfirmacaoEmbarqueComponent implements OnInit {
           console.log('não achei');
         } else {
           console.log('achei');
-          this.reserva = data; // Atribui a reserva encontrada à variável
+          this.reserva = data;
           console.log('reserva ', this.reserva);
-          // Verifica se o código do voo da reserva corresponde ao voo recebido
+
           if (this.reserva.voo.codigoVoo === this.vooRecebido.codigoVoo) {
             this.reservaEncontrada = true;
             this.reservaNaoEncontrada = false;
           } else {
-            // Se o voo não corresponder
             this.reservaNaoEncontrada = true;
             this.reservaEncontrada = false;
           }
@@ -66,7 +65,7 @@ export class R12ConfirmacaoEmbarqueComponent implements OnInit {
 
   confirmaReserva() {
     console.log(this.reserva);
-    // this.reserva.tipoEstadoReserva = 'EMBARCADO';
+
     this.reservaGatewayService
       .confirmarEmbarque(this.reserva.voo.codigoVoo, this.reserva.codigoReserva)
       .subscribe({
