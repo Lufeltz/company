@@ -16,6 +16,8 @@ import { AuthGatewayService } from '../../services/api-gateway/auth-gateway.serv
 import { MilhasGatewayService } from '../../services/api-gateway/milhas-gateway.service';
 import { MilhaDetalhesGateway } from '../../shared/models/api-gateway/milha-detalhes-gateway.model';
 import { ReservaGatewayService } from '../../services/api-gateway/reserva-gateway.service';
+import { ReservaGateway } from '../../shared/models/api-gateway/reserva-gateway.model';
+import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
 
 @Component({
   selector: 'app-r03-mostrar-tela-inicial-cliente',
@@ -33,91 +35,39 @@ export class R03MostrarTelaInicialClienteComponent {
   idCliente: number = 0;
   qntMilhasCliente: number = 0;
 
+  reservasVoos: ReservaGateway[] | null = [];
+  reservasReservadas: ReservaGateway[] | null = [];
+
+  selectedTab: string = 'reservas'; // Aba selecionada inicialmente
+  selectedEstadoReserva: string = 'CONFIRMADO';
+
+  reservasFiltradas: ReservaGateway[] | null = [];
+
+  // Método para filtrar as reservas
+  filtrarReservas(event: any): void {
+    const tipoEstadoReserva = event.target.value;
+    if (tipoEstadoReserva) {
+      this.reservasFiltradas =
+        this.reservasReservadas?.filter(
+          (reserva) => reserva.tipoEstadoReserva === tipoEstadoReserva
+        ) || [];
+    } else {
+      this.reservasFiltradas = this.reservasReservadas;
+    }
+  }
+
   constructor(
     private authGatewayService: AuthGatewayService,
     private modalService: NgbModal,
     private milhaGatewayService: MilhasGatewayService,
     private reservasService: ReservasService,
     private reservaGatewayService: ReservaGatewayService,
-    private voosService: VoosService
+    private vooGatewayService: VooGatewayService
   ) {}
 
   ngOnInit(): void {
-    this.loadReservas();
+    // this.loadReservas();
     this.getClienteByUser();
-  }
-
-  cancelarReserva(codigoReserva: string) {
-    if (codigoReserva) {
-      // this.mensagemErro = 'O código da reserva é obrigatório.';
-      console.log('O código da reserva é obrigatório.');
-
-      return;
-    }
-
-    this.reservaGatewayService.cancelarReserva(codigoReserva).subscribe(
-      (response) => {
-        // this.mensagemSucesso = 'Reserva cancelada com sucesso!';
-        // this.mensagemErro = ''; // Limpa a mensagem de erro
-
-        console.log('Reserva cancelada com sucesso!');
-      },
-      (error) => {
-        // this.mensagemErro = 'Erro ao cancelar a reserva. Tente novamente.';
-        // this.mensagemSucesso = ''; // Limpa a mensagem de sucesso
-        console.error('Erro ao cancelar reserva:', error);
-      }
-    );
-  }
-
-  loadReservas(): Reserva[] {
-    this.reservasService.getAllReservas().subscribe({
-      next: (data: Reserva[] | null) => {
-        if (data == null) {
-          this.reservas = [];
-        } else {
-          this.reservas = data;
-          this.loadVoos();
-        }
-      },
-      error: (err) => {
-        console.log('Erro ao carregar reservas da base de dados');
-      },
-    });
-    return this.reservas;
-  }
-
-  loadVoos(): Voo[] {
-    this.voosService.getAllVoos().subscribe({
-      next: (data: Voo[] | null) => {
-        if (data == null) {
-          this.voos = [];
-        } else {
-          this.voos = data;
-          this.associarReservasComVoos();
-        }
-      },
-      error: (err) => {
-        console.log('Erro ao carregar voos da base de dados');
-      },
-    });
-
-    return this.voos;
-  }
-
-  associarReservasComVoos(): void {
-    this.reservasComVoos = this.reservas
-      .map((reserva) => {
-        const vooRelacionado = this.voos.find(
-          (voo) => voo.codigoVoo === reserva.codigoVoo
-        );
-        return { reserva, voo: vooRelacionado };
-      })
-      .sort((a, b) => {
-        const dataA = new Date(a.voo?.dataHora || 0).getTime();
-        const dataB = new Date(b.voo?.dataHora || 0).getTime();
-        return dataB - dataA;
-      });
   }
 
   getClienteByUser(): void {
@@ -135,6 +85,41 @@ export class R03MostrarTelaInicialClienteComponent {
       }
 
       if (idUsuario !== null) {
+        // Consultar os voos realizados e cancelados do cliente
+        this.vooGatewayService
+          .getVoosCanceladosRealizados(idUsuario)
+          .subscribe({
+            next: (reservas: ReservaGateway[] | null) => {
+              if (reservas) {
+                this.reservasVoos = reservas;
+                console.log(this.reservasVoos);
+              }
+            },
+            error: (err) => {
+              console.error(
+                'Erro ao consultar voos realizados e cancelados',
+                err
+              );
+            },
+          });
+
+        // Consultar todas as reservas do cliente
+        this.reservaGatewayService.listarReservasUsuario(idUsuario).subscribe({
+          next: (reservas: ReservaGateway[] | null) => {
+            if (reservas) {
+              this.reservasReservadas = reservas; // Atualizando as reservas com os dados
+              // Filtra as reservas para exibir apenas as do tipo 'CONFIRMADO'
+              this.reservasFiltradas = reservas.filter(
+                (reserva) => reserva.tipoEstadoReserva === 'CONFIRMADO'
+              );
+              console.log(this.reservasReservadas);
+            }
+          },
+          error: (err) => {
+            console.error('Erro ao listar todas as reservas do cliente', err);
+          },
+        });
+
         // Consultar o extrato de milhas do cliente
         this.milhaGatewayService.consultarExtrato(idUsuario).subscribe({
           next: (extrato: MilhaDetalhesGateway | null) => {
@@ -150,9 +135,51 @@ export class R03MostrarTelaInicialClienteComponent {
     }
   }
 
-  visualizarReserva(reserva: { reserva: Reserva; voo: Voo | undefined }): void {
+  selectTab(tab: string) {
+    this.selectedTab = tab;
+  }
+
+  visualizarReserva(reserva: ReservaGateway): void {
     const modalRef = this.modalService.open(R04VerReservaComponent);
     modalRef.componentInstance.reserva = reserva;
+  }
+
+  cancelarReserva(codigoReserva: string): void {
+    if (!codigoReserva) {
+      console.log('O código da reserva é obrigatório.');
+      return;
+    }
+
+    // Consultar a reserva com base no código, por exemplo:
+    const reservaEncontrada = this.reservasReservadas?.find(
+      (reserva) => reserva.codigoReserva === codigoReserva
+    );
+
+    if (reservaEncontrada) {
+      // Verificar o estado da reserva
+      if (
+        reservaEncontrada.tipoEstadoReserva === 'cancelada' ||
+        reservaEncontrada.tipoEstadoReserva === 'cancelado voo'
+      ) {
+        // Exibe um modal de confirmação que a reserva já foi cancelada
+        const modalRef = this.modalService.open(ModalCanceladoComponent);
+        modalRef.componentInstance.isCancelado = true;
+      } else if (
+        reservaEncontrada.tipoEstadoReserva === 'embarcado' ||
+        reservaEncontrada.tipoEstadoReserva === 'não realizado'
+      ) {
+        // Exibe um modal de ocorrência (ex: voo embarcado ou não realizado)
+        const modalRef = this.modalService.open(ModalCanceladoComponent);
+        modalRef.componentInstance.isOcorrido = true;
+      } else {
+        // Exibe o modal de cancelamento
+        const modalRef = this.modalService.open(R08CancelarReservaComponent);
+        modalRef.componentInstance.reserva = reservaEncontrada;
+        modalRef.componentInstance.clienteLogado = this.cliente; // Passando o cliente logado, se necessário
+      }
+    } else {
+      console.error('Reserva não encontrada');
+    }
   }
 
   // cancelarReserva(
@@ -183,7 +210,7 @@ export class R03MostrarTelaInicialClienteComponent {
   }
 
   get exibeLista(): boolean {
-    if (this.reservas[0] == null) {
+    if (this.reservasVoos![0] == null) {
       return true;
     } else {
       return false;

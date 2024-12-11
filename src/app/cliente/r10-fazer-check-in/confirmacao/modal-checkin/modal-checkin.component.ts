@@ -40,15 +40,11 @@ export class ModalCheckinComponent {
       .realizarCheckin(this.reserva.codigoReserva)
       .subscribe(
         (response) => {
-          this.activeModal.close({ success: true, reserva: this.reserva }); // Passa o voo de volta para o componente pai
-          // console.log('Fechando modal com sucesso', {
-          //   success: true,
-          //   reserva: this.reserva,
-          // });
+          this.activeModal.close({ success: true, reserva: this.reserva });
         },
         (error) => {
           console.error('Erro ao realizar check-in filho:', error);
-          this.activeModal.close({ success: false, error }); // Passa erro caso ocorra algum problema
+          this.activeModal.close({ success: false, error });
           console.log('Fechando modal com falha', {
             success: true,
             reserva: this.reserva,

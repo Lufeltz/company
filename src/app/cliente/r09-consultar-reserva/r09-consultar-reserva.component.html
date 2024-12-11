@@ -81,35 +81,28 @@
           </div>
           <div class="dados-reserva-text">
             Milhas utilizadas:
-            <span>{{ reserva.milhasUtilizadas}}</span>
+            <span>{{ reserva.milhasUtilizadas }}</span>
           </div>
           <div class="dados-reserva-text">
             Estado reserva:
             <span>{{ reserva.tipoEstadoReserva }}</span>
           </div>
           <div class="d-flex justify-content-end mt-2 mb-2">
-            <button *ngIf="isPendente" class="btn btn-success me-2">
-              Check-in
-            </button>
-
-            <!-- <button
+            <button
               *ngIf="isPendente"
               class="btn btn-success me-2"
-              (click)="fazerCheckIn(Reserva)"
+              (click)="fazerCheckIn(reserva)"
             >
               Check-in
-            </button> -->
-
-            <button *ngIf="isCancelavel" class="btn btn-danger">
-              Cancelar
             </button>
-            <!-- <button
+
+            <button
               *ngIf="isCancelavel"
               class="btn btn-danger"
-              (click)="cancelarReserva(Reserva)"
+              (click)="cancelarReserva(reserva)"
             >
               Cancelar
-            </button> -->
+            </button>
           </div>
         </div>
       </div>

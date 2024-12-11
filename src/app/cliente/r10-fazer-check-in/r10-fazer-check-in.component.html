@@ -12,6 +12,7 @@
               <th scope="col">Data Viagem</th>
               <th scope="col">Aeroporto Origem</th>
               <th scope="col">Aeroporto Destino</th>
+              <th scope="col">Código Voo</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
@@ -20,6 +21,7 @@
               <td>{{ reserva.voo.dataVoo | date : "dd/MM/yyyy HH:mm" }}</td>
               <td>{{ reserva.voo.aeroportoOrigem.codigoAeroporto }}</td>
               <td>{{ reserva.voo.aeroportoDestino.codigoAeroporto }}</td>
+              <td>{{ reserva.voo.codigoVoo }}</td>             
               <td>
                 <button
                   class="btn btn_blue"

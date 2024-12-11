@@ -16,6 +16,7 @@ import { ReservaGatewayService } from '../../services/api-gateway/reserva-gatewa
 import { ReservaGateway } from '../../shared/models/api-gateway/reserva-gateway.model';
 import { VooGatewayService } from '../../services/api-gateway/voo-gateway.service';
 import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
+import { ModalSuccessCheckinComponent } from '../r10-fazer-check-in/confirmacao/modal-success-checkin/modal-success-checkin.component';
 
 @Component({
   selector: 'app-r09-consultar-reserva',
@@ -68,7 +69,6 @@ export class R09ConsultarReservaComponent {
     );
   }
 
-  // Método para consultar a reserva
   consultarReserva(codigoReserva: string): void {
     this.reservaGatewayService.consultarReserva(codigoReserva).subscribe(
       (response) => {
@@ -78,6 +78,9 @@ export class R09ConsultarReservaComponent {
           if (this.reserva) {
             this.consultarVoo(this.reserva.voo.codigoVoo);
             console.log('Detalhes voo:', this.voo);
+
+            // Verifica se o voo é dentro das próximas 48 horas
+            this.verificarVoo();
           }
           this.reservaEncontrada = true;
         } else {
@@ -90,6 +93,24 @@ export class R09ConsultarReservaComponent {
       }
     );
   }
+
+  verificarVoo(): void {
+    const vooData = new Date(this.reserva.voo.dataVoo);
+    const agora = new Date();
+    const tempoRestante = vooData.getTime() - agora.getTime();
+    const horasRestantes = tempoRestante / (1000 * 3600); // Converte o tempo restante para horas
+  
+    // Verifica se o voo será realizado nas próximas 48 horas
+    if (horasRestantes <= 48 && horasRestantes > 0 && this.reserva.tipoEstadoReserva === 'CONFIRMADO') {
+      this.isPendente = true; // Habilita o botão de Check-in
+      this.isCancelavel = true; // Habilita o botão de Cancelar
+    } else {
+      this.isPendente = false;
+      this.isCancelavel = false;
+    }
+  }
+  
+
   getClienteByUser(): void {
     this.usuario = this.loginService.getUsuarioLogado();
     let clientes: Cliente[] = [];
@@ -113,26 +134,30 @@ export class R09ConsultarReservaComponent {
     });
   }
 
-  cancelarReserva(
-    reserva: { reserva: Reserva; voo: Voo | undefined } | null
-  ): void {
+  cancelarReserva(reserva: ReservaGateway): void {
     const modalRef = this.modalService.open(R08CancelarReservaComponent);
     modalRef.componentInstance.reserva = reserva;
     modalRef.componentInstance.clienteLogado = this.cliente;
   }
 
-  fazerCheckIn(
-    reserva: { reserva: Reserva; voo: Voo | undefined } | null
-  ): void {
-    // const modalRef = this.modalService.open(ModalCheckinComponent);
-    // modalRef.componentInstance.voo = reserva?.voo;
+  fazerCheckIn(reserva: ReservaGateway): void {
+    console.log(reserva)
+    const modalRef = this.modalService.open(ModalCheckinComponent);
+    modalRef.componentInstance.reserva = reserva;
+  
+    modalRef.result.then(
+      (result) => {
+        if (result && result.success) {
+          const sucessoModalRef = this.modalService.open(ModalSuccessCheckinComponent);
+          sucessoModalRef.componentInstance.voo = result.voo; // Pass the flight from the result
+        } else {
+          console.log('Erro ao realizar check-in:', result?.error);
+        }
+      },
+      (reason) => {
+        console.log('Checkin falhou:', reason);
+      }
+    );
   }
-
-  // get Reserva(): { reserva: Reserva; voo: Voo | undefined } | null {
-  //   if (this.reserva != null) {
-  //     return this.reserva;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  
 }

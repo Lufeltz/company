@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">
-    Reserva {{ reserva.reserva.codigoReserva }}
+    Reserva {{ reserva.codigoReserva }}
   </h4>
   <button
     type="button"
@@ -12,19 +12,19 @@
 <div class="modal-body">
   <p>
     Data e hora da reserva:
-    {{ reserva.reserva.dataHoraReserva | date : "dd/MM/yyyy HH:mm" }}
+    {{ reserva.dataReserva| date : "dd/MM/yyyy HH:mm" }}
   </p>
   <p>
-    Data e hora do voo: {{ reserva.voo?.dataHora | date : "dd/MM/yyyy HH:mm" }}
+    Data e hora do voo: {{ reserva.voo.dataVoo | date : "dd/MM/yyyy HH:mm" }}
   </p>
-  <p>Código: {{ reserva.voo?.codigoVoo }}</p>
-  <p>Origem: {{ reserva.voo?.aeroportoOrigem }}</p>
-  <p>Destino: {{ reserva.voo?.aeroportoDestino }}</p>
+  <p>Código: {{ reserva.voo.codigoVoo }}</p>
+  <p>Origem: {{ reserva.voo.aeroportoOrigem.codigoAeroporto }}</p>
+  <p>Destino: {{ reserva.voo.aeroportoDestino.codigoAeroporto }}</p>
   <p>
-    Valor em reais: {{ reserva.voo?.valorPassagemReais | currency : "BRL" }}
+    Valor em reais: {{ reserva.voo.valorPassagem| currency : "BRL" }}
   </p>
-  <p>Valor em milhas: {{ reserva.voo!.valorPassagemReais / 5 }}</p>
-  <p>Situação: {{ reserva.reserva.estadoReserva }}</p>
+  <p>Valor em milhas: {{ reserva.voo.valorPassagem / 5 }}</p>
+  <p>Situação: {{ reserva.tipoEstadoReserva }}</p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-danger" (click)="activeModal.close()">

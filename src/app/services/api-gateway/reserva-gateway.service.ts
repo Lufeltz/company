@@ -19,6 +19,31 @@ export class ReservaGatewayService {
     }),
   };
 
+  // Método para listar todas as reservas de um usuário
+  listarReservasUsuario(
+    idUsuario: number
+  ): Observable<ReservaGateway[] | null> {
+    // Requisição para o API Gateway sem o prefixo "ms-reserva"
+    return this._http
+      .get<ReservaGateway[]>(
+        `${this.NEW_URL}/listar-reservas-cliente/${idUsuario}`, // Alteração aqui, sem o "ms-reserva"
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<ReservaGateway[]>) => {
+          if (resp.status === 200) {
+            return resp.body; // Retorna o corpo da resposta, caso seja bem-sucedido
+          } else {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          console.error('Erro ao listar todas as reservas do usuário', err);
+          return throwError(() => err);
+        })
+      );
+  }
+
   realizarCheckin(codigoReserva: string): Observable<any> {
     return this._http
       .put<any>(
@@ -122,7 +147,7 @@ export class ReservaGatewayService {
       )
       .pipe(
         map((resp: HttpResponse<any>) => {
-          if (resp.status === 200) {
+          if (resp.status === 202) {
             return resp.body;
           } else {
             return null;

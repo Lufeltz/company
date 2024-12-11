@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { VooGateway } from '../../shared/models/api-gateway/voo-gateway';
 import { CadastroVooGateway } from '../../shared/models/api-gateway/cadastro-voo-gateway.model';
+import { ReservaGateway } from '../../shared/models/api-gateway/reserva-gateway.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,32 @@ export class VooGatewayService {
       'Content-Type': 'application/json',
     }),
   };
+
+  getVoosCanceladosRealizados(
+    idUsuario: number
+  ): Observable<ReservaGateway[] | null> {
+    return this._http
+      .get<ReservaGateway[]>(
+        `${this.NEW_URL}/voos-realizados-cancelados/${idUsuario}`,
+        this.httpOptions
+      )
+      .pipe(
+        map((resp: HttpResponse<ReservaGateway[]>) => {
+          if (resp.status === 200) {
+            return resp.body;
+          } else {
+            return [];
+          }
+        }),
+        catchError((err) => {
+          if (err.status === 404) {
+            return of([]);
+          } else {
+            return throwError(() => err);
+          }
+        })
+      );
+  }
 
   realizarVoo(codigoVoo: string): Observable<any> {
     return this._http
