@@ -11,6 +11,7 @@
         <table class="table table-hover">
           <thead>
             <tr class="custom-headers">
+              <th scope="col">Código do Voo</th>
               <th scope="col">Data/hora</th>
               <th scope="col">Aeroporto Origem</th>
               <th scope="col">Aeroporto Destino</th>
@@ -19,6 +20,9 @@
           </thead>
           <tbody class="table-items-body custom-tr-items">
             <tr *ngFor="let item of voosGateway">
+              <td style="width: 15%">
+                {{ item.codigoVoo }}
+              </td>
               <td style="width: 15%">
                 {{ item.dataVoo | date : "dd/MM/yyyy - HH:mm" }}
               </td>
